@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StackBox Conveyor Orchestration Dashboard</title>
+  <!-- Modern Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Design Tokens & CSS Variables */
+    :root {
+      --bg-gradient: linear-gradient(135deg, #070a13 0%, #0f172a 100%);
+      --card-bg: rgba(15, 23, 42, 0.65);
+      --card-border: rgba(255, 255, 255, 0.08);
+      
+      --primary: #3b82f6;      /* Electric Blue */
+      --primary-glow: rgba(59, 130, 246, 0.35);
+      --secondary: #8b5cf6;    /* Tech Purple */
+      --secondary-glow: rgba(139, 92, 246, 0.35);
+      
+      --success: #10b981;      /* Neon Emerald */
+      --success-glow: rgba(16, 185, 129, 0.35);
+      --warning: #f59e0b;      /* Cyber Amber */
+      --warning-glow: rgba(245, 158, 11, 0.35);
+      --danger: #ef4444;       /* Laser Coral Red */
+      --danger-glow: rgba(239, 68, 68, 0.35);
+      
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --console-bg: #090d16;
+      
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Global CSS Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* App Shell Layout */
+    .app-container {
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      height: 100vh;
+      padding: 1.5rem;
+      gap: 1.5rem;
+      max-width: 1800px;
+      margin: 0 auto;
+    }
+
+    /* Glassmorphism Panel Base Class */
+    .glass-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      transition: var(--transition);
+    }
+    .glass-card:hover {
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    /* Header Component */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-glow {
+      width: 14px;
+      height: 14px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 15px 4px var(--primary);
+      animation: logoPulse 2s infinite alternate;
+    }
+
+    @keyframes logoPulse {
+      0% { transform: scale(0.9); opacity: 0.7; box-shadow: 0 0 10px 2px var(--primary); }
+      100% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 20px 6px var(--primary); }
+    }
+
+    .brand h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      background: linear-gradient(to right, #ffffff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .system-status {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      color: var(--success);
+    }
+    .system-status .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--success);
+      border-radius: 50%;
+      animation: pulseGreen 1.5s infinite;
+    }
+
+    @keyframes pulseGreen {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    /* Conveyor Belt Visualizer (Animated) */
+    .conveyor-visualizer {
+      position: relative;
+      background: rgba(10, 15, 28, 0.6);
+      border-radius: 12px;
+      padding: 1.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      overflow: hidden;
+    }
+
+    .conveyor-track {
+      position: relative;
+      height: 48px;
+      background: #1e293b;
+      border: 4px solid #334155;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .conveyor-belt-dots {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 4px;
+      transform: translateY(-50%);
+      background-image: linear-gradient(to right, #64748b 30%, transparent 30%);
+      background-size: 24px 100%;
+      animation: moveBelt 1.5s linear infinite;
+    }
+
+    @keyframes moveBelt {
+      0% { background-position-x: 0px; }
+      100% { background-position-x: 24px; }
+    }
+
+    .conveyor-track.jammed .conveyor-belt-dots {
+      animation-play-state: paused;
+      background-image: linear-gradient(to right, #ef4444 30%, transparent 30%);
+    }
+
+    .conveyor-track.jammed {
+      border-color: var(--danger);
+      box-shadow: 0 0 15px rgba(239, 68, 68, 0.15);
+    }
+
+    .conveyor-package {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      background: #b45309;
+      border: 2px solid #d97706;
+      border-radius: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: bold;
+      color: #fef3c7;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      animation: packageSlide 15s linear infinite;
+    }
+
+    .conveyor-track.jammed .conveyor-package {
+      animation-play-state: paused;
+      border-color: var(--danger);
+      background: #991b1b;
+      color: #fee2e2;
+    }
+
+    @keyframes packageSlide {
+      0% { left: -40px; }
+      100% { left: calc(100% + 40px); }
+    }
+
+    .conveyor-package:nth-child(2) { animation-delay: 5s; }
+    .conveyor-package:nth-child(3) { animation-delay: 10s; }
+
+    .agv-visual {
+      position: absolute;
+      width: 44px;
+      height: 28px;
+      background: var(--secondary);
+      border: 2px solid #a78bfa;
+      border-radius: 6px;
+      bottom: 2px;
+      left: 10%;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.55rem;
+      font-weight: 800;
+      color: white;
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+    }
+    .agv-visual.dispatched {
+      opacity: 1;
+      transform: scale(1);
+      animation: agvRescue 6s ease-in-out forwards;
+    }
+
+    @keyframes agvRescue {
+      0% { left: 10%; opacity: 0; }
+      20% { left: 15%; opacity: 1; }
+      70% { left: 45%; opacity: 1; }
+      80% { left: 45%; opacity: 1; transform: translateY(-5px); }
+      90% { left: 50%; opacity: 1; }
+      100% { left: 95%; opacity: 0; }
+    }
+
+    /* Main Grid Structure */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 350px 1fr 450px;
+      gap: 1.5rem;
+      min-height: 0;
+    }
+
+    /* Left Sidebar: Form & Presets */
+    .control-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .panel-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .presets-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .preset-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      text-align: left;
+      cursor: pointer;
+      color: var(--text-main);
+      transition: var(--transition);
+      font-family: inherit;
+    }
+    .preset-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateX(4px);
+    }
+    .preset-btn.critical-1 { border-left: 4px solid var(--danger); }
+    .preset-btn.critical-2 { border-left: 4px solid var(--warning); }
+    .preset-btn.recoverable { border-left: 4px solid var(--success); }
+
+    .preset-btn h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+    .preset-btn p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Modern Accessible Form */
+    .ingest-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .textarea-wrapper {
+      position: relative;
+    }
+
+    .ingest-form textarea {
+      width: 100%;
+      min-height: 110px;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 0.75rem;
+      color: var(--text-main);
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      resize: none;
+      outline: none;
+      transition: var(--transition);
+    }
+    .ingest-form textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 10px var(--primary-glow);
+    }
+
+    /* Custom button with micro-interactions */
+    .action-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      border: none;
+      border-radius: 10px;
+      padding: 0.9rem;
+      color: white;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.25);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .action-btn:hover {
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+      transform: translateY(-2px);
+    }
+    .action-btn:active {
+      transform: translateY(0);
+    }
+    .action-btn:disabled {
+      background: #334155;
+      color: #64748b;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+
+    /* Middle Section: Workflow Graph Visualizer */
+    .graph-section {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .graph-card {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    /* SVG DAG Node Styles */
+    .dag-svg {
+      width: 100%;
+      height: 100%;
+      min-height: 480px;
+    }
+
+    .dag-node {
+      cursor: default;
+      transition: var(--transition);
+    }
+    .dag-node rect {
+      fill: #1e293b;
+      stroke: #334155;
+      stroke-width: 2;
+      rx: 8;
+      ry: 8;
+      transition: var(--transition);
+    }
+    .dag-node text {
+      fill: var(--text-muted);
+      font-size: 11px;
+      font-weight: 600;
+      text-anchor: middle;
+      font-family: inherit;
+      transition: var(--transition);
+    }
+
+    /* Node State Glows */
+    .dag-node.active rect {
+      stroke: var(--primary);
+      fill: rgba(59, 130, 246, 0.15);
+      filter: drop-shadow(0 0 8px var(--primary-glow));
+    }
+    .dag-node.active text {
+      fill: white;
+    }
+
+    .dag-node.success rect {
+      stroke: var(--success);
+      fill: rgba(16, 185, 129, 0.15);
+      filter: drop-shadow(0 0 8px var(--success-glow));
+    }
+    .dag-node.success text {
+      fill: #a7f3d0;
+    }
+
+    .dag-node.warning rect {
+      stroke: var(--warning);
+      fill: rgba(245, 158, 11, 0.15);
+      filter: drop-shadow(0 0 8px var(--warning-glow));
+    }
+    .dag-node.warning text {
+      fill: #fde68a;
+    }
+
+    /* SVG Flowing Path Styles */
+    .dag-path {
+      fill: none;
+      stroke: #334155;
+      stroke-width: 2;
+      transition: var(--transition);
+    }
+    .dag-path.active {
+      stroke: var(--primary);
+      stroke-dasharray: 6, 6;
+      animation: strokeFlow 1s linear infinite;
+    }
+    .dag-path.active-warning {
+      stroke: var(--warning);
+      stroke-dasharray: 6, 6;
+      animation: strokeFlow 1s linear infinite;
+    }
+
+    @keyframes strokeFlow {
+      0% { stroke-dashoffset: 24; }
+      100% { stroke-dashoffset: 0; }
+    }
+
+    /* Right Sidebar: Execution Console & Chat Output */
+    .output-panel {
+      display: grid;
+      grid-template-rows: 1fr auto;
+      gap: 1.5rem;
+      min-height: 0;
+    }
+
+    .console-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .console-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .console-tabs {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 0.25rem 0.5rem;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+    .tab-btn.active {
+      color: white;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .safety-clip-btn {
+      transition: var(--transition);
+    }
+    .safety-clip-btn:hover {
+      background: rgba(255, 255, 255, 0.06) !important;
+    }
+    .safety-clip-btn.active {
+      border-color: var(--primary) !important;
+      background: rgba(59, 130, 246, 0.1) !important;
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.15);
+    }
+
+    .console-body {
+      flex: 1;
+      background: var(--console-bg);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 1rem;
+      overflow-y: auto;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .console-line {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .console-line .timestamp {
+      color: #475569;
+      user-select: none;
+    }
+    .console-line .info { color: #3b82f6; }
+    .console-line .success { color: #10b981; }
+    .console-line .warning { color: #f59e0b; }
+    .console-line .danger { color: #ef4444; }
+    .console-line .system { color: #8b5cf6; }
+
+    /* Streaming output rendering */
+    .report-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      font-family: inherit;
+      font-size: 0.95rem;
+      overflow-y: auto;
+      max-height: 100%;
+    }
+    .report-container h1, .report-container h2, .report-container h3 {
+      font-weight: 700;
+      color: white;
+      margin-top: 0.5rem;
+    }
+    .report-container h2 { font-size: 1.2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 0.25rem; }
+    .report-container p { color: #cbd5e1; }
+    .report-container ul { padding-left: 1.25rem; color: #cbd5e1; }
+    .report-container li { margin-bottom: 0.25rem; }
+
+    .tool-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      color: #c084fc;
+      margin-bottom: 0.5rem;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(8px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Feedback Card (Clean, modern form) */
+    .feedback-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .feedback-stars {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .star-btn {
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      color: #475569;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .star-btn.active {
+      color: #fbbf24;
+      text-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
+    }
+
+    .feedback-input {
+      width: 100%;
+      height: 38px;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 0.5rem 0.75rem;
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.85rem;
+      outline: none;
+      transition: var(--transition);
+    }
+    .feedback-input:focus {
+      border-color: var(--secondary);
+    }
+
+    .feedback-submit {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 0.5rem;
+      color: white;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .feedback-submit:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Screen Reader Accessibility Helper */
+    .visually-hidden {
+      position: absolute;
+      clip-path: inset(50%);
+      overflow: hidden;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      border: 0;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Top Shell Row: Branding & System Status -->
+    <header class="glass-card">
+      <div class="brand">
+        <div class="logo-glow" aria-hidden="true"></div>
+        <h1>StackBox Conveyor Orchestrator</h1>
+      </div>
+      <div class="system-status">
+        <div class="pulse-dot" aria-hidden="true"></div>
+        <span>SYSTEM LOGISTICS ONLINE</span>
+      </div>
+    </header>
+
+    <!-- Interactive Conveyor Visualiser -->
+    <div class="conveyor-visualizer glass-card" aria-label="Conveyor belt status visualizer">
+      <div class="conveyor-track" id="visual-belt">
+        <div class="conveyor-belt-dots" aria-hidden="true"></div>
+        <div class="conveyor-package">BOX-A</div>
+        <div class="conveyor-package">BOX-B</div>
+        <div class="conveyor-package">BOX-C</div>
+      </div>
+      <!-- Dispatched AGV Animation Graphic -->
+      <div class="agv-visual" id="agv-graphic">AGV-01</div>
+    </div>
+
+    <!-- Core Grid Area -->
+    <main class="dashboard-grid">
+      
+      <!-- Column 1: Controls & Form Ingestion -->
+      <div class="control-panel">
+        <section class="glass-card">
+          <h2 class="panel-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            Preset Scenarios
+          </h2>
+          <div class="presets-container">
+            <button class="preset-btn critical-1" id="preset-critical-blocked" aria-label="Load preset critical failure with blocked SKU-991">
+              <h4>Critical Sensor - SKU-991</h4>
+              <p>Error 4042: Sensor mismatch. Stock blocked in Aisle 4. Triggers AGV Bypass.</p>
+            </button>
+            <button class="preset-btn critical-2" id="preset-critical-available" aria-label="Load preset critical failure with available SKU-502">
+              <h4>Critical Flap Jam - SKU-502</h4>
+              <p>Error 5011: Debris in flap. Stock available. No AGV required.</p>
+            </button>
+            <button class="preset-btn recoverable" id="preset-recoverable" aria-label="Load preset recoverable warning">
+              <h4>Recoverable Warning</h4>
+              <p>Error-3000: Minor sensor drift. Flow logs event only.</p>
+            </button>
+            <button class="preset-btn" id="preset-safety-posture" style="border-left: 4px solid var(--primary);" aria-label="Load preset safety audit posture aisle 4">
+              <h4>Audit Posture (Aisle 4)</h4>
+              <p>Triggers posture audit for Aisle 4. Verifies compliant lifting techniques.</p>
+            </button>
+            <button class="preset-btn" id="preset-safety-ppe" style="border-left: 4px solid var(--danger);" aria-label="Load preset safety audit ppe loading dock">
+              <h4>PPE Audit (Loading Dock)</h4>
+              <p>Triggers safety vest compliance check for Loading Dock forklift zones.</p>
+            </button>
+          </div>
+        </section>
+
+        <section class="glass-card">
+          <h2 class="panel-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+            Telemetry Ingest
+          </h2>
+          <form class="ingest-form" id="telemetry-form">
+            <div class="form-group">
+              <label for="telemetry-input">Raw Telemetry Event String</label>
+              <div class="textarea-wrapper">
+                <textarea id="telemetry-input" required spellcheck="false" autocomplete="off" placeholder="conveyor_id: CV-09, error_code: Error 4042, sku: SKU-991, status: CRITICAL"></textarea>
+              </div>
+            </div>
+            <button type="submit" class="action-btn" id="submit-orchestrate">
+              <span>Ingest & Orchestrate</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </form>
+        </section>
+      </div>
+
+      <!-- Column 2: Graphical DAG Flowchart Visualizer -->
+      <section class="graph-section">
+        <div class="glass-card graph-card" aria-label="Workflow execution graph diagram">
+          <svg class="dag-svg" id="dag-viewport" viewBox="0 0 800 500">
+            <!-- Definitions for markers (arrows) -->
+            <defs>
+              <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#334155" />
+              </marker>
+              <marker id="arrow-active" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#3b82f6" />
+              </marker>
+              <marker id="arrow-warning" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b" />
+              </marker>
+            </defs>
+
+            <!-- Connecting Edges / Paths -->
+            <path id="path-start" d="M 100,50 L 150,50" class="dag-path" marker-end="url(#arrow)" />
+            
+            <path id="path-ingest-runbook" d="M 270,40 L 320,25" class="dag-path" marker-end="url(#arrow)" />
+            <path id="path-ingest-wms" d="M 270,60 L 320,75" class="dag-path" marker-end="url(#arrow)" />
+            <path id="path-ingest-recoverable" d="M 210,80 L 210,130 C 210,150 260,150 300,150" class="dag-path" marker-end="url(#arrow)" />
+            <path id="path-ingest-conversational" d="M 210,80 L 210,210 C 210,210 260,210 300,210" class="dag-path" marker-end="url(#arrow)" />
+            <path id="path-ingest-safety-audit" d="M 210,80 L 210,270 C 210,270 260,270 300,270" class="dag-path" marker-end="url(#arrow)" />
+
+            <path id="path-runbook-join" d="M 440,25 L 480,40" class="dag-path" marker-end="url(#arrow)" />
+            <path id="path-wms-join" d="M 440,75 L 480,50" class="dag-path" marker-end="url(#arrow)" />
+
+            <path id="path-join-format" d="M 520,45 L 560,45" class="dag-path" marker-end="url(#arrow)" />
+            <path id="path-format-dispatcher" d="M 680,45 L 710,45" class="dag-path" marker-end="url(#arrow)" />
+
+            <!-- Nodes (groups) -->
+            <g id="node-START" class="dag-node">
+              <rect x="30" y="30" width="70" height="40" />
+              <text x="65" y="54">START</text>
+            </g>
+
+            <g id="node-telemetry_ingest" class="dag-node">
+              <rect x="150" y="30" width="120" height="40" />
+              <text x="210" y="54">telemetry_ingest</text>
+            </g>
+
+            <g id="node-runbook_lookup" class="dag-node">
+              <rect x="320" y="5" width="120" height="40" />
+              <text x="380" y="29">runbook_lookup</text>
+            </g>
+
+            <g id="node-wms_access" class="dag-node">
+              <rect x="320" y="55" width="120" height="40" />
+              <text x="380" y="79">wms_access</text>
+            </g>
+
+            <g id="node-join" class="dag-node">
+              <rect x="480" y="30" width="40" height="30" />
+              <text x="500" y="49">JOIN</text>
+            </g>
+
+            <g id="node-format_dispatcher_input" class="dag-node">
+              <rect x="560" y="25" width="120" height="40" />
+              <text x="620" y="49">format_dispatcher</text>
+            </g>
+
+            <g id="node-dispatcher_agent" class="dag-node">
+              <rect x="710" y="25" width="120" height="40" />
+              <text x="770" y="49">dispatcher_agent</text>
+            </g>
+
+            <g id="node-log_recoverable" class="dag-node">
+              <rect x="300" y="130" width="120" height="40" />
+              <text x="360" y="154">log_recoverable</text>
+            </g>
+
+            <g id="node-conversational_safety_agent" class="dag-node">
+              <rect x="300" y="190" width="180" height="40" />
+              <text x="390" y="214">conversational_safety_agent</text>
+            </g>
+
+            <g id="node-cctv_safety_audit_agent" class="dag-node">
+              <rect x="300" y="250" width="180" height="40" />
+              <text x="390" y="274">cctv_safety_audit_agent</text>
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <!-- Column 3: Live Orchestration Stream Logs & Engineering Report -->
+      <section class="output-panel">
+        
+        <!-- Live Console Logs Card -->
+        <div class="glass-card console-card">
+          <div class="console-header">
+            <h2 class="panel-title">Orchestrator Output</h2>
+            <div class="console-tabs">
+              <button class="tab-btn active" id="tab-report">Engineering Report</button>
+              <button class="tab-btn" id="tab-logs">Raw Telemetry Stream</button>
+              <button class="tab-btn" id="tab-safety">CCTV Safety Audit</button>
+            </div>
+          </div>
+          
+          <div class="console-body" id="console-output">
+            <!-- Dynamic elements will be appended securely via JS -->
+            <div class="report-container" id="report-view">
+              <p style="color: var(--text-muted); font-style: italic;">Enter a telemetry string or click a preset and click "Ingest & Orchestrate" to see findings.</p>
+            </div>
+            <div class="report-container visually-hidden" id="logs-view">
+              <!-- Raw log feeds go here -->
+            </div>
+            <div class="report-container visually-hidden" id="safety-view" style="display: flex; flex-direction: column; gap: 1rem; height: 100%;">
+              <div class="safety-grid" style="display: grid; grid-template-columns: 200px 1fr; gap: 1rem; height: 100%; min-height: 380px;">
+                <!-- Left: Catalog List -->
+                <div class="safety-catalog" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 0.5rem; border-radius: 8px; overflow-y: auto;">
+                  <h4 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; letter-spacing: 0.05em;">CCTV Footages</h4>
+                  <div class="safety-list" id="safety-video-list" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button class="safety-clip-btn active" data-video="aisle4" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 0.5rem; text-align: left; border-radius: 6px; cursor: pointer; color: white; width: 100%;">
+                      <div style="font-size: 0.85rem; font-weight: 600;">Aisle 4 (Safe Lift)</div>
+                      <span class="badge" style="background: var(--success); font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-top: 4px; font-weight: 700;">COMPLIANT</span>
+                    </button>
+                    <button class="safety-clip-btn" data-video="aisle2" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 0.5rem; text-align: left; border-radius: 6px; cursor: pointer; color: white; width: 100%;">
+                      <div style="font-size: 0.85rem; font-weight: 600;">Aisle 2 (Unsafe Lift)</div>
+                      <span class="badge" style="background: var(--danger); font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-top: 4px; font-weight: 700;">VIOLATION</span>
+                    </button>
+                    <button class="safety-clip-btn" data-video="dock" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 0.5rem; text-align: left; border-radius: 6px; cursor: pointer; color: white; width: 100%;">
+                      <div style="font-size: 0.85rem; font-weight: 600;">Loading Dock (PPE)</div>
+                      <span class="badge" style="background: var(--danger); font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-top: 4px; font-weight: 700;">VIOLATION</span>
+                    </button>
+                    <button class="safety-clip-btn" data-video="cv11" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 0.5rem; text-align: left; border-radius: 6px; cursor: pointer; color: white; width: 100%;">
+                      <div style="font-size: 0.85rem; font-weight: 600;">CV-11 (LOTO Audit)</div>
+                      <span class="badge" style="background: var(--success); font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-top: 4px; font-weight: 700;">COMPLIANT</span>
+                    </button>
+                  </div>
+                </div>
+                <!-- Right: Player + skeleton Canvas Overlay -->
+                <div class="safety-player-panel" style="display: flex; flex-direction: column; gap: 0.5rem; position: relative;">
+                  <div class="player-container" style="position: relative; aspect-ratio: 16/9; background: #000; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; width: 100%;">
+                    <!-- Simulated frame with canvas on top -->
+                    <div style="position: absolute; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                      <div id="video-sim-frame" style="width: 100%; height: 100%; background: radial-gradient(circle, #1e293b 0%, #0f172a 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+                        <!-- CCTV scan lines & watermark -->
+                        <div style="position: absolute; top: 10px; left: 10px; font-family: monospace; font-size: 0.75rem; color: rgba(255,255,255,0.4); text-transform: uppercase;">
+                          REC <span style="color: #ef4444; animation: blink 1s infinite;">●</span> CAM_WAREHOUSE_<span id="sim-cam-loc">AISLE_4</span>
+                        </div>
+                        <div style="position: absolute; top: 10px; right: 10px; font-family: monospace; font-size: 0.75rem; color: rgba(255,255,255,0.4);">
+                          2026-06-17 09:30:<span id="sim-cam-seconds">00</span>
+                        </div>
+                        <!-- Canvas overlay for skeleton drawing -->
+                        <canvas id="skeleton-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>
+                        <!-- Center warning text overlay -->
+                        <div id="sim-warning-overlay" style="position: absolute; bottom: 20px; text-transform: uppercase; background: rgba(239, 68, 68, 0.85); color: white; padding: 4px 12px; border-radius: 4px; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; display: none; box-shadow: 0 0 15px var(--danger);">
+                          LUMBAR OVERLOAD RED ZONE
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Controls for simulation -->
+                  <div style="display: flex; gap: 0.5rem; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03); padding: 0.5rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); width: 100%;">
+                    <button id="btn-toggle-play" style="background: var(--primary); color: white; border: none; padding: 4px 12px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-weight: 600;">Play Audit Simulation</button>
+                    <div style="font-size: 0.75rem; color: var(--text-muted);">
+                      Ergonomic Flexion Angle: <span id="posture-angle-display" style="color: var(--success); font-weight: 700;">15°</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Detailed report findings below -->
+              <div class="safety-report-details" style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.08); padding: 0.75rem; border-radius: 8px; font-size: 0.85rem; width: 100%;">
+                <h3 style="font-size: 0.9rem; font-weight: 700; color: white; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <span id="safety-report-icon">🛡️</span> AI Clinical Safety & Hygiene Assessment
+                </h3>
+                <div id="safety-report-text" style="color: var(--text-muted); line-height: 1.4;">
+                  Worker in Aisle 4 demonstrated exemplary lifting technique: bent at knees, kept back straight, and held the load close to the core. Highly compliant with Ergonomic Lift Protocol SOP-202.
+                </div>
+                <div style="margin-top: 0.5rem; display: flex; gap: 1rem; font-size: 0.8rem;">
+                  <div>PPE Check: <span id="safety-vest-badge" style="color: var(--success); font-weight: 700;">VEST DETECTED</span></div>
+                  <div>Hard Hat: <span id="safety-hat-badge" style="color: var(--success); font-weight: 700;">DETECTED</span></div>
+                  <div>Overall Score: <span id="safety-score-badge" style="color: var(--success); font-weight: 700;">95/100</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feedback collection card -->
+        <section class="glass-card feedback-card">
+          <h3 style="font-size: 0.95rem; font-weight: 700; color: white;">Submit Response Feedback</h3>
+          <div class="feedback-stars" role="radiogroup" aria-label="Select star rating">
+            <button type="button" class="star-btn" data-star="1" aria-label="1 star">★</button>
+            <button type="button" class="star-btn" data-star="2" aria-label="2 stars">★</button>
+            <button type="button" class="star-btn" data-star="3" aria-label="3 stars">★</button>
+            <button type="button" class="star-btn" data-star="4" aria-label="4 stars">★</button>
+            <button type="button" class="star-btn" data-star="5" aria-label="5 stars">★</button>
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="text" class="feedback-input" id="feedback-text" placeholder="Add comments (optional)..." aria-label="Additional comments">
+            <button type="button" class="feedback-submit" id="btn-submit-feedback">Send</button>
+          </div>
+        </section>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- Client Logic -->
+  <script>
+    // In-memory state
+    let activeSessionId = null;
+    let selectedRating = 0;
+    const userId = "web_user_dashboard";
+    const baseURL = window.location.origin;
+
+    // DOM Elements
+    const telemetryInput = document.getElementById("telemetry-input");
+    const telemetryForm = document.getElementById("telemetry-form");
+    const submitBtn = document.getElementById("submit-orchestrate");
+    const visualBelt = document.getElementById("visual-belt");
+    const agvGraphic = document.getElementById("agv-graphic");
+    const reportView = document.getElementById("report-view");
+    const logsView = document.getElementById("logs-view");
+    
+    const tabReport = document.getElementById("tab-report");
+    const tabLogs = document.getElementById("tab-logs");
+    
+    // Presets Buttons
+    const btnCritical1 = document.getElementById("preset-critical-blocked");
+    const btnCritical2 = document.getElementById("preset-critical-available");
+    const btnRecoverable = document.getElementById("preset-recoverable");
+
+    // Star feedback elements
+    const starBtns = document.querySelectorAll(".star-btn");
+    const feedbackText = document.getElementById("feedback-text");
+    const btnFeedback = document.getElementById("btn-submit-feedback");
+
+    // Initialize: Auto-create session on page load
+    async function initializeSession() {
+      addLog("Initializing secure agent session...", "system");
+      try {
+        const res = await fetch(`${baseURL}/apps/app/users/${userId}/sessions`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ state: {} })
+        });
+        if (res.ok) {
+          const data = await res.json();
+          activeSessionId = data.id;
+          addLog(`Session created successfully: ${activeSessionId}`, "success");
+        } else {
+          addLog("Failed to create user session automatically. Will retry on submission.", "danger");
+        }
+      } catch (err) {
+        addLog(`Connection error initializing session: ${err.message}`, "danger");
+      }
+    }
+
+    // Set presets
+    btnCritical1.addEventListener("click", () => {
+      telemetryInput.value = "conveyor_id: CV-09, error_code: Error 4042, sku: SKU-991, status: CRITICAL";
+      telemetryInput.focus();
+    });
+    btnCritical2.addEventListener("click", () => {
+      telemetryInput.value = "conveyor_id: CV-12, error_code: Error 5011, sku: SKU-502, status: CRITICAL";
+      telemetryInput.focus();
+    });
+    btnRecoverable.addEventListener("click", () => {
+      telemetryInput.value = "conveyor_id: CV-05, error_code: Error-3000, sku: SKU-101, status: RECOVERABLE";
+      telemetryInput.focus();
+    });
+
+    // Tab switching
+    tabReport.addEventListener("click", () => {
+      tabReport.classList.add("active");
+      tabLogs.classList.remove("active");
+      reportView.classList.remove("visually-hidden");
+      logsView.classList.add("visually-hidden");
+    });
+
+    tabLogs.addEventListener("click", () => {
+      tabLogs.classList.add("active");
+      tabReport.classList.remove("active");
+      logsView.classList.remove("visually-hidden");
+      reportView.classList.add("visually-hidden");
+    });
+
+    // Feedback rating stars interaction
+    starBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        selectedRating = parseInt(btn.getAttribute("data-star"), 10);
+        starBtns.forEach(b => {
+          const bVal = parseInt(b.getAttribute("data-star"), 10);
+          if (bVal <= selectedRating) {
+            b.classList.add("active");
+          } else {
+            b.classList.remove("active");
+          }
+        });
+      });
+    });
+
+    // Feedback submission handler
+    btnFeedback.addEventListener("click", async () => {
+      if (!selectedRating) {
+        alert("Please select a star rating first!");
+        return;
+      }
+      
+      const text = feedbackText.value.trim();
+      const payload = {
+        score: selectedRating,
+        user_id: userId,
+        session_id: activeSessionId || "none",
+        text: text || "Star rating feedback"
+      };
+
+      try {
+        const response = await fetch(`${baseURL}/feedback`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        if (response.ok) {
+          alert("Thank you! Your feedback has been logged.");
+          feedbackText.value = "";
+          selectedRating = 0;
+          starBtns.forEach(b => b.classList.remove("active"));
+        } else {
+          alert("Error submitting feedback.");
+        }
+      } catch (err) {
+        alert(`Error communicating with backend: ${err.message}`);
+      }
+    });
+
+    // Helper: secure append log
+    function addLog(msg, type = "info") {
+      const line = document.createElement("div");
+      line.classList.add("console-line");
+
+      const ts = document.createElement("span");
+      ts.classList.add("timestamp");
+      ts.textContent = new Date().toLocaleTimeString();
+      line.appendChild(ts);
+
+      const content = document.createElement("span");
+      content.classList.add(type);
+      content.textContent = msg;
+      line.appendChild(content);
+
+      logsView.appendChild(line);
+      logsView.scrollTop = logsView.scrollHeight;
+    }
+
+    // Helper: Reset DAG nodes highlighting
+    function clearGraphHighlights() {
+      const nodes = document.querySelectorAll(".dag-node");
+      nodes.forEach(n => {
+        n.classList.remove("active", "success", "warning");
+      });
+      const paths = document.querySelectorAll(".dag-path");
+      paths.forEach(p => {
+        p.classList.remove("active", "active-warning");
+        p.style.stroke = "#334155";
+        p.setAttribute("marker-end", "url(#arrow)");
+      });
+    }
+
+    // Highlight node safely
+    function highlightNode(nodeId, stateClass = "active") {
+      const element = document.getElementById(`node-${nodeId}`);
+      if (element) {
+        element.classList.remove("active", "success", "warning");
+        element.classList.add(stateClass);
+      }
+    }
+
+    // Highlight path/edge safely
+    function highlightPath(pathId, stateClass = "active") {
+      const element = document.getElementById(pathId);
+      if (element) {
+        element.classList.add(stateClass);
+        element.style.stroke = stateClass === "active" ? "var(--primary)" : "var(--warning)";
+        element.setAttribute("marker-end", stateClass === "active" ? "url(#arrow-active)" : "url(#arrow-warning)");
+      }
+    }
+
+    // Secure HTML builder for markdown-like string chunks without using innerHTML
+    function parseSafeMarkdown(text, container) {
+      container.replaceChildren(); // Safe clear
+      
+      // Parse JSON structure if response is the raw DispatcherOutput json object
+      let finalReportText = text;
+      try {
+        if (text.trim().startsWith("{")) {
+          const parsed = JSON.parse(text);
+          if (parsed.final_report) {
+            finalReportText = parsed.final_report;
+          }
+        }
+      } catch (e) {
+        // Carry on with normal text parsing
+      }
+
+      const lines = finalReportText.split("\n");
+      let currentUl = null;
+
+      lines.forEach(line => {
+        const trimmed = line.trim();
+        if (!trimmed) return;
+
+        if (trimmed.startsWith("### ")) {
+          currentUl = null;
+          const h3 = document.createElement("h3");
+          h3.textContent = trimmed.substring(4);
+          container.appendChild(h3);
+        } else if (trimmed.startsWith("## ")) {
+          currentUl = null;
+          const h2 = document.createElement("h2");
+          h2.textContent = trimmed.substring(3);
+          container.appendChild(h2);
+        } else if (trimmed.startsWith("# ")) {
+          currentUl = null;
+          const h1 = document.createElement("h1");
+          h1.textContent = trimmed.substring(2);
+          container.appendChild(h1);
+        } else if (trimmed.startsWith("- ") || trimmed.startsWith("* ") || /^\d+\.\s/.test(trimmed)) {
+          if (!currentUl) {
+            currentUl = document.createElement("ul");
+            container.appendChild(currentUl);
+          }
+          const li = document.createElement("li");
+          // Remove prefix like "- " or "1. "
+          const cleanText = trimmed.replace(/^([-*]|\d+\.)\s+/, "");
+          li.textContent = cleanText;
+          currentUl.appendChild(li);
+        } else {
+          currentUl = null;
+          const p = document.createElement("p");
+          p.textContent = trimmed;
+          container.appendChild(p);
+        }
+      });
+    }
+
+    // Main telemetry orchestrate trigger
+    telemetryForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      
+      const payloadString = telemetryInput.value.trim();
+      if (!payloadString) return;
+
+      submitBtn.disabled = true;
+      clearGraphHighlights();
+      visualBelt.classList.remove("jammed");
+      agvGraphic.classList.remove("dispatched");
+      
+      reportView.replaceChildren();
+      const loadMsg = document.createElement("p");
+      loadMsg.textContent = "Ingesting telemetry and starting orchestration flow...";
+      loadMsg.style.fontStyle = "italic";
+      reportView.appendChild(loadMsg);
+
+      addLog(`Sending Ingestion: "${payloadString}"`, "system");
+
+      // Set up session if missing
+      if (!activeSessionId) {
+        await initializeSession();
+        if (!activeSessionId) {
+          activeSessionId = `session-${Math.random().toString(36).substring(2, 10)}`;
+          addLog(`Using temporary local session ID: ${activeSessionId}`, "warning");
+        }
+      }
+
+      // First step: START & telemetry_ingest nodes light up
+      highlightNode("START", "success");
+      highlightPath("path-start", "active");
+      highlightNode("telemetry_ingest", "active");
+
+      // Assess route locally to adjust DAG visualization ahead of full stream response
+      const isCritical = payloadString.toUpperCase().includes("CRITICAL");
+
+      try {
+        const runData = {
+          app_name: "app",
+          user_id: userId,
+          session_id: activeSessionId,
+          new_message: {
+            role: "user",
+            parts: [{ text: payloadString }]
+          },
+          streaming: true
+        };
+
+        const response = await fetch(`${baseURL}/run_sse`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(runData)
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP Error: ${response.status}`);
+        }
+
+        // Read Server Sent Events stream
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder("utf-8");
+        let accumulatedResponse = "";
+        let buffer = "";
+
+        // Switch visual tab to Logs so the user sees everything
+        tabLogs.click();
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split("\n");
+          buffer = lines.pop(); // Keep remaining incomplete line in buffer
+
+          for (const line of lines) {
+            const trimmedLine = line.trim();
+            if (!trimmedLine) continue;
+
+            if (trimmedLine.startsWith("data: ")) {
+              const rawData = trimmedLine.substring(6);
+              addLog(`Chunk payload: ${rawData}`, "info");
+
+              try {
+                const parsedEvent = JSON.parse(rawData);
+                
+                // Track nodes and trigger DAG lights
+                if (parsedEvent.event === "node_start") {
+                  const nodeName = parsedEvent.node;
+                  addLog(`Node Executing: ${nodeName}`, "system");
+                  highlightNode(nodeName, "active");
+                } 
+                else if (parsedEvent.event === "node_complete") {
+                  const nodeName = parsedEvent.node;
+                  addLog(`Node Success: ${nodeName}`, "success");
+                  highlightNode(nodeName, "success");
+                }
+
+                // If content is streamed back from the LlmAgent
+                if (parsedEvent.content && parsedEvent.content.parts) {
+                  for (const part of parsedEvent.content.parts) {
+                    if (part.text) {
+                      accumulatedResponse += part.text;
+                    }
+                    if (part.function_call) {
+                      const call = part.function_call;
+                      addLog(`Dispatching Tool: ${call.name}(${JSON.stringify(call.args)})`, "warning");
+                      
+                      // Highlight tool badge in output panel
+                      const badge = document.createElement("div");
+                      badge.className = "tool-badge";
+                      badge.textContent = `🛠️ Running tool: ${call.name} with ${JSON.stringify(call.args)}`;
+                      reportView.appendChild(badge);
+
+                      // Conveyor graphics
+                      if (call.name === "dispatch_agv") {
+                        agvGraphic.classList.add("dispatched");
+                        addLog("AGV PickerBot-Alpha dispatched to restore inventory flow!", "warning");
+                      }
+                    }
+                  }
+                }
+              } catch (e) {
+                // Not JSON or differently shaped event
+              }
+            }
+          }
+        }
+
+        // Conclude DAG visual transitions
+        if (isCritical) {
+          // Highlight full critical path
+          visualBelt.classList.add("jammed");
+          highlightNode("telemetry_ingest", "success");
+          highlightPath("path-ingest-runbook", "active");
+          highlightPath("path-ingest-wms", "active");
+          highlightNode("runbook_lookup", "success");
+          highlightNode("wms_access", "success");
+          highlightPath("path-runbook-join", "active");
+          highlightPath("path-wms-join", "active");
+          highlightNode("join", "success");
+          highlightPath("path-join-format", "active");
+          highlightNode("format_dispatcher_input", "success");
+          highlightPath("path-format-dispatcher", "active");
+          highlightNode("dispatcher_agent", "success");
+        } else {
+          // Check if any safety nodes were activated
+          const wasSafety = document.getElementById("node-cctv_safety_audit_agent").classList.contains("success") || 
+                            document.getElementById("node-cctv_safety_audit_agent").classList.contains("active");
+          const wasConversational = document.getElementById("node-conversational_safety_agent").classList.contains("success") || 
+                                    document.getElementById("node-conversational_safety_agent").classList.contains("active");
+          
+          if (wasSafety) {
+            highlightNode("telemetry_ingest", "success");
+            highlightPath("path-ingest-safety-audit", "active");
+            highlightNode("cctv_safety_audit_agent", "success");
+            
+            // Switch visually to CCTV Safety tab
+            setTimeout(() => {
+              const tabSafetyBtn = document.getElementById("tab-safety");
+              if (tabSafetyBtn) tabSafetyBtn.click();
+              
+              // Map user query to exact safety catalog video selection
+              const q = payloadString.toLowerCase();
+              if (q.includes("aisle 4") || q.includes("aisle4")) {
+                const b = document.querySelector('.safety-clip-btn[data-video="aisle4"]');
+                if (b) b.click();
+              } else if (q.includes("aisle 2") || q.includes("aisle2")) {
+                const b = document.querySelector('.safety-clip-btn[data-video="aisle2"]');
+                if (b) b.click();
+              } else if (q.includes("dock") || q.includes("ppe") || q.includes("vest")) {
+                const b = document.querySelector('.safety-clip-btn[data-video="dock"]');
+                if (b) b.click();
+              } else if (q.includes("cv-11") || q.includes("cv11") || q.includes("loto")) {
+                const b = document.querySelector('.safety-clip-btn[data-video="cv11"]');
+                if (b) b.click();
+              }
+            }, 500);
+          } else if (wasConversational) {
+            highlightNode("telemetry_ingest", "success");
+            highlightPath("path-ingest-conversational", "active");
+            highlightNode("conversational_safety_agent", "success");
+          } else {
+            // Highlight recoverable path
+            highlightNode("telemetry_ingest", "success");
+            highlightPath("path-ingest-recoverable", "active-warning");
+            highlightNode("log_recoverable", "success");
+          }
+        }
+
+        addLog("Orchestration flow finalized.", "success");
+        
+        // Populate and switch to final engineering report
+        tabReport.click();
+        parseSafeMarkdown(accumulatedResponse || "Flow finalized. See execution logs.", reportView);
+
+      } catch (err) {
+        addLog(`Flow Error: ${err.message}`, "danger");
+        tabReport.click();
+        reportView.replaceChildren();
+        const errP = document.createElement("p");
+        errP.textContent = `An orchestration failure occurred: ${err.message}`;
+        errP.style.color = "var(--danger)";
+        reportView.appendChild(errP);
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+
+    // === CCTV Safety Tab Interactivity & Simulation ===
+    const tabSafety = document.getElementById("tab-safety");
+    const safetyView = document.getElementById("safety-view");
+    const safetyBtns = document.querySelectorAll(".safety-clip-btn");
+    const btnTogglePlay = document.getElementById("btn-toggle-play");
+    const postureAngleDisplay = document.getElementById("posture-angle-display");
+    const simWarningOverlay = document.getElementById("sim-warning-overlay");
+    const simCamLoc = document.getElementById("sim-cam-loc");
+    const simCamSeconds = document.getElementById("sim-cam-seconds");
+    const safetyReportText = document.getElementById("safety-report-text");
+    const safetyVestBadge = document.getElementById("safety-vest-badge");
+    const safetyHatBadge = document.getElementById("safety-hat-badge");
+    const safetyScoreBadge = document.getElementById("safety-score-badge");
+    const safetyReportIcon = document.getElementById("safety-report-icon");
+    const canvas = document.getElementById("skeleton-canvas");
+    const ctx = canvas.getContext("2d");
+
+    let currentVideo = "aisle4";
+    let isPlaying = false;
+    let simTime = 0; // seconds, 0 to 10
+    let lastTimestamp = 0;
+    let animationFrameId = null;
+
+    // Report content for catalog clips
+    const safetyCatalogData = {
+      aisle4: {
+        location: "AISLE_4",
+        vest: "VEST DETECTED",
+        vestColor: "var(--success)",
+        hat: "DETECTED",
+        hatColor: "var(--success)",
+        score: "95/100",
+        scoreColor: "var(--success)",
+        icon: "🛡️",
+        report: "Worker in Aisle 4 demonstrated exemplary lifting technique: bent at knees, kept back straight, and held the load close to the core. Highly compliant with Ergonomic Lift Protocol SOP-202."
+      },
+      aisle2: {
+        location: "AISLE_2",
+        vest: "VEST DETECTED",
+        vestColor: "var(--success)",
+        hat: "DETECTED",
+        hatColor: "var(--success)",
+        score: "38/100",
+        scoreColor: "var(--danger)",
+        icon: "⚠️",
+        report: "Ergonomic injury hazard detected. At 00:04, the employee lifted a heavy carton with straight legs and a bent back (lumbar flexion > 45 degrees), creating high spinal shear stress. Urgent coaching required."
+      },
+      dock: {
+        location: "LOADING_DOCK",
+        vest: "VEST NOT DETECTED",
+        vestColor: "var(--danger)",
+        hat: "DETECTED",
+        hatColor: "var(--success)",
+        score: "55/100",
+        scoreColor: "var(--danger)",
+        icon: "🚨",
+        report: "Critical safety warning: Worker on Loading Dock was detected working near active forklift operations without high-visibility vests. This is a severe infraction of PPE guidelines (SOP-0100)."
+      },
+      cv11: {
+        location: "CONVEYOR_CV11",
+        vest: "VEST DETECTED",
+        vestColor: "var(--success)",
+        hat: "DETECTED",
+        hatColor: "var(--success)",
+        score: "98/100",
+        scoreColor: "var(--success)",
+        icon: "🔐",
+        report: "Lockout-Tagout (LOTO) audit complete. Maintenance engineer successfully verified power-off states, locked the controller switch, and attached the yellow compliance tag. Fully compliant with SOP-4042."
+      }
+    };
+
+    function resizeCanvas() {
+      if (!canvas) return;
+      const rect = canvas.parentNode.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      drawFrame();
+    }
+
+    // Tab toggles
+    tabSafety.addEventListener("click", () => {
+      tabSafety.classList.add("active");
+      tabReport.classList.remove("active");
+      tabLogs.classList.remove("active");
+      safetyView.classList.remove("visually-hidden");
+      reportView.classList.add("visually-hidden");
+      logsView.classList.add("visually-hidden");
+      setTimeout(resizeCanvas, 50); // Ensure size is fully rendered
+    });
+
+    tabReport.addEventListener("click", () => {
+      tabReport.classList.add("active");
+      tabLogs.classList.remove("active");
+      tabSafety.classList.remove("active");
+      reportView.classList.remove("visually-hidden");
+      logsView.classList.add("visually-hidden");
+      safetyView.classList.add("visually-hidden");
+    });
+
+    tabLogs.addEventListener("click", () => {
+      tabLogs.classList.add("active");
+      tabReport.classList.remove("active");
+      tabSafety.classList.remove("active");
+      logsView.classList.remove("visually-hidden");
+      reportView.classList.add("visually-hidden");
+      safetyView.classList.add("visually-hidden");
+    });
+
+    // Preset buttons for safety audit
+    const presetSafetyPosture = document.getElementById("preset-safety-posture");
+    const presetSafetyPPE = document.getElementById("preset-safety-ppe");
+
+    if (presetSafetyPosture) {
+      presetSafetyPosture.addEventListener("click", () => {
+        telemetryInput.value = "Run a CCTV safety and posture audit for Aisle 4.";
+        telemetryInput.focus();
+      });
+    }
+
+    if (presetSafetyPPE) {
+      presetSafetyPPE.addEventListener("click", () => {
+        telemetryInput.value = "Audit safety vest compliance and hard hat hygiene on the Loading Dock.";
+        telemetryInput.focus();
+      });
+    }
+
+    // Catalog selection
+    safetyBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        safetyBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const videoKey = btn.getAttribute("data-video");
+        selectSafetyVideo(videoKey);
+      });
+    });
+
+    function selectSafetyVideo(videoKey) {
+      currentVideo = videoKey;
+      isPlaying = false;
+      btnTogglePlay.textContent = "Play Audit Simulation";
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+      }
+      simTime = 0;
+      
+      const data = safetyCatalogData[videoKey];
+      if (data) {
+        simCamLoc.textContent = data.location;
+        safetyReportText.textContent = data.report;
+        safetyVestBadge.textContent = data.vest;
+        safetyVestBadge.style.color = data.vestColor;
+        safetyHatBadge.textContent = data.hat;
+        safetyHatBadge.style.color = data.hatColor;
+        safetyScoreBadge.textContent = data.score;
+        safetyScoreBadge.style.color = data.scoreColor;
+        safetyReportIcon.textContent = data.icon;
+      }
+      
+      simCamSeconds.textContent = "00";
+      simWarningOverlay.style.display = "none";
+      drawFrame();
+    }
+
+    function togglePlay() {
+      if (isPlaying) {
+        isPlaying = false;
+        btnTogglePlay.textContent = "Play Audit Simulation";
+        if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+          animationFrameId = null;
+        }
+      } else {
+        isPlaying = true;
+        btnTogglePlay.textContent = "Pause Simulation";
+        lastTimestamp = performance.now();
+        animationFrameId = requestAnimationFrame(animationLoop);
+      }
+    }
+
+    btnTogglePlay.addEventListener("click", togglePlay);
+
+    function animationLoop(timestamp) {
+      if (!isPlaying) return;
+      
+      const elapsed = (timestamp - lastTimestamp) / 1000;
+      lastTimestamp = timestamp;
+      
+      simTime += elapsed;
+      if (simTime > 10) {
+        simTime = 0; // Loop back
+      }
+      
+      const displaySec = Math.floor(simTime).toString().padStart(2, "0");
+      simCamSeconds.textContent = displaySec;
+      
+      drawFrame();
+      animationFrameId = requestAnimationFrame(animationLoop);
+    }
+
+    function drawFrame() {
+      if (!canvas || !ctx) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      const w = canvas.width;
+      const h = canvas.height;
+      
+      // Draw standard grid / scanning reticle
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.03)";
+      ctx.lineWidth = 1;
+      for (let i = 20; i < w; i += 40) {
+        ctx.beginPath();
+        ctx.moveTo(i, 0);
+        ctx.lineTo(i, h);
+        ctx.stroke();
+      }
+      for (let j = 20; j < h; j += 40) {
+        ctx.beginPath();
+        ctx.moveTo(0, j);
+        ctx.lineTo(w, j);
+        ctx.stroke();
+      }
+
+      if (currentVideo === "aisle4") {
+        // Aisle 4: Safe lifting technique (spine angle stays straight, knees bend/squat)
+        // 0-3s: stand, 3-5s: squat down, 5-8s: stand back up, 8-10s: stand
+        let phase = 0; // standing
+        let t = 0; // interpolation factor
+        
+        if (simTime >= 3 && simTime <= 5) {
+          phase = 1; // bending knees / squatting
+          t = (simTime - 3) / 2;
+        } else if (simTime > 5 && simTime <= 8) {
+          phase = 2; // rising
+          t = (simTime - 5) / 3;
+        } else if (simTime > 8) {
+          phase = 3; // standing again
+        }
+
+        let hipY = h * 0.55;
+        let kneeX = w * 0.5;
+        let kneeY = h * 0.72;
+        let spineAngle = 12; // degrees (straight back)
+        let kneeAngle = 180; // straight
+
+        if (phase === 1) {
+          // squatting down
+          hipY = h * 0.55 + (h * 0.08) * t;
+          kneeX = w * 0.5 - (w * 0.06) * t;
+          kneeY = h * 0.72 + (h * 0.02) * t;
+          kneeAngle = 180 - 90 * t;
+          spineAngle = 12 + 3 * t; // stays straight
+        } else if (phase === 2) {
+          // standing back up
+          hipY = h * 0.63 - (h * 0.08) * t;
+          kneeX = w * 0.44 + (w * 0.06) * t;
+          kneeY = h * 0.74 - (h * 0.02) * t;
+          kneeAngle = 90 + 90 * t;
+          spineAngle = 15 - 3 * t;
+        }
+
+        // Draw Skeleton joints
+        const headX = w * 0.5;
+        const headY = hipY - h * 0.28;
+        const neckX = w * 0.5;
+        const neckY = hipY - h * 0.22;
+        const hipX = w * 0.5;
+        const ankleX = w * 0.5;
+        const ankleY = h * 0.88;
+
+        postureAngleDisplay.textContent = Math.round(spineAngle) + "°";
+        postureAngleDisplay.style.color = "var(--success)";
+        simWarningOverlay.style.display = "none";
+
+        // Draw joints & bones
+        ctx.strokeStyle = "rgba(16, 185, 129, 0.85)"; // Emerald Green
+        ctx.lineWidth = 4;
+        ctx.shadowColor = "rgba(16, 185, 129, 0.4)";
+        ctx.shadowBlur = 8;
+
+        // Head
+        ctx.beginPath();
+        ctx.arc(headX, headY, 14, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Spine
+        ctx.beginPath();
+        ctx.moveTo(neckX, neckY);
+        ctx.lineTo(hipX, hipY);
+        ctx.stroke();
+
+        // Left leg
+        ctx.beginPath();
+        ctx.moveTo(hipX, hipY);
+        ctx.lineTo(kneeX, kneeY);
+        ctx.lineTo(ankleX, ankleY);
+        ctx.stroke();
+
+        // Box being lifted
+        let boxY = hipY + h * 0.03;
+        ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.4)";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.rect(headX + 15, boxY, 50, 40);
+        ctx.fill();
+        ctx.stroke();
+
+        // Arms holding box
+        ctx.strokeStyle = "rgba(16, 185, 129, 0.85)";
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(neckX, neckY + 15);
+        ctx.lineTo(headX + 25, boxY + 20);
+        ctx.stroke();
+
+        // Vector labels
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = "rgba(16, 185, 129, 0.9)";
+        ctx.font = "bold 9px monospace";
+        ctx.fillText("SPINE: " + Math.round(spineAngle) + "° [SAFE]", neckX - 75, neckY + 30);
+        ctx.fillText("KNEE: " + Math.round(kneeAngle) + "°", kneeX - 55, kneeY);
+      }
+      else if (currentVideo === "aisle2") {
+        // Aisle 2: Unsafe lift (legs straight, back bends excessively)
+        // 0-3s: stand, 3-6s: bend spine, 6-9s: rising, 9-10s: stand
+        let phase = 0;
+        let t = 0;
+        if (simTime >= 3 && simTime <= 6) {
+          phase = 1;
+          t = (simTime - 3) / 3;
+        } else if (simTime > 6 && simTime <= 9) {
+          phase = 2;
+          t = (simTime - 6) / 3;
+        } else if (simTime > 9) {
+          phase = 3;
+        }
+
+        let spineAngle = 10;
+        let headX = w * 0.5;
+        let headY = h * 0.27;
+        let shoulderX = w * 0.5;
+        let shoulderY = h * 0.33;
+        const hipX = w * 0.5;
+        const hipY = h * 0.55;
+        const kneeX = w * 0.5;
+        const kneeY = h * 0.72;
+        const ankleX = w * 0.5;
+        const ankleY = h * 0.88;
+
+        if (phase === 1) {
+          spineAngle = 10 + 55 * t;
+          headX = w * 0.5 - (w * 0.18) * t;
+          headY = h * 0.27 + (h * 0.16) * t;
+          shoulderX = w * 0.5 - (w * 0.14) * t;
+          shoulderY = h * 0.33 + (h * 0.13) * t;
+        } else if (phase === 2) {
+          spineAngle = 65 - 55 * t;
+          headX = w * 0.32 + (w * 0.18) * t;
+          headY = h * 0.43 - (h * 0.16) * t;
+          shoulderX = w * 0.36 + (w * 0.14) * t;
+          shoulderY = h * 0.46 - (h * 0.13) * t;
+        }
+
+        postureAngleDisplay.textContent = Math.round(spineAngle) + "°";
+        
+        if (spineAngle > 40) {
+          postureAngleDisplay.style.color = "var(--danger)";
+          simWarningOverlay.style.display = "block";
+        } else {
+          postureAngleDisplay.style.color = "var(--success)";
+          simWarningOverlay.style.display = "none";
+        }
+
+        const isViolation = spineAngle > 40;
+        ctx.strokeStyle = isViolation ? "rgba(239, 68, 68, 0.85)" : "rgba(16, 185, 129, 0.85)";
+        ctx.shadowColor = isViolation ? "rgba(239, 68, 68, 0.4)" : "rgba(16, 185, 129, 0.4)";
+        ctx.lineWidth = 4;
+        ctx.shadowBlur = 8;
+
+        // Head
+        ctx.beginPath();
+        ctx.arc(headX, headY, 14, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Spine (bent)
+        ctx.beginPath();
+        ctx.moveTo(shoulderX, shoulderY);
+        ctx.lineTo(hipX, hipY);
+        ctx.stroke();
+
+        // Legs (unbent/straight!)
+        ctx.beginPath();
+        ctx.moveTo(hipX, hipY);
+        ctx.lineTo(kneeX, kneeY);
+        ctx.lineTo(ankleX, ankleY);
+        ctx.stroke();
+
+        // Carton box
+        let boxY = h * 0.53;
+        ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.4)";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.rect(w * 0.28, boxY, 50, 40);
+        ctx.fill();
+        ctx.stroke();
+
+        // Arms reaching straight down to lift
+        ctx.strokeStyle = isViolation ? "rgba(239, 68, 68, 0.85)" : "rgba(16, 185, 129, 0.85)";
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(shoulderX, shoulderY + 10);
+        ctx.lineTo(w * 0.32, boxY + 15);
+        ctx.stroke();
+
+        // Red/Green highlight arc at spine angle
+        ctx.shadowBlur = 0;
+        ctx.strokeStyle = isViolation ? "rgba(239, 68, 68, 0.5)" : "rgba(16, 185, 129, 0.5)";
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.arc(hipX, hipY, 30, Math.PI * 1.5, Math.PI * 1.5 - (spineAngle * Math.PI / 180), true);
+        ctx.stroke();
+
+        // Info labels
+        ctx.fillStyle = isViolation ? "var(--danger)" : "var(--success)";
+        ctx.font = "bold 9px monospace";
+        ctx.fillText("SPINE FLEXION: " + Math.round(spineAngle) + "°" + (isViolation ? " [CRITICAL]" : " [SAFE]"), hipX - 110, hipY - 45);
+        ctx.fillText("KNEE: 172° [LOCKED STRAIN]", kneeX + 15, kneeY + 5);
+      }
+      else if (currentVideo === "dock") {
+        // Loading Dock (PPE Audit): Draw bounding boxes
+        postureAngleDisplay.textContent = "N/A (PPE Focus)";
+        postureAngleDisplay.style.color = "var(--text-muted)";
+        simWarningOverlay.style.display = "none";
+
+        // Operator 1 (Left): Compliant worker
+        ctx.shadowBlur = 0;
+        ctx.strokeStyle = "rgba(16, 185, 129, 0.8)";
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.rect(w * 0.25, h * 0.2, w * 0.18, h * 0.65);
+        ctx.stroke();
+
+        ctx.fillStyle = "rgba(16, 185, 129, 0.15)";
+        ctx.fillRect(w * 0.25, h * 0.2, w * 0.18, h * 0.65);
+
+        ctx.fillStyle = "var(--success)";
+        ctx.font = "bold 9px monospace";
+        ctx.fillText("OPERATOR_01: COMPLIANT", w * 0.25, h * 0.18);
+        ctx.fillText("● VEST: DETECTED", w * 0.26, h * 0.24);
+        ctx.fillText("● HELMET: DETECTED", w * 0.26, h * 0.28);
+
+        // Operator 2 (Right): Non-compliant worker (no vest)
+        const isBlinking = isPlaying && Math.floor(simTime * 2) % 2 === 0;
+        ctx.strokeStyle = isBlinking ? "rgba(239, 68, 68, 0.9)" : "rgba(239, 68, 68, 0.4)";
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.rect(w * 0.55, h * 0.2, w * 0.18, h * 0.65);
+        ctx.stroke();
+
+        ctx.fillStyle = isBlinking ? "rgba(239, 68, 68, 0.1)" : "rgba(239, 68, 68, 0.03)";
+        ctx.fillRect(w * 0.55, h * 0.2, w * 0.18, h * 0.65);
+
+        ctx.fillStyle = "var(--danger)";
+        ctx.font = "bold 9px monospace";
+        ctx.fillText("OPERATOR_02: VIOLATION", w * 0.55, h * 0.18);
+        ctx.fillText("✖ VEST: NOT DETECTED", w * 0.56, h * 0.24);
+        ctx.fillText("● HELMET: DETECTED", w * 0.56, h * 0.28);
+
+        // Bounding box overlay label
+        if (isBlinking) {
+          ctx.fillStyle = "var(--danger)";
+          ctx.font = "10px sans-serif";
+          ctx.fillText("🚨 RECOG_WARNING: NO HIGH-VIS VEST", w * 0.55, h * 0.89);
+        }
+      }
+      else if (currentVideo === "cv11") {
+        // CV-11 Lockout Tagout compliance: Draw breaker highlight overlays
+        postureAngleDisplay.textContent = "N/A (LOTO Focus)";
+        postureAngleDisplay.style.color = "var(--text-muted)";
+        simWarningOverlay.style.display = "none";
+
+        // Conveyor control box
+        ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.rect(w * 0.3, h * 0.15, w * 0.4, h * 0.7);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+        ctx.font = "bold 11px monospace";
+        ctx.fillText("CONVEYOR CV-11 CONTROL PANEL", w * 0.33, h * 0.23);
+
+        // Circuit breaker overlay green box
+        ctx.strokeStyle = "rgba(16, 185, 129, 0.85)";
+        ctx.lineWidth = 2.5;
+        ctx.shadowColor = "rgba(16, 185, 129, 0.4)";
+        ctx.shadowBlur = 8;
+        ctx.beginPath();
+        ctx.rect(w * 0.45, h * 0.35, 50, 60);
+        ctx.stroke();
+
+        ctx.fillStyle = "rgba(16, 185, 129, 0.15)";
+        ctx.fillRect(w * 0.45, h * 0.35, 50, 60);
+
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = "var(--success)";
+        ctx.font = "bold 9px monospace";
+        ctx.fillText("LOTO LOCKOUT", w * 0.45, h * 0.32);
+        ctx.fillText("BREAKER APPLIED", w * 0.45, h * 0.55);
+
+        // Padlock visual representation
+        ctx.strokeStyle = "rgba(245, 158, 11, 0.9)"; // Cyber Amber
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        // shackle
+        ctx.arc(w * 0.5 + 5, h * 0.42, 8, Math.PI, 0);
+        ctx.stroke();
+        // body
+        ctx.fillStyle = "rgba(245, 158, 11, 0.85)";
+        ctx.fillRect(w * 0.5 - 2, h * 0.42, 14, 12);
+
+        // Verification tags
+        ctx.fillStyle = "var(--success)";
+        ctx.fillText("✔ VERIFIED POWER-OFF STATE (0.0 kW)", w * 0.33, h * 0.68);
+        ctx.fillText("✔ COMPLIANCE LOCK ATTACHED", w * 0.33, h * 0.74);
+      }
+    }
+
+    // Call drawFrame initially and trigger resize listener
+    window.addEventListener("resize", resizeCanvas);
+    setTimeout(resizeCanvas, 200);
+
+    // Run on startup
+    initializeSession();
+  </script>
+</body>
+</html>

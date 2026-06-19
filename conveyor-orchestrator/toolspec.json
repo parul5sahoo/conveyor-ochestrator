@@ -1,0 +1,33 @@
+{
+  "server": {
+    "name": "conveyor-orchestrator-telemetry",
+    "description": "AGV Telemetry Server providing status and health updates of the automated guided vehicle fleet."
+  },
+  "tools": [
+    {
+      "name": "list_available_agvs",
+      "description": "Retrieve the real-time status and battery levels of all active Automated Guided Vehicles (AGVs) in the fleet.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    },
+    {
+      "name": "get_agv_vitals",
+      "description": "Retrieve detailed real-time health, battery status, and notes for a specific Automated Guided Vehicle (AGV).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "bot_id": {
+            "type": "string",
+            "description": "The unique identifier of the AGV (e.g., 'PickerBot-Alpha', 'PickerBot-Beta', 'PickerBot-Gamma')."
+          }
+        },
+        "required": [
+          "bot_id"
+        ]
+      }
+    }
+  ]
+}

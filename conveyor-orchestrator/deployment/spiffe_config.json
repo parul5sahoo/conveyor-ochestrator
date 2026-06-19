@@ -1,0 +1,16 @@
+{
+  "spiffe_identity": {
+    "trust_domain": "stackbox.internal",
+    "namespace": "warehouse",
+    "service_account": "conveyor-orchestrator-sa",
+    "spiffe_id": "spiffe://stackbox.internal/ns/warehouse/sa/conveyor-orchestrator-sa",
+    "audience": [
+      "spiffe://stackbox.internal/ns/warehouse/sa/wms-access",
+      "spiffe://stackbox.internal/ns/warehouse/sa/picker-dispatcher"
+    ],
+    "verification": {
+      "require_mtls": true,
+      "ca_bundle_path": "/var/run/secrets/spiffe.io/certs/roots.pem"
+    }
+  }
+}

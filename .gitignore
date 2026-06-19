@@ -1,0 +1,42 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+
+# Environments
+.env
+.venv
+.venv*
+env/
+venv/
+ENV/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# GEAP & ADK Artifacts
+.google-agents-cli/
+.adk/
+.persist_vector_store
+.saved_chats
+my_env.tfvars
+
+# Node.js
+node_modules/
+npm-debug.log
+
+# VS Code / IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Local temporary files
+tmp*
+**/dist/
+**/build/
+**/tests/load_test/.results/*.html
+**/tests/load_test/.results/*.csv

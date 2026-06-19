@@ -1,0 +1,20 @@
+{
+  "metrics_to_run": [
+    "multi_turn_task_success",
+    "multi_turn_tool_use_quality",
+    "hallucination",
+    "safety",
+    "custom_response_quality",
+    "trajectory_accuracy"
+  ],
+  "custom_metrics": [
+    {
+      "name": "custom_response_quality",
+      "prompt_template": "You are an expert QA evaluator. Your task is to evaluate the agent's final response for accuracy, clarity, and completeness.\n\nVerify that:\n1. If the stock is BLOCKED, the dispatch_agv_tool was invoked.\n2. If the stock is AVAILABLE, the dispatch_agv_tool was NOT invoked.\n3. No false engineering instructions or codes were manufactured.\n\nUser Prompt: {prompt}\nFinal Response: {response}\nFull Agent Trace: {agent_data}\n\nReturn JSON: {\"score\": <1|2|3|4|5>, \"explanation\": \"<rationale>\"}\n"
+    },
+    {
+      "name": "trajectory_accuracy",
+      "prompt_template": "You are an expert engineer. Evaluate the tool-calling path and final decision of the agent.\n\nVerify that:\n1. For \"Error 4042\", the agent matched and cited the \"Calibrate the main belt speed sensor\" instructions.\n2. For \"SKU-991\", the stock was detected as \"BLOCKED\" and AGV was dispatched to \"Aisle 4\".\n3. For \"Error 5011\", the agent matched \"Clear debris from diverter flap\".\n\nUser Prompt: {prompt}\nFinal Response: {response}\nFull Agent Trace: {agent_data}\n\nReturn JSON: {\"score\": <1|2|3|4|5>, \"explanation\": \"<rationale>\"}\n"
+    }
+  ]
+}

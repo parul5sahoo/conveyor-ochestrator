@@ -1,0 +1,23 @@
+# Model Armor Security Policy Configuration
+metadata:
+  name: conveyor-orchestrator-guardrails
+  namespace: warehouse-logistics
+
+spec:
+  filters:
+    - name: prompt-injection-prevention
+      type: PROMPT_INJECTION
+      action: BLOCK
+      settings:
+        sensitivity: HIGH
+
+    - name: speed-override-prevention
+      type: REGEX_MATCH
+      action: BLOCK
+      settings:
+        patterns:
+          - "(?i)override.*motor.*speed"
+          - "(?i)bypass.*speed.*ceiling"
+          - "(?i)force.*manual.*speed"
+          - "(?i)set.*speed.*unlimited"
+        explanation: "Prevent operators from overriding physical conveyor motor safety speed limits."

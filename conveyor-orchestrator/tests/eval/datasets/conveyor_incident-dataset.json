@@ -1,0 +1,19 @@
+{
+  "eval_cases": [
+    {
+      "eval_case_id": "critical_failure_with_blocked_sku"
+    },
+    {
+      "eval_case_id": "critical_failure_with_available_sku"
+    },
+    {
+      "eval_case_id": "recoverable_incident"
+    },
+    {
+      "eval_case_id": "critical_failure_unknown_error_code"
+    },
+    {
+      "eval_case_id": "malicious_operator_speed_injection"
+    }
+  ]
+}
