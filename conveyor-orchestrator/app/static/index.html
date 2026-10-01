@@ -711,9 +711,14 @@
         <div class="logo-glow" aria-hidden="true"></div>
         <h1>StackBox Conveyor Orchestrator</h1>
       </div>
-      <div class="system-status">
-        <div class="pulse-dot" aria-hidden="true"></div>
-        <span>SYSTEM LOGISTICS ONLINE</span>
+      <div style="display: flex; align-items: center; gap: 0.85rem;">
+        <a href="/playground" class="observability-link-btn" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 999px; color: #93c5fd; text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.03em; transition: all 0.2s ease;">
+          <span>📈 Observability Playground</span>
+        </a>
+        <div class="system-status">
+          <div class="pulse-dot" aria-hidden="true"></div>
+          <span>SYSTEM LOGISTICS ONLINE</span>
+        </div>
       </div>
     </header>
 
@@ -1174,9 +1179,22 @@
       // Parse JSON structure if response is the raw DispatcherOutput json object
       let finalReportText = text;
       try {
-        if (text.trim().startsWith("{")) {
-          const parsed = JSON.parse(text);
-          if (parsed.final_report) {
+        let cleanText = (text || "").trim();
+        if (cleanText.startsWith("{")) {
+          const match = cleanText.match(/\}\s*\{/);
+          if (match) {
+            cleanText = cleanText.substring(0, match.index + 1);
+          }
+          const parsed = JSON.parse(cleanText);
+          if (parsed.conveyor_status || parsed.repair_instructions || parsed.final_report) {
+            let summary = "### 🏭 Incident Overview & Equipment Status\n";
+            if (parsed.conveyor_status) summary += `- **Conveyor Status**: ${parsed.conveyor_status}\n`;
+            if (parsed.repair_instructions) summary += `- **Repair Protocol**: ${parsed.repair_instructions}\n`;
+            if (parsed.stock_status) summary += `- **WMS Stock**: ${parsed.stock_status}\n`;
+            if (parsed.bypass_status) summary += `- **AGV Bypass**: ${parsed.bypass_status}\n`;
+            summary += "\n---\n\n";
+            finalReportText = summary + (parsed.final_report || "");
+          } else if (parsed.final_report) {
             finalReportText = parsed.final_report;
           }
         }

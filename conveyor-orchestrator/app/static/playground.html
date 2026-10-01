@@ -1,0 +1,3621 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cymbal Warehouse Automation Agent · Observability Playground</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    /* CSS Variables & Design Tokens matching ADK Reference editorial aesthetic */
+    :root[data-theme="light"] {
+      --bg-canvas: #faf8f5;
+      --bg-surface: #ffffff;
+      --bg-surface-subtle: #f4efe7;
+      --bg-panel: #fcfbf9;
+      --border-subtle: #eae5dc;
+      --border-strong: #ded7cb;
+      
+      --text-primary: #272522;
+      --text-secondary: #747169;
+      --text-tertiary: #9d9990;
+      
+      --pill-tool-bg: #f9ede6;
+      --pill-tool-border: #f3d7c7;
+      --pill-tool-text: #964828;
+      
+      --accent-coral: #d4653b;
+      --accent-coral-subtle: #fbeee8;
+      --accent-green: #2e7d4f;
+      --accent-green-bg: #eaf5ee;
+      --accent-amber: #b56c07;
+      --accent-amber-bg: #fcf3e6;
+      
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.05);
+      --shadow-drawer: -6px 0 24px rgba(0,0,0,0.08);
+      --code-bg: #f5f2ec;
+    }
+
+    :root[data-theme="dark"] {
+      --bg-canvas: #121316;
+      --bg-surface: #181a1f;
+      --bg-surface-subtle: #21242b;
+      --bg-panel: #1b1d23;
+      --border-subtle: #2b2e37;
+      --border-strong: #3b3f4c;
+      
+      --text-primary: #f2f1f5;
+      --text-secondary: #a3a6b2;
+      --text-tertiary: #6b6f7e;
+      
+      --pill-tool-bg: #34211a;
+      --pill-tool-border: #4d2d22;
+      --pill-tool-text: #f09572;
+      
+      --accent-coral: #e27c54;
+      --accent-coral-subtle: #3a221b;
+      --accent-green: #4ade80;
+      --accent-green-bg: #14311f;
+      --accent-amber: #fbbf24;
+      --accent-amber-bg: #332711;
+      
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+      --shadow-drawer: -6px 0 28px rgba(0,0,0,0.6);
+      --code-bg: #1e2129;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      font-size: 14px;
+      line-height: 1.5;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    /* Top Brand & Controls Header */
+    header.adk-header {
+      height: 52px;
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.25rem;
+      flex-shrink: 0;
+      z-index: 20;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-adk {
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+    }
+
+    .brand-sep {
+      color: var(--text-tertiary);
+    }
+
+    .brand-ref {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .brand-agent-title {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--accent-green-bg);
+      color: var(--accent-green);
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .status-pill.streaming {
+      background: var(--accent-amber-bg);
+      color: var(--accent-amber);
+    }
+
+    .status-pill.streaming .status-dot {
+      animation: pulse-dot 1.2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 11px;
+      font-size: 12px;
+      font-weight: 500;
+      background: var(--bg-surface-subtle);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+    .nav-btn:hover {
+      background: var(--border-subtle);
+      border-color: var(--border-strong);
+    }
+
+    .icon-toggle-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.15s ease;
+    }
+    .icon-toggle-btn:hover {
+      background: var(--bg-surface-subtle);
+      color: var(--text-primary);
+    }
+
+    /* Main Workspace Layout */
+    .workspace-container {
+      display: grid;
+      grid-template-columns: minmax(430px, 480px) 1fr;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    /* Left Sidebar: Architecture & Trace */
+    aside.sidebar-panel {
+      background: var(--bg-panel);
+      border-right: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .sidebar-tabs-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      flex-shrink: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .sidebar-tab-scroll-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 38px;
+      background: var(--bg-surface);
+      border: none;
+      color: var(--text-tertiary);
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 700;
+      z-index: 5;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    .sidebar-tab-scroll-btn:hover {
+      background: var(--bg-surface-subtle);
+      color: var(--accent-coral);
+    }
+
+    .sidebar-tabs {
+      display: flex;
+      padding: 0 0.25rem;
+      background: transparent;
+      flex: 1;
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-coral) var(--bg-surface-subtle);
+      gap: 2px;
+      scroll-behavior: smooth;
+      user-select: none;
+    }
+
+    .sidebar-tabs::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .sidebar-tabs::-webkit-scrollbar-track {
+      background: var(--bg-surface-subtle);
+    }
+
+    .sidebar-tabs::-webkit-scrollbar-thumb {
+      background: var(--accent-coral);
+      border-radius: 2px;
+    }
+
+    .sidebar-tabs::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-coral);
+    }
+
+    .sidebar-tab-btn {
+      padding: 10px 8px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: none;
+      border: none;
+      color: var(--text-tertiary);
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .sidebar-tab-btn:hover {
+      color: var(--text-primary);
+    }
+
+    .sidebar-tab-btn.active {
+      color: var(--accent-coral);
+      border-bottom-color: var(--accent-coral);
+    }
+
+    .sidebar-scroll-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem 0.85rem;
+    }
+
+    /* Architecture Tree matching ADK Reference UI */
+    .tree-intro-note {
+      font-size: 11.5px;
+      color: var(--text-tertiary);
+      padding: 0.2rem 0.2rem 0.75rem 0.2rem;
+      line-height: 1.4;
+    }
+
+    .tree-group-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-tertiary);
+      margin: 0.75rem 0 0.4rem 0.35rem;
+    }
+
+    .tree-agent-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 8px 10px;
+      margin-bottom: 6px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .tree-agent-card:hover {
+      border-color: var(--accent-coral);
+      background: var(--bg-surface-subtle);
+    }
+
+    .tree-agent-card.live, .tree-agent-card.selected {
+      border-color: var(--accent-coral);
+      border-left: 3px solid var(--accent-coral);
+      background: rgba(212, 101, 59, 0.05);
+      box-shadow: 0 0 0 1px var(--accent-coral), 0 2px 10px rgba(212, 101, 59, 0.2);
+    }
+
+    .tree-agent-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .tree-agent-title {
+      font-size: 12px;
+      font-weight: 600;
+      font-family: 'Fira Code', monospace;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tree-agent-subtext {
+      font-size: 10.5px;
+      color: var(--text-tertiary);
+      font-family: 'Fira Code', monospace;
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .live-status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--accent-coral);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .live-status-chip::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-coral);
+      box-shadow: 0 0 6px var(--accent-coral);
+      animation: pulse-dot 1.4s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0% { opacity: 0.4; transform: scale(0.85); }
+      50% { opacity: 1; transform: scale(1.15); }
+      100% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .tree-branch-container {
+      margin-left: 14px;
+      padding-left: 12px;
+      border-left: 1.5px solid var(--border-subtle);
+      margin-top: 2px;
+      margin-bottom: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .tree-leaf-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 8px;
+      border-radius: 6px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      position: relative;
+    }
+
+    .tree-leaf-item::before {
+      content: '';
+      position: absolute;
+      left: -13px;
+      top: 50%;
+      width: 10px;
+      height: 1.5px;
+      background: var(--border-subtle);
+    }
+
+    .tree-leaf-item:hover {
+      border-color: var(--accent-coral);
+      background: var(--bg-surface-subtle);
+    }
+
+    .tree-leaf-item.live {
+      border-color: var(--accent-coral);
+      background: rgba(212, 101, 59, 0.08);
+      font-weight: 600;
+    }
+
+    .node-kind-badge {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      background: var(--bg-surface-subtle);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .node-kind-badge.agent-tool {
+      color: var(--accent-coral);
+      border-color: var(--pill-tool-border);
+      background: var(--pill-tool-bg);
+    }
+
+    /* Trace Section & Complete Execution Flow Mapping */
+    .flow-graph-container {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 9px 11px;
+      margin-bottom: 12px;
+    }
+
+    .flow-graph-header {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-tertiary);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .flow-breadcrumbs {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 5px;
+      font-family: 'Fira Code', monospace;
+      font-size: 10.5px;
+    }
+
+    .flow-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 7px;
+      border-radius: 5px;
+      background: var(--bg-surface-subtle);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      transition: all 0.2s ease;
+    }
+
+    .flow-chip.active {
+      background: rgba(212, 101, 59, 0.12);
+      border-color: var(--accent-coral);
+      color: var(--accent-coral);
+      font-weight: 600;
+    }
+
+    .flow-chip.completed {
+      background: rgba(46, 125, 50, 0.08);
+      border-color: rgba(46, 125, 50, 0.3);
+      color: var(--accent-green);
+    }
+
+    .flow-arrow {
+      color: var(--text-tertiary);
+      font-size: 10px;
+    }
+
+    /* Trace Timeline Steps */
+    .flow-step-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .flow-step-card.active {
+      border-color: var(--accent-coral);
+      box-shadow: 0 0 0 1px var(--accent-coral), 0 2px 8px rgba(212, 101, 59, 0.15);
+      border-left: 3px solid var(--accent-coral);
+    }
+
+    .flow-step-card.completed {
+      border-left: 3px solid var(--accent-green);
+    }
+
+    .flow-step-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      font-family: 'Fira Code', monospace;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .flow-step-phase {
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-tertiary);
+    }
+
+    .flow-model-component {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      font-family: 'Fira Code', monospace;
+      background: rgba(59, 130, 246, 0.08);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      color: #2563eb;
+      padding: 2px 7px;
+      border-radius: 4px;
+      margin-top: 5px;
+      width: fit-content;
+    }
+
+    [data-theme="dark"] .flow-model-component {
+      background: rgba(96, 165, 250, 0.12);
+      border-color: rgba(96, 165, 250, 0.3);
+      color: #93c5fd;
+    }
+
+    .flow-tool-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10.5px;
+      font-family: 'Fira Code', monospace;
+      background: var(--pill-tool-bg);
+      border: 1px solid var(--pill-tool-border);
+      color: var(--pill-tool-text);
+      padding: 3px 8px;
+      border-radius: 5px;
+      margin-top: 5px;
+      width: fit-content;
+    }
+
+    .flow-transition-banner {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      font-size: 11px;
+      font-family: 'Fira Code', monospace;
+      padding: 6px 9px;
+      background: rgba(212, 101, 59, 0.07);
+      border-left: 2px solid var(--accent-coral);
+      border-radius: 0 5px 5px 0;
+      margin-top: 7px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .flow-transition-banner strong {
+      color: var(--accent-coral);
+    }
+
+    /* Skills & OKF Trace & Catalog Styling */
+    .flow-step-card.skill-step {
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      border-left: 3px solid #a855f7;
+    }
+    .skill-level-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+    }
+    .skill-level-badge.level-1 { background: rgba(59, 130, 246, 0.15); color: #2563eb; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .skill-level-badge.level-2 { background: rgba(168, 85, 247, 0.15); color: #9333ea; border: 1px solid rgba(168, 85, 247, 0.3); }
+    .skill-level-badge.level-3 { background: rgba(16, 185, 129, 0.15); color: #059669; border: 1px solid rgba(16, 185, 129, 0.3); }
+
+    .skill-path-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 0, 0, 0.04);
+      border: 1px dashed rgba(168, 85, 247, 0.4);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      color: var(--text-primary);
+      margin-top: 6px;
+      word-break: break-all;
+    }
+    [data-theme="dark"] .skill-path-badge {
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .skill-catalog-header {
+      padding: 10px 4px 6px 4px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 12px;
+    }
+    .skill-suite-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+    .skill-suite-header {
+      padding: 10px 12px;
+      background: var(--bg-surface-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .skill-suite-body {
+      padding: 10px 12px;
+    }
+    .skill-discipline-box {
+      background: rgba(0, 0, 0, 0.02);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 8px 10px;
+      margin-top: 8px;
+    }
+    [data-theme="dark"] .skill-discipline-box {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .skill-micro-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 5px;
+      padding: 6px 8px;
+      margin-top: 6px;
+      font-size: 11.5px;
+    }
+    .skill-tag-pill {
+      display: inline-block;
+      font-size: 9.5px;
+      font-family: 'Fira Code', monospace;
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      color: var(--text-secondary);
+      padding: 1px 5px;
+      border-radius: 3px;
+      margin-right: 4px;
+      margin-top: 3px;
+    }
+    .quick-query-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--bg-surface-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 4px 10px;
+      font-size: 11px;
+      cursor: pointer;
+      color: var(--text-secondary);
+      margin: 3px;
+      transition: all 0.15s ease;
+    }
+    .quick-query-chip:hover {
+      border-color: var(--accent-coral);
+      color: var(--accent-coral);
+      background: var(--bg-surface);
+    }
+
+
+    /* Model Call Spec Header in Chat Assistant Bubbles */
+    .model-spec-call-pill {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: var(--bg-surface-subtle);
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 0.65rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .model-spec-call-pill .model-name {
+      font-weight: 700;
+      color: var(--accent-coral);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .model-spec-call-pill .model-version {
+      font-size: 9.5px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      padding: 1px 5px;
+      border-radius: 4px;
+      color: var(--text-primary);
+    }
+
+    .model-spec-call-pill .model-runtime {
+      font-size: 10px;
+      color: var(--text-tertiary);
+    }
+
+    .model-tier-badge {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 1px 6px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .model-tier-badge.tier-pro {
+      background: rgba(138, 43, 226, 0.12);
+      color: #9333ea;
+      border: 1px solid rgba(147, 51, 234, 0.35);
+    }
+    .model-tier-badge.tier-flash {
+      background: rgba(37, 99, 235, 0.12);
+      color: #2563eb;
+      border: 1px solid rgba(37, 99, 235, 0.35);
+    }
+    .model-tier-badge.tier-flash-lite {
+      background: rgba(13, 148, 136, 0.12);
+      color: #0d9488;
+      border: 1px solid rgba(13, 148, 136, 0.35);
+    }
+    .model-tier-badge.tier-opus {
+      background: rgba(168, 85, 247, 0.15);
+      color: #a855f7;
+      border: 1px solid rgba(168, 85, 247, 0.4);
+    }
+    .model-tier-badge.tier-sonnet {
+      background: rgba(236, 72, 153, 0.15);
+      color: #ec4899;
+      border: 1px solid rgba(236, 72, 153, 0.4);
+    }
+
+    /* Bottom Inspector of Left Sidebar */
+    .sidebar-inspector {
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      padding: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .inspector-header {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-tertiary);
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .inspector-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .inspector-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin: 6px 0;
+      line-height: 1.4;
+    }
+
+    .inspector-meta {
+      font-size: 11px;
+      font-family: 'Fira Code', monospace;
+      color: var(--text-tertiary);
+      margin-top: 4px;
+    }
+
+    .inspector-meta strong {
+      color: var(--text-secondary);
+    }
+
+    /* Center & Right: Observability HUD + Interactive Chat */
+    main.main-viewport {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      overflow: hidden;
+      background: var(--bg-canvas);
+    }
+
+    /* Observability Metrics HUD Bar (2 Rows) */
+    .metrics-hud {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.75rem 1.25rem 0.65rem 1.25rem;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .metrics-row-primary {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0.85rem;
+    }
+
+    .metric-card {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 7px 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 0;
+    }
+
+    .metric-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .metric-sub {
+      font-size: 9.5px;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      font-family: 'Fira Code', monospace;
+      text-transform: none;
+    }
+
+    .metric-value {
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-top: 2px;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .metric-value-unit {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-left: 2px;
+    }
+
+    .metrics-row-secondary {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 0.75rem;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 0.45rem;
+    }
+
+    .metric-subcard {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4px;
+      font-size: 11px;
+    }
+
+    .metric-subcard-label {
+      color: var(--text-tertiary);
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .metric-subcard-value {
+      font-family: 'Fira Code', monospace;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    /* Chat Messages Stream Area */
+    .chat-scroll-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      max-width: 960px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .welcome-hero {
+      text-align: center;
+      padding: 3rem 1rem 2rem 1rem;
+      margin: auto auto;
+      max-width: 600px;
+    }
+
+    .welcome-icon {
+      font-size: 38px;
+      margin-bottom: 0.75rem;
+    }
+
+    .welcome-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .welcome-subtitle {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Message Bubbles */
+    .chat-message {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .chat-message.user {
+      align-items: flex-end;
+    }
+
+    .user-bubble {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      color: var(--text-primary);
+      padding: 0.75rem 1.15rem;
+      border-radius: 18px 18px 4px 18px;
+      max-width: 80%;
+      box-shadow: var(--shadow-sm);
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+
+    .chat-message.assistant {
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    /* Chronological Tool Badges / Chips list */
+    .tools-invocations-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 0.4rem;
+    }
+
+    .tool-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--pill-tool-bg);
+      border: 1px solid var(--pill-tool-border);
+      color: var(--pill-tool-text);
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    .tool-chip:hover {
+      filter: brightness(0.95);
+      transform: translateY(-1px);
+    }
+
+    .tool-chip .chip-icon {
+      font-size: 10px;
+    }
+
+    .assistant-bubble {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      width: 100%;
+      box-shadow: var(--shadow-sm);
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--text-primary);
+    }
+
+    /* Markdown styling inside assistant response */
+    .assistant-bubble h1, .assistant-bubble h2, .assistant-bubble h3 {
+      font-weight: 600;
+      margin: 0.8rem 0 0.4rem 0;
+      color: var(--text-primary);
+    }
+    .assistant-bubble h1 { font-size: 17px; }
+    .assistant-bubble h2 { font-size: 15px; }
+    .assistant-bubble h3 { font-size: 14px; }
+    .assistant-bubble p { margin-bottom: 0.65rem; }
+    .assistant-bubble ul, .assistant-bubble ol { margin: 0.4rem 0 0.8rem 1.25rem; }
+    .assistant-bubble li { margin-bottom: 0.25rem; }
+    .assistant-bubble code {
+      font-family: 'Fira Code', monospace;
+      background: var(--code-bg);
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    .assistant-bubble pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      overflow-x: auto;
+      margin: 0.6rem 0;
+    }
+    .assistant-bubble pre code {
+      background: none;
+      padding: 0;
+    }
+    .assistant-bubble table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.75rem 0;
+      font-size: 12.5px;
+    }
+    .assistant-bubble th, .assistant-bubble td {
+      border: 1px solid var(--border-subtle);
+      padding: 6px 10px;
+      text-align: left;
+    }
+    .assistant-bubble th {
+      background: var(--bg-surface-subtle);
+      font-weight: 600;
+    }
+    .assistant-bubble blockquote {
+      border-left: 3px solid var(--accent-coral);
+      background: rgba(255, 75, 75, 0.08);
+      margin: 0.75rem 0;
+      padding: 8px 12px;
+      border-radius: 0 6px 6px 0;
+      font-size: 12.5px;
+      color: var(--text-primary);
+    }
+
+    /* Per-Turn Metrics Footer Pill */
+    .turn-metric-pill {
+      margin-top: 0.4rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      color: var(--text-secondary);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      padding: 4px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+    }
+
+    .turn-metric-pill:hover {
+      border-color: var(--border-strong);
+      background: var(--bg-surface-subtle);
+    }
+
+    .turn-metric-pill span {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    /* Bottom Quick Prompts & Chat Input Area */
+    .chat-input-bar {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      padding: 0.85rem 1.25rem 1.1rem 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .input-wrapper-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    /* Preset prompt chips */
+    .preset-prompts-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+
+    .preset-chip {
+      font-size: 11.5px;
+      font-weight: 500;
+      padding: 4px 10px;
+      background: var(--bg-surface-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 999px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+
+    .preset-chip:hover {
+      background: var(--border-subtle);
+      color: var(--text-primary);
+      border-color: var(--border-strong);
+    }
+
+    .chat-input-box {
+      display: flex;
+      align-items: center;
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-strong);
+      border-radius: 28px;
+      padding: 4px 6px 4px 16px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
+    }
+
+    .chat-input-box:focus-within {
+      border-color: var(--accent-coral);
+      box-shadow: 0 0 0 2px var(--pill-tool-border);
+    }
+
+    .chat-textarea {
+      flex: 1;
+      border: none;
+      background: transparent;
+      outline: none;
+      resize: none;
+      font-family: inherit;
+      font-size: 13.5px;
+      color: var(--text-primary);
+      max-height: 120px;
+      min-height: 24px;
+      line-height: 1.5;
+      padding: 6px 0;
+    }
+
+    .chat-send-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: var(--accent-coral);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .chat-send-btn:hover {
+      filter: brightness(1.1);
+      transform: scale(1.04);
+    }
+
+    .chat-send-btn:disabled {
+      background: var(--border-strong);
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .input-hint-row {
+      display: flex;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+
+    /* Tool Execution Details Side Drawer / Modal */
+    .tool-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: 100;
+      display: none;
+      justify-content: flex-end;
+      backdrop-filter: blur(2px);
+    }
+
+    .tool-modal-overlay.active {
+      display: flex;
+    }
+
+    .tool-modal-drawer {
+      width: 480px;
+      height: 100%;
+      background: var(--bg-surface);
+      border-left: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-drawer);
+      display: flex;
+      flex-direction: column;
+      animation: slide-drawer 0.2s ease-out;
+    }
+
+    @keyframes slide-drawer {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+
+    .tool-drawer-header {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tool-drawer-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Fira Code', monospace;
+    }
+
+    .tool-drawer-close {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: var(--text-secondary);
+    }
+
+    .tool-drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .drawer-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-tertiary);
+      margin-bottom: 0.4rem;
+    }
+
+    .drawer-json-block {
+      background: var(--code-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 12px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* ==========================================================================
+       GEAP Memory Bank UI - Premium Spacing, Cards, & Neat Typography
+       ========================================================================== */
+    .mb-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      padding-bottom: 2rem;
+    }
+
+    .mb-intro-banner {
+      background: var(--bg-surface-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .mb-intro-banner .icon {
+      font-size: 16px;
+      line-height: 1;
+      margin-top: 1px;
+    }
+
+    .mb-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.6rem;
+    }
+
+    .mb-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-coral);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0;
+    }
+
+    .mb-badge-pill {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .mb-badge-pill.success {
+      background: rgba(46, 125, 79, 0.12);
+      color: var(--accent-green);
+      border: 1px solid rgba(46, 125, 79, 0.25);
+    }
+    .mb-badge-pill.neutral {
+      background: var(--bg-surface-subtle);
+      color: var(--text-tertiary);
+      border: 1px solid var(--border-subtle);
+      font-family: 'Fira Code', monospace;
+      font-size: 9.5px;
+    }
+
+    .mb-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 16px 18px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .mb-card:hover {
+      border-color: var(--border-strong);
+    }
+
+    .mb-resource-box {
+      background: var(--code-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .mb-resource-uri {
+      font-family: 'Fira Code', monospace;
+      font-size: 10.5px;
+      color: var(--text-primary);
+      word-break: break-all;
+      line-height: 1.45;
+    }
+
+    .mb-profile-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 14px;
+    }
+
+    .mb-profile-name {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mb-profile-role {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .mb-grid-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .mb-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .mb-meta-label {
+      font-size: 10.5px;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .mb-chips-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .mb-chip {
+      font-size: 11px;
+      font-family: 'Fira Code', monospace;
+      padding: 4px 9px;
+      border-radius: 6px;
+      background: rgba(33, 150, 243, 0.08);
+      color: #1976d2;
+      border: 1px solid rgba(33, 150, 243, 0.22);
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .mb-chip.loto {
+      background: rgba(212, 101, 59, 0.1);
+      color: var(--accent-coral);
+      border-color: rgba(212, 101, 59, 0.25);
+    }
+
+    .mb-chip.admin {
+      background: rgba(103, 58, 183, 0.08);
+      color: #673ab7;
+      border-color: rgba(103, 58, 183, 0.22);
+    }
+
+    .mb-incident-focus {
+      margin-top: 14px;
+      padding: 10px 14px;
+      background: rgba(212, 101, 59, 0.06);
+      border-left: 3px solid var(--accent-coral);
+      border-radius: 0 8px 8px 0;
+      font-size: 12px;
+      color: var(--text-primary);
+      line-height: 1.45;
+    }
+
+    .mb-incident-focus strong {
+      color: var(--accent-coral);
+      font-weight: 600;
+    }
+
+    /* Ingestion Buffer Progress Bar & Controls */
+    .mb-buffer-bar-wrapper {
+      height: 6px;
+      background: var(--bg-surface-subtle);
+      border-radius: 3px;
+      overflow: hidden;
+      margin: 10px 0 14px 0;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .mb-buffer-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-coral), #f09572);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    .mb-button-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .mb-btn {
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 7px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+
+    .mb-btn:hover {
+      border-color: var(--accent-coral);
+      color: var(--accent-coral);
+      background: var(--bg-surface-subtle);
+      transform: translateY(-1px);
+    }
+
+    .mb-btn.primary {
+      background: var(--accent-coral);
+      color: #ffffff;
+      border-color: var(--accent-coral);
+      box-shadow: 0 2px 6px rgba(212, 101, 59, 0.25);
+    }
+
+    .mb-btn.primary:hover {
+      background: #c0522a;
+      border-color: #c0522a;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    /* Revision Timeline & Cards */
+    .mb-revisions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mb-revision-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 14px 16px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      position: relative;
+      transition: all 0.15s ease;
+    }
+
+    .mb-revision-item:hover {
+      border-color: var(--border-strong);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .mb-revision-item.current {
+      border-left: 4px solid var(--accent-coral);
+      background: linear-gradient(to right, rgba(212, 101, 59, 0.03), var(--bg-surface));
+    }
+
+    .mb-revision-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      font-family: 'Fira Code', monospace;
+      color: var(--text-tertiary);
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .mb-revision-fact {
+      font-size: 12.5px;
+      color: var(--text-primary);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .mb-revision-extracted {
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      background: var(--bg-surface-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin-top: 8px;
+      line-height: 1.45;
+    }
+
+    .mb-revision-extracted-title {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-tertiary);
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header class="adk-header">
+    <div class="brand-group">
+      <span class="brand-adk">Cymbal</span>
+      <span class="brand-sep">—</span>
+      <span class="brand-ref">Warehouse Automation Agent</span>
+    </div>
+
+    <div class="header-actions">
+      <!-- Live Agent Status Badge -->
+      <div id="statusPill" class="status-pill">
+        <span class="status-dot"></span>
+        <span id="statusLabel">IDLE</span>
+      </div>
+
+      <!-- Currency Switcher Toggle -->
+      <button id="currencyToggleBtn" class="nav-btn" title="Toggle Currency (INR / USD)">
+        <span>₹ INR</span>
+      </button>
+
+      <!-- Link to Warehouse Monitoring Dashboard -->
+      <a href="/dashboard" class="nav-btn" target="_blank" title="Open Warehouse Ops Dashboard">
+        <span>🏭 Warehouse Dashboard</span>
+      </a>
+
+      <!-- Dark / Light Theme Toggle -->
+      <button id="themeToggleBtn" class="icon-toggle-btn" title="Toggle Dark/Light Mode">
+        🌙
+      </button>
+    </div>
+  </header>
+
+  <!-- Observability HUD Metrics Bar (2 Rows) -->
+  <div class="metrics-hud">
+    <!-- Row 1: Primary Latency, Token & Cost Observability -->
+    <div class="metrics-row-primary">
+      <!-- 1. TTFT -->
+      <div class="metric-card">
+        <div class="metric-header">
+          <span>TTFT</span>
+          <span class="metric-sub" id="ttftP95">p95 --</span>
+        </div>
+        <div class="metric-value">
+          <span id="ttftVal">--</span><span class="metric-value-unit" id="ttftUnit">s</span>
+        </div>
+      </div>
+
+      <!-- 2. Total Latency -->
+      <div class="metric-card">
+        <div class="metric-header">
+          <span>LATENCY</span>
+          <span class="metric-sub" id="latP95">p95 --</span>
+        </div>
+        <div class="metric-value">
+          <span id="latVal">--</span><span class="metric-value-unit" id="latUnit">s</span>
+        </div>
+      </div>
+
+      <!-- 3. Tokens In -->
+      <div class="metric-card">
+        <div class="metric-header">
+          <span>TOKENS · IN</span>
+          <span class="metric-sub" id="turnsInLabel">0 turns</span>
+        </div>
+        <div class="metric-value" id="tokensInVal">0</div>
+      </div>
+
+      <!-- 4. Tokens Out -->
+      <div class="metric-card">
+        <div class="metric-header">
+          <span>TOKENS · OUT</span>
+          <span class="metric-sub" id="turnsOutLabel">0 turns</span>
+        </div>
+        <div class="metric-value" id="tokensOutVal">0</div>
+      </div>
+
+      <!-- 5. Tools Executed -->
+      <div class="metric-card">
+        <div class="metric-header">
+          <span>TOOLS</span>
+          <span class="metric-sub" id="turnsToolsLabel">0 turns</span>
+        </div>
+        <div class="metric-value" id="toolsCountVal">0</div>
+      </div>
+
+      <!-- 6. Total Running Cost -->
+      <div class="metric-card">
+        <div class="metric-header">
+          <span>COST</span>
+          <span class="metric-sub" id="turnsCostLabel">0 turns</span>
+        </div>
+        <div class="metric-value" id="costVal">₹ 0.0000</div>
+      </div>
+    </div>
+
+    <!-- Row 2: Secondary Streaming & Model Metrics -->
+    <div class="metrics-row-secondary">
+      <div class="metric-subcard">
+        <span class="metric-subcard-label">ACTIVE MODEL</span>
+        <span class="metric-subcard-value" id="activeModelVal" style="color:var(--accent-coral); font-size:11px;">gemini-3.8-flash</span>
+      </div>
+      <div class="metric-subcard">
+        <span class="metric-subcard-label">MODEL VER</span>
+        <span class="metric-subcard-value" id="activeModelVer" style="font-size:10.5px;">v3.8-flash-001</span>
+      </div>
+      <div class="metric-subcard">
+        <span class="metric-subcard-label">TOK/S P50</span>
+        <span class="metric-subcard-value" id="tokPerSecVal">--</span>
+      </div>
+      <div class="metric-subcard">
+        <span class="metric-subcard-label">CACHE</span>
+        <span class="metric-subcard-value" id="cacheHitVal">0%</span>
+      </div>
+      <div class="metric-subcard">
+        <span class="metric-subcard-label">THINKING</span>
+        <span class="metric-subcard-value" id="thinkingVal">low</span>
+      </div>
+      <div class="metric-subcard">
+        <span class="metric-subcard-label">MODEL CALLS</span>
+        <span class="metric-subcard-value" id="modelCallsVal">0</span>
+      </div>
+      <div class="metric-subcard">
+        <span class="metric-subcard-label">TOTAL TOK</span>
+        <span class="metric-subcard-value" id="totalTokVal">0</span>
+      </div>
+      <div class="metric-subcard">
+        <span class="metric-subcard-label">ERRORS</span>
+        <span class="metric-subcard-value" id="errorsVal">0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Workspace Container: Left Sidebar + Center Chat -->
+  <div class="workspace-container">
+
+    <!-- Left Sidebar: Architecture, Trace, & Selected Tool Inspector -->
+    <aside class="sidebar-panel">
+      <!-- Tabs Header with Scroll Navigation -->
+      <div class="sidebar-tabs-wrapper">
+        <button id="tabScrollPrev" class="sidebar-tab-scroll-btn" title="Scroll left">‹</button>
+        <div class="sidebar-tabs" id="sidebarTabsNav">
+          <button id="tabOverview" class="sidebar-tab-btn">OVERVIEW</button>
+          <button id="tabArchitecture" class="sidebar-tab-btn active">ARCHITECTURE</button>
+          <button id="tabTrace" class="sidebar-tab-btn">TRACE</button>
+          <button id="tabMemoryBank" class="sidebar-tab-btn">MEMORY BANK</button>
+          <button id="tabSkills" class="sidebar-tab-btn">SKILLS & OKF <span style="background:rgba(52,168,83,0.18);color:#34a853;font-size:8.5px;padding:1px 5px;border-radius:4px;font-weight:700;">5</span></button>
+        </div>
+        <button id="tabScrollNext" class="sidebar-tab-scroll-btn" title="Scroll right">›</button>
+      </div>
+
+      <!-- Dynamic Tab Content Scroll Area -->
+      <div id="sidebarContentArea" class="sidebar-scroll-content">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+
+      <!-- Bottom Inspector Panel (Selected Tool / Subagent Details) -->
+      <div id="inspectorPanel" class="sidebar-inspector">
+        <div class="inspector-header">
+          <span id="inspectKind">TOOL · FUNCTION</span>
+          <span id="inspectWraps">wraps execute_python_in_sandbox</span>
+        </div>
+        <div class="inspector-title" id="inspectTitle">execute_python_in_sandbox</div>
+        <div class="inspector-desc" id="inspectDesc">
+          Execute a Python script in an isolated, monitored subprocess environment inside the sandbox.
+        </div>
+        <div class="inspector-meta" id="inspectMeta">
+          <strong>INNER MODEL:</strong> claude-opus-4-7
+        </div>
+      </div>
+    </aside>
+
+    <!-- Center Main Viewport: Chat Feed + Bottom Input -->
+    <main class="main-viewport">
+      <!-- Chat Messages Scroll Container -->
+      <div id="chatFeed" class="chat-scroll-container">
+        <div class="welcome-hero" id="welcomeHero">
+          <div class="welcome-icon">🏭</div>
+          <h2 class="welcome-title">Cymbal Warehouse Automation Agent</h2>
+          <p class="welcome-subtitle">
+            Autonomous multi-agent system powered by the Gemini 3 family and ADK 2.0 with sandboxed diagnostics, live WMS inventory integration, progressive OKF policy disclosure, and automated AGV dispatch.
+          </p>
+        </div>
+      </div>
+
+      <!-- Bottom Chat Input Bar -->
+      <div class="chat-input-bar">
+        <div class="input-wrapper-inner">
+          <!-- Quick Preset Demo Queries -->
+          <div class="preset-prompts-bar">
+            <button class="preset-chip" onclick="applyPresetPrompt('Audit our telemetry log in the sandbox, identify Aisle 4 hot-spots, and generate a stress profile.')">
+              ⚡ Aisle 4 Sandbox Telemetry Audit
+            </button>
+            <button class="preset-chip" onclick="applyPresetPrompt('Conveyor C-102 stopped with Error 4042 in Aisle 3. Check stock and dispatch bypass AGV.')">
+              🚨 Conveyor C-102 Error 4042 Dispatch
+            </button>
+            <button class="preset-chip" onclick="applyPresetPrompt('What is our shift differential rate for night shifts and our overtime payout policy under OKF?')">
+              📋 OKF Night Shift & Overtime Policy
+            </button>
+            <button class="preset-chip" onclick="applyPresetPrompt('What are the on-site healthcare facilities, emergency response times, and medical clinics available in the warehouse?')">
+              🏥 OKF Healthcare & On-Site Clinics
+            </button>
+            <button class="preset-chip" onclick="applyPresetPrompt('What is the protocol for quarantined stock and blocked SKUs like SKU-991 in Aisle 4 under OKF inventory guidelines?')">
+              📦 OKF Quarantined Stock & Blocked SKUs
+            </button>
+            <button class="preset-chip" onclick="applyPresetPrompt('What is the sick leave policy and when is a medical doctor certificate required for warehouse engineers?')">
+              🏖️ OKF Sick Leave & Medical Certificate
+            </button>
+            <button class="preset-chip" onclick="applyPresetPrompt('Audit zone B CCTV camera feed for conveyor belt safety compliance.')">
+              📹 Zone B CCTV Safety Inspection
+            </button>
+          </div>
+
+          <!-- Input Container -->
+          <div class="chat-input-box">
+            <textarea 
+              id="chatTextarea" 
+              class="chat-textarea" 
+              placeholder="Ask the Cymbal Warehouse Automation Agent or trigger an incident audit..."
+              rows="1"
+            ></textarea>
+            <button id="sendBtn" class="chat-send-btn" title="Send message">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Keyboard Shortcut Hint -->
+          <div class="input-hint-row">
+            <span>ENTER TO SEND · SHIFT + ENTER FOR A NEW LINE</span>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Tool Execution Details Drawer / Modal -->
+  <div id="toolModalOverlay" class="tool-modal-overlay">
+    <div class="tool-modal-drawer">
+      <div class="tool-drawer-header">
+        <div class="tool-drawer-title">
+          <span>🔧</span>
+          <span id="drawerToolName">execute_python_in_sandbox</span>
+        </div>
+        <button class="tool-drawer-close" onclick="closeToolDrawer()">&times;</button>
+      </div>
+      <div class="tool-drawer-body">
+        <div>
+          <div class="drawer-section-title">Status & Execution Time</div>
+          <div class="drawer-json-block" id="drawerToolMeta">Status: SUCCESS · Latency: 320ms</div>
+        </div>
+        <div>
+          <div class="drawer-section-title">Input Arguments</div>
+          <div class="drawer-json-block" id="drawerToolArgs">{}</div>
+        </div>
+        <div>
+          <div class="drawer-section-title">Output Result</div>
+          <div class="drawer-json-block" id="drawerToolResult">{}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Logic & Telemetry Observability Engine -->
+  <script>
+    // Configuration & Session State
+    const baseURL = window.location.origin;
+    const userId = "ops-user-" + Math.floor(1000 + Math.random() * 9000);
+    let sessionId = null;
+    let isStreaming = false;
+    let activeTab = "ARCHITECTURE";
+    let currencyMode = "INR"; // INR (₹) or USD ($)
+    const USD_TO_INR_RATE = 86.5;
+
+    // Pricing Model: Gemini 2.5 Flash / 2.0 Flash
+    // Input: $0.075 per 1,000,000 tokens ($0.000000075 / tok)
+    // Output: $0.30 per 1,000,000 tokens ($0.00000030 / tok)
+    const COST_PER_INPUT_TOK = 0.000000075;
+    const COST_PER_OUTPUT_TOK = 0.00000030;
+
+    // Observability Aggregate Metrics State
+    const sessionMetrics = {
+      turnsCount: 0,
+      totalTokensIn: 0,
+      totalTokensOut: 0,
+      totalToolsExecuted: 0,
+      totalCostUSD: 0,
+      modelCalls: 0,
+      errorsCount: 0,
+      ttftSamples: [],
+      latencySamples: [],
+      tokPerSecSamples: []
+    };
+
+    // Trace Execution Logs for latest turn
+    let liveTraceTimeline = [];
+    let agentMetadataCache = null;
+
+    // DOM Elements
+    const chatFeed = document.getElementById("chatFeed");
+    const chatTextarea = document.getElementById("chatTextarea");
+    const sendBtn = document.getElementById("sendBtn");
+    const statusPill = document.getElementById("statusPill");
+    const statusLabel = document.getElementById("statusLabel");
+    const currencyToggleBtn = document.getElementById("currencyToggleBtn");
+    const themeToggleBtn = document.getElementById("themeToggleBtn");
+    const sidebarContentArea = document.getElementById("sidebarContentArea");
+    const welcomeHero = document.getElementById("welcomeHero");
+
+    // Initialize Theme
+    function initTheme() {
+      const savedTheme = localStorage.getItem("adk_theme") || "light";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+      themeToggleBtn.textContent = savedTheme === "dark" ? "☀️" : "🌙";
+    }
+
+    themeToggleBtn.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme") || "light";
+      const next = current === "light" ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", next);
+      localStorage.setItem("adk_theme", next);
+      themeToggleBtn.textContent = next === "dark" ? "☀️" : "🌙";
+    });
+
+    // Currency Switcher
+    currencyToggleBtn.addEventListener("click", () => {
+      currencyMode = currencyMode === "INR" ? "USD" : "INR";
+      currencyToggleBtn.textContent = currencyMode === "INR" ? "₹ INR" : "$ USD";
+      updateMetricsHUD();
+    });
+
+    // Auto-resizing textarea
+    chatTextarea.addEventListener("input", function() {
+      this.style.height = 'auto';
+      this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+    });
+
+    chatTextarea.addEventListener("keydown", function(e) {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        submitMessage();
+      }
+    });
+
+    sendBtn.addEventListener("click", submitMessage);
+
+    function applyPresetPrompt(prompt) {
+      chatTextarea.value = prompt;
+      chatTextarea.focus();
+      chatTextarea.dispatchEvent(new Event('input'));
+    }
+
+    // Set Status Badge
+    function setStatus(status) {
+      statusLabel.textContent = status;
+      if (status === "STREAMING") {
+        statusPill.className = "status-pill streaming";
+      } else {
+        statusPill.className = "status-pill";
+      }
+    }
+
+    // Sidebar Tabs Scroll Navigation & Wheel Handling
+    const sidebarTabsNav = document.getElementById("sidebarTabsNav");
+    const tabScrollPrev = document.getElementById("tabScrollPrev");
+    const tabScrollNext = document.getElementById("tabScrollNext");
+
+    if (sidebarTabsNav) {
+      // 1. Mouse Wheel horizontal scrolling
+      sidebarTabsNav.addEventListener("wheel", (e) => {
+        if (e.deltaY !== 0) {
+          e.preventDefault();
+          sidebarTabsNav.scrollLeft += e.deltaY;
+        }
+      }, { passive: false });
+
+      // 2. Next / Prev Arrow buttons
+      if (tabScrollPrev) {
+        tabScrollPrev.addEventListener("click", () => {
+          sidebarTabsNav.scrollBy({ left: -140, behavior: "smooth" });
+        });
+      }
+      if (tabScrollNext) {
+        tabScrollNext.addEventListener("click", () => {
+          sidebarTabsNav.scrollBy({ left: 140, behavior: "smooth" });
+        });
+      }
+
+      // 3. Mouse Drag-to-scroll
+      let isTabsDown = false;
+      let startTabsX, startScrollLeft;
+      sidebarTabsNav.addEventListener("mousedown", (e) => {
+        isTabsDown = true;
+        startTabsX = e.pageX - sidebarTabsNav.offsetLeft;
+        startScrollLeft = sidebarTabsNav.scrollLeft;
+      });
+      window.addEventListener("mouseup", () => { isTabsDown = false; });
+      sidebarTabsNav.addEventListener("mousemove", (e) => {
+        if (!isTabsDown) return;
+        e.preventDefault();
+        const x = e.pageX - sidebarTabsNav.offsetLeft;
+        const walk = (x - startTabsX) * 1.5;
+        sidebarTabsNav.scrollLeft = startScrollLeft - walk;
+      });
+    }
+
+    // Sidebar Tabs Handling
+    document.getElementById("tabOverview").addEventListener("click", () => switchSidebarTab("OVERVIEW"));
+    document.getElementById("tabArchitecture").addEventListener("click", () => switchSidebarTab("ARCHITECTURE"));
+    document.getElementById("tabTrace").addEventListener("click", () => switchSidebarTab("TRACE"));
+    document.getElementById("tabMemoryBank").addEventListener("click", () => switchSidebarTab("MEMORY_BANK"));
+    document.getElementById("tabSkills").addEventListener("click", () => switchSidebarTab("SKILLS"));
+
+    const tabElementMap = {
+      "OVERVIEW": "tabOverview",
+      "ARCHITECTURE": "tabArchitecture",
+      "TRACE": "tabTrace",
+      "MEMORY_BANK": "tabMemoryBank",
+      "SKILLS": "tabSkills"
+    };
+
+    function switchSidebarTab(tab) {
+      activeTab = tab;
+      document.getElementById("tabOverview").classList.toggle("active", tab === "OVERVIEW");
+      document.getElementById("tabArchitecture").classList.toggle("active", tab === "ARCHITECTURE");
+      document.getElementById("tabTrace").classList.toggle("active", tab === "TRACE");
+      document.getElementById("tabMemoryBank").classList.toggle("active", tab === "MEMORY_BANK");
+      document.getElementById("tabSkills").classList.toggle("active", tab === "SKILLS");
+
+      // Auto-scroll active tab into view
+      const activeBtnId = tabElementMap[tab];
+      if (activeBtnId) {
+        const activeBtn = document.getElementById(activeBtnId);
+        if (activeBtn) {
+          activeBtn.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+        }
+      }
+
+      if (tab === "MEMORY_BANK") {
+        loadMemoryBankData().then(() => renderSidebarContent());
+      } else if (tab === "SKILLS") {
+        loadSkillsCatalogData().then(() => renderSidebarContent());
+      } else {
+        renderSidebarContent();
+      }
+    }
+
+    // Fetch and populate Agent Metadata
+    async function loadAgentMetadata() {
+      try {
+        const res = await fetch(`${baseURL}/api/agent_metadata`);
+        if (res.ok) {
+          agentMetadataCache = await res.json();
+          if (agentMetadataCache.model_id && document.getElementById("activeModelVal")) {
+            document.getElementById("activeModelVal").textContent = agentMetadataCache.model_id;
+          }
+          if (agentMetadataCache.model_version && document.getElementById("activeModelVer")) {
+            document.getElementById("activeModelVer").textContent = agentMetadataCache.model_version;
+          }
+          renderSidebarContent();
+          if (agentMetadataCache.root_agent) {
+            selectInspectorItem(agentMetadataCache.root_agent);
+          } else if (agentMetadataCache.tools && agentMetadataCache.tools.length > 0) {
+            selectInspectorItem(agentMetadataCache.tools[0]);
+          }
+        }
+      } catch (err) {
+        console.warn("Could not load agent metadata:", err);
+      }
+    }
+
+    let currentlyActiveAgentId = "dispatcher_agent";
+
+    function getAgentModelInfo(agentId) {
+      if (agentMetadataCache && agentMetadataCache.agents) {
+        const ag = agentMetadataCache.agents.find(a => a.id === agentId || a.name === agentId);
+        if (ag) {
+          const tier = ag.tier || (ag.model_id.includes("opus") ? "OPUS" : ag.model_id.includes("sonnet") ? "SONNET" : ag.model_id.includes("pro") ? "PRO" : ag.model_id.includes("lite") ? "FLASH-LITE" : "FLASH");
+          return {
+            modelId: ag.model_id,
+            modelVersion: ag.model_version,
+            tier: tier
+          };
+        }
+      }
+      if (agentId === "conversational_safety_agent") {
+        return { modelId: "claude-sonnet-4-6", modelVersion: "claude-sonnet-4-6", tier: "SONNET" };
+      } else if (agentId === "cctv_safety_audit_agent") {
+        return { modelId: "gemini-3.5-flash", modelVersion: "gemini-3.5-flash-001", tier: "FLASH" };
+      } else if (agentId === "sandbox_diagnostic_agent") {
+        return { modelId: "claude-opus-4-7", modelVersion: "claude-opus-4-7", tier: "OPUS" };
+      } else if (agentId === "dispatcher_agent") {
+        return { modelId: "gemini-3.8-flash", modelVersion: "gemini-3.8-flash-001", tier: "FLASH" };
+      }
+      return {
+        modelId: (agentMetadataCache && agentMetadataCache.model_id) || "gemini-3.8-flash",
+        modelVersion: (agentMetadataCache && agentMetadataCache.model_version) || "gemini-3.8-flash-001",
+        tier: "FLASH"
+      };
+    }
+
+    function selectInspectorItem(item) {
+      if (!item) return;
+      const isAgent = item.type === "LLM AGENT" || item.type === "ROOT WORKFLOW / MULTI-AGENT ORCHESTRATOR" || item.type === "ROOT WORKFLOW / LLM AGENT" || item.type === "AGENT TOOL" || item.type === "COMPLEX REASONING AGENT" || item.type === "CODE DIAGNOSTIC AGENT" || item.type === "MULTIMODAL VISION AGENT" || item.type === "FAST CONVERSATIONAL AGENT";
+      document.getElementById("inspectKind").textContent = isAgent ? `AGENT · ${item.type || 'SPECIALIST'}` : `TOOL · ${item.type || 'FUNCTION'}`;
+      document.getElementById("inspectWraps").textContent = item.wraps ? `wraps ${item.wraps}` : (item.id || "");
+      document.getElementById("inspectTitle").textContent = item.name || item.id;
+      document.getElementById("inspectDesc").textContent = item.description || "Specialist agent component in the Cymbal Warehouse Automation system.";
+      
+      const modelId = item.model_id || (agentMetadataCache && agentMetadataCache.model_id) || "gemini-3.8-flash";
+      const modelVer = item.model_version || (agentMetadataCache && agentMetadataCache.model_version) || "gemini-3.8-flash-001";
+      const runtime = (agentMetadataCache && agentMetadataCache.runtime) || "Vertex AI Agent Engine";
+      const location = (agentMetadataCache && agentMetadataCache.location) || "global";
+      const tier = item.tier || (modelId.includes("opus") ? "OPUS" : modelId.includes("sonnet") ? "SONNET" : modelId.includes("pro") ? "PRO" : modelId.includes("lite") ? "FLASH-LITE" : "FLASH");
+
+      document.getElementById("inspectMeta").innerHTML = `
+        <div style="display:flex; flex-direction:column; gap:4px; margin-top:4px;">
+          <div style="display:flex; align-items:center; gap:6px;">
+            <strong>MODEL ID:</strong> <span style="color:var(--accent-coral); font-weight:600;">${modelId}</span>
+            <span class="model-tier-badge tier-${tier.toLowerCase()}">${tier}</span>
+          </div>
+          <div><strong>MODEL VERSION:</strong> <span>${modelVer}</span></div>
+          <div><strong>RUNTIME TARGET:</strong> <span>${runtime} (${location})</span></div>
+          <div><strong>GENERATION CONFIG:</strong> <span>temperature: 0.2 · top_p: 0.95 · budget: ${item.budget || 'dynamic'}</span></div>
+        </div>
+      `;
+    }
+
+    function renderSidebarContent() {
+      if (activeTab === "ARCHITECTURE") {
+        renderArchitectureTab();
+      } else if (activeTab === "TRACE") {
+        renderTraceTab();
+      } else if (activeTab === "OVERVIEW") {
+        renderOverviewTab();
+      } else if (activeTab === "MEMORY_BANK") {
+        renderMemoryBankTab();
+      } else if (activeTab === "SKILLS") {
+        renderSkillsTab();
+      }
+    }
+
+    function renderArchitectureTab() {
+      if (!agentMetadataCache) {
+        sidebarContentArea.innerHTML = `<div style="color:var(--text-tertiary); font-size:12px; padding:10px;">Loading architecture...</div>`;
+        return;
+      }
+
+      const root = agentMetadataCache.root_agent || {
+        name: "stackbox_conveyor_orchestrator",
+        type: "ROOT WORKFLOW / MULTI-AGENT ORCHESTRATOR",
+        model_id: "gemini-3.8-flash",
+        model_version: "gemini-3.8-flash-001",
+        budget: "dynamic"
+      };
+
+      const isRootLive = isStreaming || currentlyActiveAgentId === "stackbox_conveyor_orchestrator";
+
+      let html = `
+        <div class="tree-intro-note">Click any node to inspect its model, instruction, and tools.</div>
+        
+        <!-- Root Orchestrator Card matching Reference UI -->
+        <div class="tree-agent-card ${isRootLive ? 'live' : ''}" onclick='selectInspectorItem(${JSON.stringify(root).replace(/'/g, "&#39;")})'>
+          <div class="tree-agent-card-header">
+            <div class="tree-agent-title">
+              <span style="font-size:13px;">📁</span>
+              <span>${root.name}</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:5px;">
+              <span class="node-kind-badge agent-tool">ORCHESTRATOR</span>
+              ${isRootLive ? '<span class="live-status-chip">● LIVE</span>' : ''}
+            </div>
+          </div>
+          <div class="tree-agent-subtext" style="display:flex; align-items:center; gap:5px;">
+            <span style="font-weight:600;">${root.model_id || 'gemini-3.8-flash'}</span>
+            <span class="model-tier-badge tier-flash">FLASH</span>
+            <span>·</span>
+            <span>${root.budget || 'dynamic'}</span>
+          </div>
+        </div>
+      `;
+
+      html += `<div class="tree-group-label" style="margin-top:0.9rem;">Specialists & Nested Function Tools</div>`;
+
+      // Render Subagents with their nested tools
+      for (const agent of agentMetadataCache.agents) {
+        const isLive = isStreaming && (currentlyActiveAgentId === agent.id || currentlyActiveAgentId === agent.name);
+        const agentTier = agent.tier || (agent.model_id && agent.model_id.includes("opus") ? "OPUS" : agent.model_id && agent.model_id.includes("sonnet") ? "SONNET" : agent.model_id && agent.model_id.includes("pro") ? "PRO" : agent.model_id && agent.model_id.includes("lite") ? "FLASH-LITE" : "FLASH");
+        html += `
+          <div class="tree-agent-card ${isLive ? 'live' : ''}" style="margin-top:6px;" onclick='selectInspectorItem(${JSON.stringify(agent).replace(/'/g, "&#39;")})'>
+            <div class="tree-agent-card-header">
+              <div class="tree-agent-title">
+                <span style="font-size:13px;">🤖</span>
+                <span>${agent.name}</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:5px;">
+                <span class="node-kind-badge agent-tool">AGENT</span>
+                ${isLive ? '<span class="live-status-chip">● LIVE</span>' : ''}
+              </div>
+            </div>
+            <div class="tree-agent-subtext" style="display:flex; align-items:center; gap:5px;">
+              <span style="font-weight:600;">${agent.model_id || 'gemini-3.8-flash'}</span>
+              <span class="model-tier-badge tier-${agentTier.toLowerCase()}">${agentTier}</span>
+              <span>·</span>
+              <span>${agent.budget || 'dynamic'}</span>
+            </div>
+          </div>
+        `;
+
+        // Render connected child tools if any
+        if (agent.tools && agent.tools.length > 0) {
+          html += `<div class="tree-branch-container">`;
+          for (const toolId of agent.tools) {
+            const toolMeta = agentMetadataCache.tools ? agentMetadataCache.tools.find(t => t.id === toolId || t.name === toolId) : null;
+            const toolData = toolMeta || { name: toolId, type: "FUNCTION", description: `Tool for ${agent.name}` };
+            html += `
+              <div class="tree-leaf-item" onclick='event.stopPropagation(); selectInspectorItem(${JSON.stringify(toolData).replace(/'/g, "&#39;")})'>
+                <div style="display:flex; align-items:center; gap:5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+                  <span style="font-size:11px;">🔑</span>
+                  <span>${toolId}</span>
+                </div>
+                <span class="node-kind-badge">FUNCTION</span>
+              </div>
+            `;
+          }
+          html += `</div>`;
+        }
+      }
+
+      sidebarContentArea.innerHTML = html;
+    }
+
+    function renderTraceTab() {
+      if (liveTraceTimeline.length === 0) {
+        sidebarContentArea.innerHTML = `
+          <div style="color:var(--text-tertiary); font-size:12px; padding:20px; text-align:center; line-height:1.5;">
+            No requests executed yet.<br>Send a query to observe the live step-by-step trace & control flow!
+          </div>
+        `;
+        return;
+      }
+
+      // 1. Flow breadcrumbs summary
+      const uniqueStages = [];
+      for (const step of liveTraceTimeline) {
+        if (step.agent && !uniqueStages.includes(step.agent)) uniqueStages.push(step.agent);
+        if (step.toolName && !uniqueStages.includes(step.toolName)) uniqueStages.push(step.toolName);
+      }
+      if (uniqueStages.length === 0) uniqueStages.push("telemetry_ingest", "dispatcher_agent", "response");
+
+      let html = `
+        <div class="flow-graph-container">
+          <div class="flow-graph-header">
+            <span>Execution Control Flow</span>
+            <span style="color:var(--accent-coral); font-size:9.5px; font-weight:700;">${isStreaming ? '● STREAMING' : '✓ COMPLETED'}</span>
+          </div>
+          <div class="flow-breadcrumbs">
+      `;
+
+      uniqueStages.forEach((stage, idx) => {
+        const isLast = idx === uniqueStages.length - 1;
+        html += `
+          <span class="flow-chip ${isStreaming && isLast ? 'active' : 'completed'}">
+            ${stage.includes("agent") ? "🤖" : (stage.includes("wms") || stage.includes("runbook") || stage.includes("agv") || stage.includes("sandbox") ? "🔧" : "⚡")} ${stage}
+          </span>
+          ${!isLast ? '<span class="flow-arrow">➔</span>' : ''}
+        `;
+      });
+
+      html += `
+          </div>
+        </div>
+        <div class="tree-group-label">Complete Execution Steps</div>
+      `;
+
+      // 2. Chronological Execution Step Cards
+      liveTraceTimeline.forEach((step, idx) => {
+        const isCurrent = idx === liveTraceTimeline.length - 1 && isStreaming;
+        const isSkill = step.isSkillTool || (step.toolName && (step.toolName.includes("skill") || step.toolName.includes("okf")));
+        const skillLvl = step.skillLevel || (step.toolName === "discover_skill_catalog" ? 1 : step.toolName === "fetch_skill_manifest" ? 2 : step.toolName === "activate_skill" ? 3 : 0);
+
+        html += `
+          <div class="flow-step-card ${isCurrent ? 'active' : 'completed'} ${isSkill ? 'skill-step' : ''}">
+            <div class="flow-step-top">
+              <span class="flow-step-phase">STEP ${idx + 1} · ${step.stage || step.title || 'WORKFLOW NODE'}</span>
+              <span style="color:var(--text-tertiary); font-size:10px;">${step.duration || '24ms'}</span>
+            </div>
+            <div style="font-size:12px; font-weight:600; color:var(--text-primary); display:flex; align-items:center; gap:6px;">
+              <span>${step.agent ? '🤖' : '⚡'}</span>
+              <span>Active Agent: <strong>${step.agent || 'dispatcher_agent'}</strong></span>
+            </div>
+
+            <!-- Model ID & Version Component -->
+            <div class="flow-model-component">
+              <span>✨</span>
+              <strong>Model:</strong> <span>${step.modelId || 'gemini-3.8-flash'}</span>
+              <span style="opacity:0.8;">(${step.modelVersion || 'gemini-3.8-flash-001'})</span>
+              <span class="model-tier-badge tier-${(step.tier || (step.modelId && step.modelId.includes('opus') ? 'OPUS' : step.modelId && step.modelId.includes('sonnet') ? 'SONNET' : step.modelId && step.modelId.includes('pro') ? 'PRO' : step.modelId && step.modelId.includes('lite') ? 'FLASH-LITE' : 'FLASH')).toLowerCase()}">${step.tier || 'FLASH'}</span>
+              <span>· Vertex AI (global)</span>
+            </div>
+
+            ${isSkill ? `
+              <div style="display:flex; align-items:center; gap:6px; margin-top:6px;">
+                <span class="skill-level-badge level-${skillLvl || 1}">
+                  ${skillLvl === 1 ? '🎯 L1 ROOT DISCOVERY' : skillLvl === 2 ? '📋 L2 SPECIALIST MANIFEST' : skillLvl === 3 ? '⚡ L3 MICRO-SKILL ACTIVATION' : 'OKF SKILL'}
+                </span>
+                <span style="font-size:10px; color:#a855f7; font-weight:600;">OKF Progressive Disclosure</span>
+              </div>
+              ${step.hierarchyPath ? `
+                <div class="skill-path-badge">
+                  <span style="color:var(--accent-coral);">➔</span>
+                  <span>${escapeHTML(step.hierarchyPath)}</span>
+                </div>
+              ` : ''}
+            ` : ''}
+
+            ${step.toolName ? `
+              <div class="flow-tool-chip">
+                <span>🔧</span>
+                <span>${step.toolName}${step.toolArgs ? `(${escapeHTML(JSON.stringify(step.toolArgs))})` : ''}</span>
+              </div>
+            ` : ''}
+
+            ${step.detail ? `
+              <div style="font-size:11px; color:var(--text-secondary); margin-top:4px; font-family:'Fira Code', monospace; line-height:1.4;">
+                ${escapeHTML(step.detail)}
+              </div>
+            ` : ''}
+
+            <!-- Where Does Control Flow Next Pass To -->
+            <div class="flow-transition-banner">
+              <span style="color:var(--accent-coral); font-weight:700;">↳</span>
+              <div>
+                <strong>Next Control Flow:</strong> Passes to <span>${step.controlPassesTo || 'dispatcher_agent ➔ evaluating incident response'}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      sidebarContentArea.innerHTML = html;
+    }
+
+    function renderOverviewTab() {
+      sidebarContentArea.innerHTML = `
+        <div style="font-size:12.5px; color:var(--text-secondary); line-height:1.5; padding:4px;">
+          <h4 style="color:var(--text-primary); margin-bottom:6px;">ADK 2.0 Graph Workflow</h4>
+          <p style="margin-bottom:10px;">
+            Orchestrates industrial conveyor monitoring through dynamic graph routing, safety guardrails (SGP), and isolated Python telemetry sandboxes.
+          </p>
+          <div style="background:var(--bg-surface); border:1px solid var(--border-subtle); border-radius:6px; padding:8px; margin-bottom:10px;">
+            <div style="font-weight:600; font-size:11px; margin-bottom:4px; color:var(--text-primary);">Core Capabilities:</div>
+            <ul style="padding-left:14px; font-size:11.5px;">
+              <li>Telemetry Ingestion & Fan-out</li>
+              <li>WMS Inventory Status Lookup</li>
+              <li>Autonomous AGV Bypass Dispatch</li>
+              <li>Sandboxed Stress Diagnostics</li>
+            </ul>
+          </div>
+          <div style="font-size:11px; color:var(--text-tertiary);">
+            Session ID: <code style="font-family:'Fira Code'; font-size:10px;">${sessionId || 'Initializing...'}</code>
+          </div>
+        </div>
+      `;
+    }
+
+    // =========================================================================
+    // GEAP Memory Bank State & UI
+    // =========================================================================
+    let memoryBankProfileCache = null;
+    let memoryBankRevisionsCache = null;
+    let memoryBankBufferCount = 2;
+
+    async function loadMemoryBankData() {
+      try {
+        const [profRes, revRes] = await Promise.all([
+          fetch(`${baseURL}/api/memory_bank/profiles?user_id=TECH-402`),
+          fetch(`${baseURL}/api/memory_bank/revisions?memory_name=projects/526827734705/locations/us-central1/reasoningEngines/8594036320127418368/memories/881173220072357888`)
+        ]);
+        if (profRes.ok) {
+          const profData = await profRes.json();
+          memoryBankProfileCache = profData.profile;
+        }
+        if (revRes.ok) {
+          const revData = await revRes.json();
+          memoryBankRevisionsCache = revData.revisions;
+        }
+      } catch (e) {
+        console.warn("Failed fetching memory bank data:", e);
+      }
+    }
+
+    async function ingestSampleTelemetryEvent() {
+      try {
+        const res = await fetch(`${baseURL}/api/memory_bank/ingest_events`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            stream_id: "operator_session_TECH-402",
+            events: [
+              {
+                content: {
+                  role: "telemetry",
+                  parts: [{ text: `Sensor telemetry tick: Conveyor CV-02 operating at 1.4 m/s, motor temp 41.2°C, zone B clean.` }]
+                }
+              }
+            ],
+            force_flush: false,
+            event_count_threshold: 5
+          })
+        });
+        if (res.ok) {
+          const data = await res.json();
+          memoryBankBufferCount = data.total_buffer_count;
+          if (data.flush_triggered) {
+            await loadMemoryBankData();
+          }
+          if (activeTab === "MEMORY_BANK") renderMemoryBankTab();
+        }
+      } catch (e) {
+        alert("Ingest event failed: " + e.message);
+      }
+    }
+
+    async function forceFlushMemoryBuffer() {
+      try {
+        const res = await fetch(`${baseURL}/api/memory_bank/ingest_events`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            stream_id: "operator_session_TECH-402",
+            events: [],
+            force_flush: true
+          })
+        });
+        if (res.ok) {
+          const data = await res.json();
+          memoryBankBufferCount = data.total_buffer_count;
+          await loadMemoryBankData();
+          if (activeTab === "MEMORY_BANK") renderMemoryBankTab();
+        }
+      } catch (e) {
+        alert("Force flush failed: " + e.message);
+      }
+    }
+
+    async function synthesizeMemoryFact() {
+      try {
+        const res = await fetch(`${baseURL}/api/memory_bank/generate_memories`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            scope: { user_id: "TECH-402", warehouse_id: "stackbox_austin_1", zone: "Zone B" },
+            allowed_topics: ["safety_compliance_history", "equipment_maintenance_records", "USER_PREFERENCES"],
+            metadata_merge_strategy: "MERGE"
+          })
+        });
+        if (res.ok) {
+          await loadMemoryBankData();
+          if (activeTab === "MEMORY_BANK") renderMemoryBankTab();
+        }
+      } catch (e) {
+        alert("Memory generation failed: " + e.message);
+      }
+    }
+
+    async function rollbackToRevision(targetRevId) {
+      if (!confirm(`Confirm rollback of memory 881173220072357888 to historical revision ${targetRevId}?`)) return;
+      try {
+        const res = await fetch(`${baseURL}/api/memory_bank/rollback`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            memory_name: "projects/526827734705/locations/us-central1/reasoningEngines/8594036320127418368/memories/881173220072357888",
+            target_revision_id: targetRevId
+          })
+        });
+        if (res.ok) {
+          await loadMemoryBankData();
+          if (activeTab === "MEMORY_BANK") renderMemoryBankTab();
+        }
+      } catch (e) {
+        alert("Rollback failed: " + e.message);
+      }
+    }
+
+    function renderMemoryBankTab() {
+      const profile = memoryBankProfileCache || {
+        operator_id: "TECH-402",
+        full_name: "Dave Miller",
+        shift_role: "Senior Conveyor Maintenance Technician",
+        certified_machinery: ["CV-01", "CV-02", "CV-03", "PickerBot-Alpha", "LOTO-Level-3", "WMS-Admin"],
+        active_assigned_zone: "Zone B - Aisle 4",
+        preferred_alert_verbosity: "technical",
+        recent_incident_focus: "Conveyor CV-02 Error 4042 Thermal Jam Recovery"
+      };
+
+      const revisions = memoryBankRevisionsCache || [];
+      const bufferPct = Math.min(100, Math.round((memoryBankBufferCount / 5) * 100));
+
+      let html = `
+        <div class="mb-container">
+          <!-- Top Info Banner -->
+          <div class="mb-intro-banner">
+            <span class="icon">🧠</span>
+            <div>
+              <strong>GEAP Memory Bank</strong> decouples raw telemetry event ingestion, provides asynchronous LLM synthesis, low-latency structured profiles, and revision history.
+            </div>
+          </div>
+
+          <!-- Section 1: Target Resource -->
+          <div>
+            <div class="mb-section-header">
+              <div class="mb-section-title">Target Memory Resource</div>
+              <span class="mb-badge-pill success">● Connected</span>
+            </div>
+            <div class="mb-card">
+              <div style="font-size:11px; color:var(--text-secondary); margin-bottom:4px;">Vertex AI Reasoning Engine Resource URI:</div>
+              <div class="mb-resource-box">
+                <div class="mb-resource-uri">projects/526827734705/locations/us-central1/reasoningEngines/8594036320127418368/memories/881173220072357888</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Structured Operator Profile -->
+          <div>
+            <div class="mb-section-header">
+              <div class="mb-section-title">Structured Operator Profile (Pydantic)</div>
+              <span class="mb-badge-pill neutral">&lt; 2ms cache</span>
+            </div>
+            <div class="mb-card">
+              <div class="mb-profile-header">
+                <div>
+                  <div class="mb-profile-name">
+                    ${profile.full_name}
+                    <span style="font-size:11px; font-weight:600; color:var(--text-tertiary); font-family:'Fira Code';">(${profile.operator_id})</span>
+                  </div>
+                  <div class="mb-profile-role">${profile.shift_role}</div>
+                </div>
+                <span class="model-tier-badge tier-flash-lite">PROFILE</span>
+              </div>
+
+              <div class="mb-grid-meta">
+                <div class="mb-meta-item">
+                  <span class="mb-meta-label">Assigned Sector</span>
+                  <span class="mb-chip zone" style="align-self:flex-start;">📍 ${profile.active_assigned_zone}</span>
+                </div>
+                <div class="mb-meta-item">
+                  <span class="mb-meta-label">Alert Preference</span>
+                  <span class="mb-chip" style="align-self:flex-start; color:var(--accent-coral); border-color:rgba(212,101,59,0.3); background:rgba(212,101,59,0.08);">
+                    ⚙️ ${profile.preferred_alert_verbosity}
+                  </span>
+                </div>
+              </div>
+
+              <div style="margin-top:12px;">
+                <div class="mb-meta-label">Certified Machinery & SOP Access:</div>
+                <div class="mb-chips-container">
+                  ${(profile.certified_machinery || []).map(m => {
+                    let cls = "";
+                    if (m.includes('LOTO')) cls = "loto";
+                    else if (m.includes('Admin')) cls = "admin";
+                    return `<span class="mb-chip ${cls}">${m}</span>`;
+                  }).join('')}
+                </div>
+              </div>
+
+              ${profile.recent_incident_focus ? `
+                <div class="mb-incident-focus">
+                  <strong>Active Incident Focus:</strong> ${escapeHTML(profile.recent_incident_focus)}
+                </div>
+              ` : ''}
+            </div>
+          </div>
+
+          <!-- Section 3: Event Ingestion Buffer -->
+          <div>
+            <div class="mb-section-header">
+              <div class="mb-section-title">Streaming Event Ingestion Buffer</div>
+              <span class="mb-badge-pill neutral" style="color:var(--accent-coral); font-weight:700;">${memoryBankBufferCount} / 5 events</span>
+            </div>
+            <div class="mb-card">
+              <div style="font-size:11.5px; color:var(--text-secondary);">
+                Active Stream: <code style="font-family:'Fira Code'; font-size:11px; color:var(--text-primary); background:var(--bg-surface-subtle); padding:2px 6px; border-radius:4px;">operator_session_TECH-402</code>
+              </div>
+
+              <!-- Visual Progress Bar -->
+              <div class="mb-buffer-bar-wrapper">
+                <div class="mb-buffer-bar-fill" style="width: ${bufferPct}%;"></div>
+              </div>
+
+              <div style="font-size:11px; color:var(--text-tertiary); display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px;">
+                <span>Auto-trigger: <strong style="color:var(--text-secondary);">5 events</strong></span>
+                <span>Idle flush: <strong style="color:var(--text-secondary);">300s</strong></span>
+                <span>Buffer overlap: <strong style="color:var(--text-secondary);">1 event</strong></span>
+              </div>
+
+              <div class="mb-button-group">
+                <button class="mb-btn" onclick="ingestSampleTelemetryEvent()">
+                  <span>+</span> Ingest Telemetry
+                </button>
+                <button class="mb-btn primary" onclick="forceFlushMemoryBuffer()">
+                  <span>⚡</span> Force Flush Buffer
+                </button>
+                <button class="mb-btn" onclick="synthesizeMemoryFact()">
+                  <span>✨</span> Synthesize Fact
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4: Memory Revisions & Lineage -->
+          <div>
+            <div class="mb-section-header">
+              <div class="mb-section-title">Memory Revisions & Lineage (${revisions.length})</div>
+              <span class="mb-badge-pill neutral">Immutable History</span>
+            </div>
+            <div class="mb-revisions-list">
+              ${revisions.map((rev, idx) => {
+                const isCurrent = idx === 0;
+                const timeStr = rev.create_time ? new Date(rev.create_time).toLocaleTimeString() : "--";
+                return `
+                  <div class="mb-revision-item ${isCurrent ? 'current' : ''}">
+                    <div class="mb-revision-top">
+                      <span>REV #${rev.revision_id.slice(-6)} ${isCurrent ? '<strong style="color:var(--accent-coral); font-weight:700;">(ACTIVE)</strong>' : ''}</span>
+                      <span>⏱️ ${timeStr}</span>
+                    </div>
+                    <div class="mb-revision-fact">${escapeHTML(rev.fact)}</div>
+                    ${rev.extracted_memories && rev.extracted_memories.length > 0 ? `
+                      <div class="mb-revision-extracted">
+                        <div class="mb-revision-extracted-title">Extracted Sub-Memories:</div>
+                        ${rev.extracted_memories.map(em => `<div style="margin-top:3px;">• ${escapeHTML(em.fact)}</div>`).join('')}
+                      </div>
+                    ` : ''}
+                    ${!isCurrent ? `
+                      <div style="margin-top:10px; display:flex; justify-content:flex-end;">
+                        <button class="mb-btn" style="font-size:10.5px; padding:4px 10px;" onclick="rollbackToRevision('${rev.revision_id}')">
+                          ↺ Rollback to Revision
+                        </button>
+                      </div>
+                    ` : ''}
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+
+      sidebarContentArea.innerHTML = html;
+    }
+
+    // ==============================================================================
+    // GEAP Agent Skills Registry & 3-Tier OKF Knowledge Catalog Handling
+    // ==============================================================================
+    let skillsCatalogCache = null;
+    let expandedMicroSkills = {};
+
+    async function loadSkillsCatalogData() {
+      try {
+        const res = await fetch(`${baseURL}/api/skills`);
+        if (res.ok) {
+          skillsCatalogCache = await res.json();
+        }
+      } catch (e) {
+        console.error("Failed to load skills catalog", e);
+      }
+    }
+
+    async function triggerGeapSync(skillId = null) {
+      const btn = document.getElementById("syncSkillsBtn");
+      if (btn) btn.innerHTML = "⏳ Syncing to GEAP...";
+      try {
+        const url = skillId ? `${baseURL}/api/skills/${skillId}/sync` : `${baseURL}/api/skills/sync_registry`;
+        const res = await fetch(url, { method: "POST" });
+        if (res.ok) {
+          await loadSkillsCatalogData();
+          renderSkillsTab();
+          alert("✓ Successfully synchronized 3-tier hierarchical skills to GEAP Skill Registry!");
+        }
+      } catch (e) {
+        console.error("Failed to sync skills to GEAP", e);
+      } finally {
+        if (btn) btn.innerHTML = "⚡ Sync to GEAP Registry";
+      }
+    }
+
+    function toggleMicroSkillDetail(microSkillId) {
+      expandedMicroSkills[microSkillId] = !expandedMicroSkills[microSkillId];
+      renderSkillsTab();
+    }
+
+    function runPresetQuery(queryText) {
+      const input = document.getElementById("chatInput");
+      if (input) {
+        input.value = queryText;
+        sendMessage();
+      }
+    }
+
+    function renderSkillsTab() {
+      if (!skillsCatalogCache) {
+        sidebarContentArea.innerHTML = `<div style="color:var(--text-tertiary); font-size:12px; padding:20px; text-align:center;">Loading hierarchical skills catalog...</div>`;
+        return;
+      }
+
+      const catalog = skillsCatalogCache;
+      const suites = catalog.suites || [];
+
+      let html = `
+        <div class="skill-catalog-header">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+            <div style="font-weight:700; font-size:12px; color:var(--text-primary); display:flex; align-items:center; gap:6px;">
+              <span>🧠</span> <span>GEAP Skill Registry & OKF</span>
+            </div>
+            <button id="syncSkillsBtn" class="mb-btn primary" style="font-size:10px; padding:3px 8px;" onclick="triggerGeapSync()">
+              ⚡ Sync to GEAP Registry
+            </button>
+          </div>
+          <div style="font-size:11px; color:var(--text-secondary); line-height:1.4; margin-bottom:8px;">
+            3-Level Hierarchical Progressive Disclosure for Autonomous Warehouse Operations & HR Workforce Governance.
+          </div>
+          
+          <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px;">
+            <span class="skill-level-badge level-1">L1: ${catalog.total_suites || 5} ROOT SUITES</span>
+            <span class="skill-level-badge level-2">L2: ${catalog.total_disciplines || 11} DISCIPLINES</span>
+            <span class="skill-level-badge level-3">L3: ${catalog.total_micro_skills || 22} MICRO-SKILLS</span>
+          </div>
+
+          <!-- Quick Test Queries -->
+          <div style="font-size:10px; font-weight:700; color:var(--text-tertiary); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.04em;">
+            ⚡ Quick Test Presets (Click to Execute):
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:4px; margin-bottom:12px;">
+            <div class="quick-query-chip" onclick="runPresetQuery('How are cycle counts conducted for high-velocity items like SKU-991?')">
+              📦 SKU-991 Cycle Count
+            </div>
+            <div class="quick-query-chip" onclick="runPresetQuery('What is the HR policy for a 3-consecutive-day sick leave absence and doctor note requirement?')">
+              🏥 3-Day Sick Leave Policy
+            </div>
+            <div class="quick-query-chip" onclick="runPresetQuery('Calculate the night shift differential (+22%) for an 8-hour shift and explain overtime rules.')">
+              🌙 Night Shift Differential
+            </div>
+            <div class="quick-query-chip" onclick="runPresetQuery('What are the LOTO zero-energy verification steps before opening conveyor CV-101 junction box?')">
+              ⚡ LOTO Breaker Isolation
+            </div>
+            <div class="quick-query-chip" onclick="runPresetQuery('How does an AGV calculate a dynamic detour around stalled conveyor CV-02?')">
+              🚗 AGV Detour Bypass
+            </div>
+          </div>
+        </div>
+
+        <div class="tree-group-label" style="margin-bottom:8px;">Hierarchical Skill Suites</div>
+      `;
+
+      suites.forEach((suite, sIdx) => {
+        const catBadge = suite.category ? suite.category.toUpperCase() : "OPERATIONS";
+        
+        html += `
+          <div class="skill-suite-box">
+            <div class="skill-suite-header">
+              <div style="display:flex; align-items:center; gap:6px;">
+                <span class="skill-level-badge level-1">L1 ROOT</span>
+                <span style="font-weight:600; font-size:12px; color:var(--text-primary);">${escapeHTML(suite.display_name)}</span>
+              </div>
+              <span class="skill-tag-pill" style="color:var(--accent-coral); font-weight:600;">${catBadge}</span>
+            </div>
+            
+            <div class="skill-suite-body">
+              <div style="font-size:11px; color:var(--text-secondary); margin-bottom:6px; line-height:1.4;">
+                ${escapeHTML(suite.description)}
+              </div>
+              
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:10px; color:var(--text-tertiary); font-family:'Fira Code'; margin-bottom:8px; background:rgba(0,0,0,0.03); padding:4px 6px; border-radius:4px;">
+                <span>ID: <strong>${suite.suite_id}</strong></span>
+                <span style="color:#10b981;">✓ ${suite.registry_status || 'CLOUD_SYNCED'}</span>
+              </div>
+
+              <!-- Level 2 Disciplines -->
+              <div style="margin-top:6px;">
+                <div style="font-size:10px; font-weight:700; color:var(--text-tertiary); text-transform:uppercase; margin-bottom:4px;">
+                  Level 2 Specialist Disciplines (${(suite.disciplines || []).length})
+                </div>
+        `;
+
+        (suite.disciplines || []).forEach(disc => {
+          html += `
+            <div class="skill-discipline-box">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <div style="display:flex; align-items:center; gap:5px;">
+                  <span class="skill-level-badge level-2">L2</span>
+                  <span style="font-weight:600; font-size:11.5px; color:var(--text-primary);">${escapeHTML(disc.display_name)}</span>
+                </div>
+                <span style="font-size:9.5px; color:var(--text-tertiary); font-family:'Fira Code';">${disc.discipline_id}</span>
+              </div>
+              <div style="font-size:10.5px; color:var(--text-secondary); margin-bottom:6px;">
+                ${escapeHTML(disc.description)}
+              </div>
+
+              <!-- Level 3 Micro-Skills -->
+              <div style="padding-left:4px; border-left:2px solid rgba(16, 185, 129, 0.4);">
+          `;
+
+          (disc.micro_skills || []).forEach(micro => {
+            const isExp = expandedMicroSkills[micro.micro_skill_id];
+            html += `
+              <div class="skill-micro-item">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                  <div>
+                    <div style="display:flex; align-items:center; gap:5px;">
+                      <span class="skill-level-badge level-3">L3 MICRO</span>
+                      <strong style="color:var(--text-primary);">${escapeHTML(micro.display_name)}</strong>
+                    </div>
+                    <div style="font-size:10.5px; color:var(--text-secondary); margin-top:3px;">
+                      ${escapeHTML(micro.description)}
+                    </div>
+                    <div style="margin-top:4px;">
+                      ${(micro.tags || []).map(t => `<span class="skill-tag-pill">#${escapeHTML(t)}</span>`).join('')}
+                    </div>
+                  </div>
+                  <button class="mb-btn" style="font-size:9.5px; padding:2px 6px; white-space:nowrap; margin-left:6px;" onclick="toggleMicroSkillDetail('${micro.micro_skill_id}')">
+                    ${isExp ? '▲ Hide SOP' : '▼ Inspect SOP'}
+                  </button>
+                </div>
+
+                ${isExp ? `
+                  <div style="margin-top:8px; padding-top:8px; border-top:1px dashed var(--border-subtle); font-size:10.5px; color:var(--text-secondary); font-family:'Fira Code';">
+                    <div style="color:var(--accent-coral); font-weight:700; margin-bottom:3px;">📁 HIERARCHICAL REPOSITORY PATH:</div>
+                    <div style="word-break:break-all; margin-bottom:6px; color:var(--text-primary);">skills/${suite.suite_id}/disciplines/${disc.discipline_id}/micro-skills/${micro.micro_skill_id}/</div>
+                    <div style="color:#10b981; font-weight:700; margin-bottom:2px;">📜 DISCLOSURE MECHANISM:</div>
+                    <div style="background:var(--bg-surface-subtle); padding:6px; border-radius:4px; font-size:10px; line-height:1.4;">
+                      Loaded progressively via <code>activate_skill("${suite.suite_id}", "${disc.discipline_id}", "${micro.micro_skill_id}")</code>
+                    </div>
+                  </div>
+                ` : ''}
+              </div>
+            `;
+          });
+
+          html += `
+              </div>
+            </div>
+          `;
+        });
+
+        html += `
+            </div>
+          </div>
+        `;
+      });
+
+      sidebarContentArea.innerHTML = html;
+    }
+
+    // Tool Drawer Open / Close
+    function openToolDrawer(name, args, result, latencyMs) {
+      document.getElementById("drawerToolName").textContent = name;
+      document.getElementById("drawerToolMeta").textContent = `Status: SUCCESS · Latency: ${latencyMs}ms`;
+      document.getElementById("drawerToolArgs").textContent = typeof args === 'string' ? args : JSON.stringify(args, null, 2);
+      document.getElementById("drawerToolResult").textContent = typeof result === 'string' ? result : JSON.stringify(result, null, 2);
+      document.getElementById("toolModalOverlay").classList.add("active");
+    }
+
+    function closeToolDrawer() {
+      document.getElementById("toolModalOverlay").classList.remove("active");
+    }
+
+    document.getElementById("toolModalOverlay").addEventListener("click", function(e) {
+      if (e.target === this) closeToolDrawer();
+    });
+
+    // Percentile Helper
+    function calculatePercentile(arr, p) {
+      if (!arr || arr.length === 0) return "--";
+      const sorted = [...arr].sort((a, b) => a - b);
+      const index = (p / 100) * (sorted.length - 1);
+      const lower = Math.floor(index);
+      const upper = Math.ceil(index);
+      const weight = index - lower;
+      return (sorted[lower] * (1 - weight) + sorted[upper] * weight).toFixed(2);
+    }
+
+    // Observability HUD Metrics Update
+    function updateMetricsHUD() {
+      const p50TTFT = calculatePercentile(sessionMetrics.ttftSamples, 50);
+      const p95TTFT = calculatePercentile(sessionMetrics.ttftSamples, 95);
+      const p50Lat = calculatePercentile(sessionMetrics.latencySamples, 50);
+      const p95Lat = calculatePercentile(sessionMetrics.latencySamples, 95);
+      const p50TokSec = calculatePercentile(sessionMetrics.tokPerSecSamples, 50);
+
+      document.getElementById("ttftVal").textContent = p50TTFT;
+      document.getElementById("ttftP95").textContent = `p95 ${p95TTFT} s`;
+      document.getElementById("latVal").textContent = p50Lat;
+      document.getElementById("latP95").textContent = `p95 ${p95Lat} s`;
+
+      const turnsLabel = `${sessionMetrics.turnsCount} turn${sessionMetrics.turnsCount === 1 ? '' : 's'}`;
+      document.getElementById("turnsInLabel").textContent = turnsLabel;
+      document.getElementById("turnsOutLabel").textContent = turnsLabel;
+      document.getElementById("turnsToolsLabel").textContent = turnsLabel;
+      document.getElementById("turnsCostLabel").textContent = turnsLabel;
+
+      document.getElementById("tokensInVal").textContent = sessionMetrics.totalTokensIn.toLocaleString();
+      document.getElementById("tokensOutVal").textContent = sessionMetrics.totalTokensOut.toLocaleString();
+      document.getElementById("toolsCountVal").textContent = sessionMetrics.totalToolsExecuted;
+
+      // Currency Formatting
+      if (currencyMode === "INR") {
+        const inrCost = sessionMetrics.totalCostUSD * USD_TO_INR_RATE;
+        document.getElementById("costVal").textContent = `₹ ${inrCost.toFixed(4)}`;
+      } else {
+        document.getElementById("costVal").textContent = `$ ${sessionMetrics.totalCostUSD.toFixed(5)}`;
+      }
+
+      document.getElementById("tokPerSecVal").textContent = p50TokSec !== "--" ? p50TokSec : "--";
+      document.getElementById("modelCallsVal").textContent = sessionMetrics.modelCalls;
+      document.getElementById("totalTokVal").textContent = (sessionMetrics.totalTokensIn + sessionMetrics.totalTokensOut).toLocaleString();
+      document.getElementById("errorsVal").textContent = sessionMetrics.errorsCount;
+    }
+
+    // Session Initialization with ADK Backend
+    async function initSession() {
+      try {
+        const res = await fetch(`${baseURL}/apps/app/users/${userId}/sessions`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" }
+        });
+        if (res.ok) {
+          const data = await res.json();
+          sessionId = data.id || data.session_id;
+          console.log("Initialized ADK session:", sessionId);
+        } else {
+          // Fallback random session ID
+          sessionId = "session-" + Math.random().toString(36).substring(2, 9);
+        }
+      } catch (err) {
+        console.warn("Could not initialize ADK session via REST, using client session:", err);
+        sessionId = "session-" + Math.random().toString(36).substring(2, 9);
+      }
+    }
+
+    // Submit User Message & Handle Streaming Telemetry
+    async function submitMessage() {
+      const text = chatTextarea.value.trim();
+      if (!text || isStreaming) return;
+
+      if (welcomeHero) {
+        welcomeHero.style.display = "none";
+      }
+
+      // Append User Bubble
+      const userMessageEl = document.createElement("div");
+      userMessageEl.className = "chat-message user";
+      userMessageEl.innerHTML = `<div class="user-bubble">${escapeHTML(text)}</div>`;
+      chatFeed.appendChild(userMessageEl);
+
+      chatTextarea.value = "";
+      chatTextarea.style.height = "auto";
+      sendBtn.disabled = true;
+      isStreaming = true;
+      setStatus("STREAMING");
+
+      // Determine initial specialist agent based on intent
+      const lowerText = text.toLowerCase();
+      const isQuestion = (
+        lowerText.startsWith("what") || lowerText.startsWith("how") || lowerText.startsWith("why") ||
+        lowerText.startsWith("when") || lowerText.startsWith("where") || lowerText.startsWith("who") ||
+        lowerText.startsWith("which") || lowerText.startsWith("can") || lowerText.startsWith("explain") ||
+        lowerText.startsWith("describe") || lowerText.startsWith("tell") || lowerText.startsWith("show") ||
+        lowerText.startsWith("please") || lowerText.includes("?")
+      );
+      const isPolicyOrHR = (
+        isQuestion ||
+        lowerText.includes("parental") || lowerText.includes("leave") || lowerText.includes("pto") || lowerText.includes("sick") ||
+        lowerText.includes("policy") || lowerText.includes("payroll") || lowerText.includes("shift") || lowerText.includes("differential") ||
+        lowerText.includes("overtime") || lowerText.includes("health") || lowerText.includes("clinic") || lowerText.includes("conduct") ||
+        lowerText.includes("ethics") || lowerText.includes("cycle count") || lowerText.includes("inventory") || lowerText.includes("quarantine") ||
+        lowerText.includes("loto") || lowerText.includes("ppe") || lowerText.includes("okf") || lowerText.includes("sop") ||
+        lowerText.includes("benefits") || lowerText.includes("doctor") || lowerText.includes("fmla") || lowerText.includes("bereavement") || lowerText.includes("worker")
+      );
+      const isTelemetry = !isPolicyOrHR && (
+        lowerText.includes("conveyor_id:") ||
+        (lowerText.includes("error_code:") && lowerText.includes("status:")) ||
+        lowerText.includes("stopped with error") ||
+        lowerText.includes("dispatch bypass agv")
+      );
+      const isSandbox = (lowerText.includes("sandbox") || lowerText.includes("telemetry log") || lowerText.includes("stress profile") || lowerText.includes("hotspot") || lowerText.includes("hot-spot") || lowerText.includes("diagnos"));
+      const isCCTV = (lowerText.includes("cctv") || lowerText.includes("camera") || lowerText.includes("video") || lowerText.includes("footage") || lowerText.includes("clip") || lowerText.includes("posture"));
+
+      let gatewayDetail = "Ingested sensor telemetry and evaluated graph routing conditions.";
+      let gatewayPassesTo = "dispatcher_agent ➔ evaluating incident response";
+
+      if (isSandbox) {
+        currentlyActiveAgentId = "sandbox_diagnostic_agent";
+        gatewayDetail = "Gateway router evaluated query as fleet diagnostic request.";
+        gatewayPassesTo = "sandbox_diagnostic_agent ➔ executing sandboxed Python diagnostics";
+      } else if (isCCTV) {
+        currentlyActiveAgentId = "cctv_safety_audit_agent";
+        gatewayDetail = "Gateway router evaluated query as CCTV visual inspection.";
+        gatewayPassesTo = "cctv_safety_audit_agent ➔ video posture & PPE inspection";
+      } else if (isPolicyOrHR || !isTelemetry) {
+        currentlyActiveAgentId = "conversational_safety_agent";
+        gatewayDetail = "Gateway router evaluated query as policy & enterprise compliance consultation.";
+        gatewayPassesTo = "conversational_safety_agent ➔ OKF progressive disclosure & SOP consultation";
+      } else {
+        currentlyActiveAgentId = "dispatcher_agent";
+        gatewayDetail = "Gateway router identified critical conveyor event telemetry.";
+        gatewayPassesTo = "dispatcher_agent ➔ WMS stock reconciliation & AGV dispatch";
+      }
+
+      // Retrieve model spec based on routed agent
+      const activeAgentModel = getAgentModelInfo(currentlyActiveAgentId);
+
+      // Update Top HUD Bar with currently active model
+      const activeModelValEl = document.getElementById("activeModelVal");
+      const activeModelVerEl = document.getElementById("activeModelVer");
+      if (activeModelValEl) activeModelValEl.textContent = activeAgentModel.modelId;
+      if (activeModelVerEl) activeModelVerEl.textContent = activeAgentModel.modelVersion;
+
+      // Reset turn trace with explicit control flow and model spec
+      liveTraceTimeline = [
+        {
+          stage: "GATEWAY ROUTER",
+          agent: "telemetry_ingest",
+          modelId: activeAgentModel.modelId,
+          modelVersion: activeAgentModel.modelVersion,
+          tier: activeAgentModel.tier,
+          title: "telemetry_ingest (Graph Router)",
+          detail: gatewayDetail,
+          duration: "18ms",
+          controlPassesTo: gatewayPassesTo
+        }
+      ];
+      if (activeTab === "TRACE") renderTraceTab();
+      if (activeTab === "ARCHITECTURE") renderArchitectureTab();
+
+      // Setup Assistant Message Container
+      const assistantMessageEl = document.createElement("div");
+      assistantMessageEl.className = "chat-message assistant";
+
+      // Dedicated Model Call Spec Component Header Pill
+      const modelCallHeaderEl = document.createElement("div");
+      modelCallHeaderEl.className = "model-spec-call-pill";
+      modelCallHeaderEl.innerHTML = `
+        <span class="model-name">✨ ${activeAgentModel.modelId}</span>
+        <span class="model-version">${activeAgentModel.modelVersion}</span>
+        <span class="model-tier-badge tier-${activeAgentModel.tier.toLowerCase()}">${activeAgentModel.tier}</span>
+        <span class="model-runtime">Vertex AI Agent Engine (global)</span>
+      `;
+
+      const toolBadgesContainer = document.createElement("div");
+      toolBadgesContainer.className = "tools-invocations-list";
+
+      const bubbleEl = document.createElement("div");
+      bubbleEl.className = "assistant-bubble";
+      bubbleEl.innerHTML = `<span style="color:var(--text-tertiary); font-style:italic;">Synthesizing workflow steps...</span>`;
+
+      const turnFooterEl = document.createElement("div");
+
+      assistantMessageEl.appendChild(modelCallHeaderEl);
+      assistantMessageEl.appendChild(toolBadgesContainer);
+      assistantMessageEl.appendChild(bubbleEl);
+      assistantMessageEl.appendChild(turnFooterEl);
+      chatFeed.appendChild(assistantMessageEl);
+      chatFeed.scrollTop = chatFeed.scrollHeight;
+
+      // Telemetry Measurement Variables
+      const startTime = performance.now();
+      let firstTokenTime = null;
+      let accumulatedText = "";
+      let turnTokensIn = Math.max(120, Math.floor(text.length * 1.3)); // Estimator if metadata partial
+      let turnTokensOut = 0;
+      let turnTools = 0;
+      let turnModelCalls = 1;
+      let toolInvocationsData = [];
+
+      try {
+        if (!sessionId) await initSession();
+
+        const payload = {
+          app_name: "app",
+          user_id: userId,
+          session_id: sessionId,
+          new_message: {
+            role: "user",
+            parts: [{ text: text }]
+          },
+          streaming: true
+        };
+
+        const response = await fetch(`${baseURL}/run_sse`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+          throw new Error(`Server returned HTTP ${response.status}`);
+        }
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder("utf-8");
+        let buffer = "";
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split("\n");
+          buffer = lines.pop(); // Keep partial line
+
+          for (const line of lines) {
+            const trimmed = line.trim();
+            if (!trimmed || !trimmed.startsWith("data: ")) continue;
+
+            const rawJSON = trimmed.substring(6);
+            try {
+              const eventData = JSON.parse(rawJSON);
+
+              // 1. Dynamic Active Agent Detection from ADK event.author or event.nodeInfo
+              if (eventData.author && eventData.author !== "user") {
+                const prevAgent = currentlyActiveAgentId;
+                currentlyActiveAgentId = eventData.author;
+                if (currentlyActiveAgentId !== prevAgent) {
+                  const gatewayStep = liveTraceTimeline.find(s => s.agent === "telemetry_ingest");
+                  if (gatewayStep) {
+                    gatewayStep.controlPassesTo = `${currentlyActiveAgentId} ➔ active specialist consultation`;
+                  }
+                }
+              }
+              if (eventData.nodeInfo && eventData.nodeInfo.path) {
+                const cleanNode = eventData.nodeInfo.path.split("/").pop().split("@")[0];
+                if (cleanNode && cleanNode !== "telemetry_ingest") {
+                  currentlyActiveAgentId = cleanNode;
+                }
+              }
+
+              // 1b. Fallback Node Progression if explicitly emitted
+              if (eventData.event === "node_start" && eventData.node) {
+                currentlyActiveAgentId = eventData.node;
+                let nextHop = "join ➔ aggregator";
+                if (eventData.node === "telemetry_ingest") nextHop = "dispatcher_agent ➔ evaluating incident response";
+                if (eventData.node === "dispatcher_agent") nextHop = "format_dispatcher_input ➔ response generation";
+                if (eventData.node === "conversational_safety_agent") nextHop = "conversational_safety_agent ➔ policy response synthesis";
+
+                const nodeModel = getAgentModelInfo(eventData.node);
+                liveTraceTimeline.push({
+                  stage: `EXECUTION · ${eventData.node.toUpperCase()}`,
+                  agent: eventData.node,
+                  modelId: nodeModel.modelId,
+                  modelVersion: nodeModel.modelVersion,
+                  tier: nodeModel.tier,
+                  title: eventData.node,
+                  detail: `Agent active: evaluating context, safety parameters, and tool candidates.`,
+                  duration: "45ms",
+                  controlPassesTo: nextHop
+                });
+                if (activeTab === "TRACE") renderTraceTab();
+                if (activeTab === "ARCHITECTURE") renderArchitectureTab();
+              } else if (eventData.event === "node_complete" && eventData.node) {
+                const last = liveTraceTimeline[liveTraceTimeline.length - 1];
+                if (last) last.status = "success";
+                if (activeTab === "TRACE") renderTraceTab();
+              }
+
+              // 2. Capture Content Parts (Text & Function Calls - supporting camelCase & snake_case)
+              if (eventData.content && eventData.content.parts) {
+                for (const part of eventData.content.parts) {
+                  // Text Chunk (Calculate TTFT)
+                  if (part.text) {
+                    if (firstTokenTime === null) {
+                      firstTokenTime = performance.now();
+                      bubbleEl.innerHTML = ""; // Clear placeholder
+                    }
+
+                    const incoming = part.text;
+                    // Deduplicate full-turn re-emissions from ADK
+                    if (accumulatedText.trim().startsWith("{") && incoming.trim().startsWith("{")) {
+                      accumulatedText = incoming;
+                    } else if (accumulatedText.endsWith(incoming) && incoming.length > 30) {
+                      // Already ends with this exact chunk
+                    } else {
+                      accumulatedText += incoming;
+                    }
+
+                    const formattedMarkdown = formatAgentResponse(accumulatedText);
+                    bubbleEl.innerHTML = marked.parse(formattedMarkdown);
+                    chatFeed.scrollTop = chatFeed.scrollHeight;
+                  }
+
+                  // Function Call Execution Chip (supports functionCall and function_call)
+                  const call = part.functionCall || part.function_call;
+                  if (call) {
+                    turnTools++;
+                    turnModelCalls++;
+                    const toolObj = {
+                      name: call.name,
+                      args: call.args || {},
+                      result: "Pending or executing...",
+                      latencyMs: Math.floor(180 + Math.random() * 240)
+                    };
+                    toolInvocationsData.push(toolObj);
+
+                    const chip = document.createElement("button");
+                    chip.className = "tool-chip";
+                    chip.innerHTML = `<span class="chip-icon">🔧</span><span>${call.name}</span>`;
+                    chip.onclick = () => openToolDrawer(toolObj.name, toolObj.args, toolObj.result, toolObj.latencyMs);
+                    toolBadgesContainer.appendChild(chip);
+
+                    let nextHop = `${currentlyActiveAgentId} ➔ evaluating tool results`;
+                    if (call.name === "check_wms_stock") nextHop = "dispatcher_agent ➔ querying operational runbooks or AGV dispatch";
+                    else if (call.name === "query_runbooks") nextHop = "dispatcher_agent ➔ dispatch_agv";
+                    else if (call.name === "dispatch_agv") nextHop = "dispatcher_agent ➔ final response synthesis";
+                    else if (call.name === "execute_python_in_sandbox") nextHop = "sandbox_diagnostic_agent ➔ statistical anomaly report";
+                    else if (call.name === "discover_okf_catalog") nextHop = "fetch_okf_document_section ➔ progressive retrieval of targeted policy clause";
+                    else if (call.name === "fetch_okf_document_section") nextHop = "conversational_safety_agent ➔ grounded policy synthesis & citation";
+                    else if (call.name === "discover_skill_catalog") nextHop = "fetch_skill_manifest ➔ progressive inspection of specialist discipline & micro-skills";
+                    else if (call.name === "fetch_skill_manifest") nextHop = "activate_skill ➔ progressive disclosure of micro-skill SOP & script";
+                    else if (call.name === "activate_skill") nextHop = "conversational_safety_agent ➔ procedural execution & compliance resolution";
+
+                    const isSkillTool = ["discover_skill_catalog", "fetch_skill_manifest", "activate_skill"].includes(call.name);
+                    let skillLevel = 0;
+                    let hierarchyPath = "";
+                    if (call.name === "discover_skill_catalog") {
+                      skillLevel = 1;
+                      hierarchyPath = `Query: "${call.args?.query || ''}" ➔ Level 1 Root Domain Discovery`;
+                    } else if (call.name === "fetch_skill_manifest") {
+                      skillLevel = 2;
+                      hierarchyPath = `${call.args?.skill_id || ''} ➔ ${call.args?.discipline_id || ''} (Discipline Manifest)`;
+                    } else if (call.name === "activate_skill") {
+                      skillLevel = 3;
+                      hierarchyPath = `${call.args?.skill_id || ''} ➔ ${call.args?.discipline_id || ''} ➔ ${call.args?.micro_skill_id || ''}`;
+                    }
+
+                    const activeToolModel = getAgentModelInfo(currentlyActiveAgentId);
+                    liveTraceTimeline.push({
+                      stage: isSkillTool ? `SKILL L${skillLevel} · ${call.name}` : `TOOL CALL · ${call.name}`,
+                      agent: currentlyActiveAgentId,
+                      modelId: activeToolModel.modelId,
+                      modelVersion: activeToolModel.modelVersion,
+                      tier: activeToolModel.tier,
+                      toolName: call.name,
+                      toolArgs: call.args,
+                      title: `Tool: ${call.name}`,
+                      detail: isSkillTool ? `Progressive Skill Invocation: ${hierarchyPath}` : `Invoked function: ${call.name} with arguments ${JSON.stringify(call.args)}`,
+                      duration: `${toolObj.latencyMs}ms`,
+                      controlPassesTo: nextHop,
+                      isSkillTool: isSkillTool,
+                      skillLevel: skillLevel,
+                      hierarchyPath: hierarchyPath
+                    });
+                    if (activeTab === "TRACE") renderTraceTab();
+                  }
+
+                  // Function Response (supports functionResponse and function_response)
+                  const resp = part.functionResponse || part.function_response;
+                  if (resp) {
+                    const matched = toolInvocationsData.find(t => t.name === resp.name);
+                    if (matched) {
+                      matched.result = resp.response;
+                    }
+                    if (resp.name === "activate_skill" && resp.response) {
+                      try {
+                        const resObj = typeof resp.response === 'string' ? JSON.parse(resp.response) : resp.response;
+                        if (resObj && resObj.hierarchy_path) {
+                          const last = liveTraceTimeline[liveTraceTimeline.length - 1];
+                          if (last && last.toolName === "activate_skill") {
+                            last.hierarchyPath = resObj.hierarchy_path;
+                            last.detail = `Activated SOP: ${resObj.hierarchy_path}`;
+                            if (activeTab === "TRACE") renderTraceTab();
+                          }
+                        }
+                      } catch (e) {}
+                    }
+                  }
+                }
+              }
+
+              // 3. Fallback extraction from eventData.output if text parts are not emitted
+              if (!accumulatedText && eventData.output) {
+                let fallbackStr = "";
+                if (typeof eventData.output === "string") {
+                  fallbackStr = eventData.output;
+                } else if (eventData.output.message) {
+                  fallbackStr = eventData.output.message;
+                }
+                if (fallbackStr) {
+                  accumulatedText = fallbackStr;
+                  if (firstTokenTime === null) firstTokenTime = performance.now();
+                  bubbleEl.innerHTML = marked.parse(formatAgentResponse(accumulatedText));
+                  chatFeed.scrollTop = chatFeed.scrollHeight;
+                }
+              }
+
+              // 4. Extract ADK Usage Metadata if provided
+              if (eventData.usage_metadata) {
+                if (eventData.usage_metadata.prompt_token_count) {
+                  turnTokensIn = eventData.usage_metadata.prompt_token_count;
+                }
+                if (eventData.usage_metadata.candidates_token_count) {
+                  turnTokensOut = eventData.usage_metadata.candidates_token_count;
+                }
+              }
+
+            } catch (parseErr) {
+              // Non-JSON line, ignore
+            }
+          }
+        }
+
+      } catch (err) {
+        console.error("Stream failed:", err);
+        sessionMetrics.errorsCount++;
+        bubbleEl.innerHTML = `<span style="color:var(--accent-coral);">⚠️ Error interacting with agent: ${escapeHTML(err.message)}</span>`;
+      } finally {
+        if (accumulatedText) {
+          const finalMarkdown = formatAgentResponse(accumulatedText);
+          bubbleEl.innerHTML = marked.parse(finalMarkdown);
+        } else if (bubbleEl.innerHTML.includes("loading-dots") || bubbleEl.innerHTML.includes("Synthesizing workflow steps")) {
+          bubbleEl.innerHTML = `<span style="color:var(--text-muted); font-size:13px;">✅ Workflow completed. Action recorded in system audit log.</span>`;
+        }
+
+        const endTime = performance.now();
+        const totalDurationSec = (endTime - startTime) / 1000;
+        const ttftSec = firstTokenTime ? (firstTokenTime - startTime) / 1000 : totalDurationSec;
+
+        if (turnTokensOut === 0 && accumulatedText) {
+          turnTokensOut = Math.max(15, Math.floor(accumulatedText.length / 4));
+        }
+
+        const tokPerSec = turnTokensOut > 0 && totalDurationSec > 0 ? (turnTokensOut / totalDurationSec) : 0;
+        const turnCostUSD = (turnTokensIn * COST_PER_INPUT_TOK) + (turnTokensOut * COST_PER_OUTPUT_TOK);
+
+        // Update Session Aggregates
+        sessionMetrics.turnsCount++;
+        sessionMetrics.totalTokensIn += turnTokensIn;
+        sessionMetrics.totalTokensOut += turnTokensOut;
+        sessionMetrics.totalToolsExecuted += turnTools;
+        sessionMetrics.totalCostUSD += turnCostUSD;
+        sessionMetrics.modelCalls += turnModelCalls;
+        sessionMetrics.ttftSamples.push(ttftSec);
+        sessionMetrics.latencySamples.push(totalDurationSec);
+        if (tokPerSec > 0) sessionMetrics.tokPerSecSamples.push(tokPerSec);
+
+        // Per-Turn Metrics Pill Footer
+        const costDisplay = currencyMode === "INR" 
+          ? `₹ ${(turnCostUSD * USD_TO_INR_RATE).toFixed(4)}`
+          : `$ ${turnCostUSD.toFixed(5)}`;
+
+        turnFooterEl.innerHTML = `
+          <div class="turn-metric-pill" title="Click to view turn details">
+            <span>ttft ${ttftSec.toFixed(2)}s</span>
+            <span>|</span>
+            <span>latency ${totalDurationSec.toFixed(2)}s</span>
+            <span>|</span>
+            <span>in ${turnTokensIn.toLocaleString()}</span>
+            <span>|</span>
+            <span>out ${turnTokensOut.toLocaleString()}</span>
+            <span>|</span>
+            <span>cost ${costDisplay}</span>
+            <span>|</span>
+            <span>tools ${turnTools}</span>
+          </div>
+        `;
+
+        let synthesisDetail = `Synthesized response across ${turnTools} tool executions.`;
+        if (currentlyActiveAgentId === "conversational_safety_agent") {
+          synthesisDetail = `Synthesized authoritative enterprise policy & safety compliance directive using Open Knowledge Format (OKF) across ${turnTools} tool executions.`;
+        } else if (currentlyActiveAgentId === "sandbox_diagnostic_agent") {
+          synthesisDetail = `Synthesized fleet stress profile and thermal hotspot report from sandbox telemetry across ${turnTools} tool executions.`;
+        } else if (currentlyActiveAgentId === "dispatcher_agent") {
+          synthesisDetail = `Synthesized final operational directive and safety audit across ${turnTools} tool executions.`;
+        } else if (currentlyActiveAgentId === "cctv_safety_audit_agent") {
+          synthesisDetail = `Synthesized visual safety audit and ergonomic posture checklist from CCTV video stream across ${turnTools} tool executions.`;
+        }
+
+        const compModel = getAgentModelInfo(currentlyActiveAgentId);
+        liveTraceTimeline.push({
+          stage: "COMPLETION · SYNTHESIS",
+          agent: currentlyActiveAgentId,
+          modelId: compModel.modelId,
+          modelVersion: compModel.modelVersion,
+          tier: compModel.tier,
+          title: `${currentlyActiveAgentId} (Synthesis Complete)`,
+          detail: synthesisDetail,
+          duration: `${totalDurationSec.toFixed(2)}s`,
+          controlPassesTo: "User Interface ➔ End of Turn"
+        });
+
+        // Send live telemetry to Admin Command Deck
+        try {
+          fetch(`${baseURL}/api/admin/record_usage`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              model_id: compModel.modelId,
+              input_tokens: turnTokensIn || 1450,
+              output_tokens: turnTokensOut || 420,
+              ttft_ms: Math.round(ttftSec * 1000)
+            })
+          }).catch(() => {});
+        } catch (e) {}
+
+        updateMetricsHUD();
+        isStreaming = false;
+        sendBtn.disabled = false;
+        setStatus("IDLE");
+        if (activeTab === "TRACE") renderTraceTab();
+        if (activeTab === "ARCHITECTURE") renderArchitectureTab();
+        chatFeed.scrollTop = chatFeed.scrollHeight;
+      }
+    }
+
+    function parseJsonLenient(text) {
+      try {
+        return JSON.parse(text);
+      } catch (e1) {
+        try {
+          const sanitized = text.replace(/[\r\n]+/g, "\\n");
+          return JSON.parse(sanitized);
+        } catch (e2) {}
+
+        const extract = (key) => {
+          const re = new RegExp(`"${key}"\\s*:\\s*"([\\s\\S]*?)(?="\\s*,\\s*"[a-zA-Z0-9_]+"\\s*:|"\\s*}\\s*$)`);
+          const m = text.match(re);
+          return m ? m[1].replace(/\\n/g, "\n").replace(/\\"/g, "\"") : null;
+        };
+
+        return {
+          conveyor_status: extract("conveyor_status"),
+          repair_instructions: extract("repair_instructions"),
+          stock_status: extract("stock_status"),
+          bypass_status: extract("bypass_status"),
+          final_report: extract("final_report"),
+        };
+      }
+    }
+
+    function formatAgentResponse(rawText) {
+      if (!rawText) return "";
+      let text = rawText.trim();
+
+      // 1. Deduplicate repeated JSON blobs e.g. { ... } { ... }
+      if (text.startsWith("{")) {
+        const match = text.match(/\}\s*\{/);
+        if (match) {
+          text = text.substring(0, match.index + 1);
+        }
+      }
+
+      // 2. Identify structured DispatcherOutput JSON
+      let parsed = null;
+      if (text.startsWith("{") && (text.includes("conveyor_status") || text.includes("repair_instructions") || text.includes("final_report"))) {
+        parsed = parseJsonLenient(text);
+      }
+
+      if (parsed && (parsed.conveyor_status || parsed.repair_instructions || parsed.final_report)) {
+        let md = "";
+        md += "### 🏭 Incident Overview & Equipment Status\n\n";
+        md += "| System Attribute | Operational Status & Directive |\n";
+        md += "| :--- | :--- |\n";
+        if (parsed.conveyor_status) {
+          md += `| **Conveyor Status** | 🔴 ${parsed.conveyor_status} |\n`;
+        }
+        if (parsed.repair_instructions) {
+          md += `| **Repair Instructions** | 🔧 ${parsed.repair_instructions} |\n`;
+        }
+        if (parsed.stock_status) {
+          const isBlocked = (parsed.stock_status || "").toUpperCase().includes("BLOCK");
+          md += `| **WMS Stock Status** | ${isBlocked ? "⚠️" : "📦"} ${parsed.stock_status} |\n`;
+        }
+        if (parsed.bypass_status) {
+          const isDispatched = (parsed.bypass_status || "").toUpperCase().includes("DISPATCH") || (parsed.bypass_status || "").toUpperCase().includes("BOT");
+          md += `| **AGV Bypass Dispatch** | ${isDispatched ? "🤖" : "ℹ️"} ${parsed.bypass_status} |\n`;
+        }
+
+        if (parsed.final_report && (parsed.final_report.includes("LOTO") || parsed.final_report.includes("Lockout"))) {
+          md += `\n> 🔒 **CRITICAL SAFETY DIRECTIVE (OSHA LOTO LEVEL 3):** Full zero-energy power isolation, breaker lockout, and clearance tagging required before entering physical machinery perimeter.\n\n`;
+        } else {
+          md += "\n---\n\n";
+        }
+
+        if (parsed.final_report) {
+          md += `### 📋 Detailed Engineering & Safety Report\n\n`;
+          md += parsed.final_report.trim();
+        }
+        return md;
+      }
+      return rawText;
+    }
+
+    function escapeHTML(str) {
+      return str.replace(/[&<>'"]/g, 
+        tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+      );
+    }
+
+    // Bootstrap UI on load
+    window.addEventListener("DOMContentLoaded", () => {
+      initTheme();
+      updateMetricsHUD();
+      loadAgentMetadata();
+      initSession();
+    });
+  </script>
+</body>
+</html>
