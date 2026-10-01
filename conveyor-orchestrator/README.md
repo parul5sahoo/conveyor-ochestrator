@@ -1,86 +1,46 @@
-# conveyor-orchestrator
+# Conveyor Orchestrator (GEAP & ADK 2.0 Agent)
 
-Simple ReAct agent
-Agent generated with `agents-cli` version `0.3.1`
+Multi-agent warehouse orchestration backend, local sandbox diagnostic coordinator, and operational control surface.
 
-## Project Structure
+## Web Dashboards & UI Endpoints
 
-```
-conveyor-orchestrator/
-├── app/         # Core agent code
-│   ├── agent.py               # Main agent logic
-│   └── app_utils/             # App utilities and helpers
-├── tests/                     # Unit, integration, and load tests
-├── GEMINI.md                  # AI-assisted development guide
-└── pyproject.toml             # Project dependencies
-```
+When running locally or deployed on Cloud Run, the application serves:
 
-> 💡 **Tip:** Use [Gemini CLI](https://github.com/google-gemini/gemini-cli) for AI-assisted development - project context is pre-configured in `GEMINI.md`.
-
-## Requirements
-
-Before you begin, ensure you have:
-- **uv**: Python package manager (used for all dependency management in this project) - [Install](https://docs.astral.sh/uv/getting-started/installation/) ([add packages](https://docs.astral.sh/uv/concepts/dependencies/) with `uv add <package>`)
-- **agents-cli**: Agents CLI - Install with `uv tool install google-agents-cli`
-- **Google Cloud SDK**: For GCP services - [Install](https://cloud.google.com/sdk/docs/install)
-
-
-## Quick Start
-
-Install `agents-cli` and its skills if not already installed:
-
-```bash
-uvx google-agents-cli setup
-```
-
-Install required packages:
-
-```bash
-agents-cli install
-```
-
-Test the agent with a local web server:
-
-```bash
-agents-cli playground
-```
-
-You can also use features from the [ADK](https://adk.dev/) CLI with `uv run adk`.
-
-## Commands
-
-| Command              | Description                                                                                 |
-| -------------------- | ------------------------------------------------------------------------------------------- |
-| `agents-cli install` | Install dependencies using uv                                                         |
-| `agents-cli playground` | Launch local development environment                                                  |
-| `agents-cli lint`    | Run code quality checks                                                               |
-| `agents-cli eval`    | Evaluate agent behavior (generate, grade, analyze, and more — see `agents-cli eval --help`) |
-| `uv run pytest tests/unit tests/integration` | Run unit and integration tests                                                        |
-
-## 🛠️ Project Management
-
-| Command | What It Does |
-|---------|--------------|
-| `agents-cli scaffold enhance` | Add CI/CD pipelines and Terraform infrastructure |
-| `agents-cli infra cicd` | One-command setup of entire CI/CD pipeline + infrastructure |
-| `agents-cli scaffold upgrade` | Auto-upgrade to latest version while preserving customizations |
+- **`/dashboard`**: Real-time warehouse conveyor belt SVG monitor, dynamic AGV telemetry tracking, CCTV posture and PPE inspection feed, live fault injector, and interactive incident dispatch console.
+- **`/playground`**: Enterprise testing ground with pre-configured demonstration prompts, hierarchical skill progressive disclosure (Root Suites $\to$ Disciplines $\to$ Micro-Skills), real-time token reduction and cost reactor (~122 tokens in, ₹0.0089/op), and direct telemetry sandbox audit.
+- **`/admin`**: Executive & IT Admin Console with Latency & Performance HUD (P50 284ms, sub-tool profiling), Sessions & Memory Banks, SecOps Threat Matrix (SAIF/SGP denial `SEC-8821`), and Hillclimbing Scorecards ($3.70 \to 4.30$).
+- **`/api/agent_metadata`**: JSON telemetry endpoint exposing active agent graphs, models, and reasoning engines.
 
 ---
 
-## Development
+## Quick Start (Local Run)
 
-Edit your agent logic in `app/agent.py` and test with `agents-cli playground` - it auto-reloads on save.
+1. **Install dependencies**:
+   ```bash
+   uv sync
+   ```
 
-## Deployment
+2. **Run the FastAPI server**:
+   ```bash
+   uv run uvicorn app.fast_api_app:app --host 0.0.0.0 --port 8080 --reload
+   ```
+
+3. **Open the browser**:
+   Navigate to `http://localhost:8080/dashboard` or `http://localhost:8080/playground`.
+
+---
+
+## Cloud Run Deployment
+
+To build and deploy the container image to Google Cloud Run:
 
 ```bash
-gcloud config set project <your-project-id>
-agents-cli deploy
+bash scratch/deploy_public_app.sh
 ```
 
-To add CI/CD and Terraform, run `agents-cli scaffold enhance`.
-To set up your production infrastructure, run `agents-cli infra cicd`.
+This automates:
+1. Building the Docker image via Google Cloud Build (`gcloud builds submit`).
+2. Deploying to Cloud Run with public unauthenticated ingress on port 8080.
+3. Injecting `GOOGLE_CLOUD_PROJECT` and `GOOGLE_CLOUD_LOCATION`.
 
-## Observability
-
-Built-in telemetry exports to Cloud Trace, BigQuery, and Cloud Logging.
+Refer to the main [Repository README](../README.md) for full architectural documentation, evaluation guides, and interactive demo scenarios.

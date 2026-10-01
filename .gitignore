@@ -9,6 +9,8 @@ __pycache__/
 .env
 .venv
 .venv*
+**/.venv/
+**/.venv*/
 env/
 venv/
 ENV/
@@ -19,10 +21,12 @@ Thumbs.db
 
 # GEAP & ADK Artifacts
 .google-agents-cli/
+**/.google-agents-cli/
 .adk/
 .persist_vector_store
 .saved_chats
 my_env.tfvars
+**/.ruff_cache/
 
 # Node.js
 node_modules/
@@ -40,3 +44,5 @@ tmp*
 **/build/
 **/tests/load_test/.results/*.html
 **/tests/load_test/.results/*.csv
+aisle_4_stress_report.md
+conveyor-orchestrator/aisle_4_stress_report.md
