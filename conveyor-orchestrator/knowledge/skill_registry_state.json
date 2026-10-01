@@ -1,0 +1,37 @@
+{
+  "hr-workforce-governance": {
+    "status": "ACTIVE",
+    "geap_resource_name": "projects/526827734705/locations/us-central1/skills/hr-workforce-governance",
+    "zip_size_bytes": 11911,
+    "details": "Active in GEAP Skill Registry across projects (526827734705 & 652336592307).",
+    "last_synced": "2026-09-20T12:12:00Z"
+  },
+  "wms-inventory-resolver": {
+    "status": "ACTIVE",
+    "geap_resource_name": "projects/526827734705/locations/us-central1/skills/wms-inventory-resolver",
+    "zip_size_bytes": 8310,
+    "details": "Active in GEAP Skill Registry across projects (526827734705 & 652336592307).",
+    "last_synced": "2026-09-20T12:12:00Z"
+  },
+  "conveyor-diagnostics": {
+    "status": "ACTIVE",
+    "geap_resource_name": "projects/526827734705/locations/us-central1/skills/conveyor-diagnostics",
+    "zip_size_bytes": 7388,
+    "details": "Active in GEAP Skill Registry across projects (526827734705 & 652336592307).",
+    "last_synced": "2026-09-20T12:12:00Z"
+  },
+  "warehouse-ehs-safety": {
+    "status": "ACTIVE",
+    "geap_resource_name": "projects/526827734705/locations/us-central1/skills/warehouse-ehs-safety",
+    "zip_size_bytes": 7677,
+    "details": "Active in GEAP Skill Registry across projects (526827734705 & 652336592307).",
+    "last_synced": "2026-09-20T12:12:00Z"
+  },
+  "agv-fleet-orchestrator": {
+    "status": "ACTIVE",
+    "geap_resource_name": "projects/526827734705/locations/us-central1/skills/agv-fleet-orchestrator",
+    "zip_size_bytes": 7856,
+    "details": "Active in GEAP Skill Registry across projects (526827734705 & 652336592307).",
+    "last_synced": "2026-09-20T12:12:00Z"
+  }
+}

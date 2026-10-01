@@ -2,7 +2,7 @@
 apiVersion: reasoningengine.cnrm.cloud.google.com/v1beta1
 kind: ReasoningEngine
 metadata:
-  name: stackbox-conveyor-orchestrator
+  name: cymbal-warehouse-automation
   namespace: warehouse-logistics
   labels:
     app: conveyor-orchestrator

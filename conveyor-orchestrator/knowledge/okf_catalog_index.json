@@ -1,0 +1,164 @@
+{
+  "catalog_name": "StackBox Enterprise Open Knowledge Catalog (OKF)",
+  "specification_version": "OKF-0.1",
+  "updated_at": "2026-09-18T16:55:00Z",
+  "total_documents": 6,
+  "documents": [
+    {
+      "doc_id": "DOC-HR-LEAVE-001",
+      "title": "Employee Leave & Time Off Policy",
+      "domain": "HR",
+      "category": "POLICY",
+      "version": "2.4",
+      "file_name": "hr_leave_policy.md",
+      "gcs_uri": "gs://ce-testing-465204-conveyor-orchestrator-knowledge/okf/hr_leave_policy.md",
+      "summary": "Governs PTO accrual rates (15-25 days/year), sick leave guidelines, 3-day medical certificate rules, 16-week paid parental leave, and bereavement leave.",
+      "tags": [
+        "pto",
+        "sick leave",
+        "bereavement",
+        "parental leave",
+        "accrual",
+        "fmla",
+        "vacation"
+      ],
+      "available_sections": [
+        "Overview & Scope",
+        "Paid Time Off (PTO) Accrual Schedules",
+        "Sick Leave & Medical Certification Rules",
+        "Parental, Family & Medical Leave (FMLA)",
+        "Bereavement & Compassionate Leave",
+        "Approval Workflows & Emergency Absence Protocol"
+      ]
+    },
+    {
+      "doc_id": "DOC-PAY-COMP-002",
+      "title": "Shift Differentials, Overtime & Payroll Policy",
+      "domain": "PAYROLL",
+      "category": "POLICY",
+      "version": "3.1",
+      "file_name": "payroll_compensation_policy.md",
+      "gcs_uri": "gs://ce-testing-465204-conveyor-orchestrator-knowledge/okf/payroll_compensation_policy.md",
+      "summary": "Defines bi-weekly pay cycles, off-peak shift differentials (+15% for evening, +22% for night/graveyard), overtime calculation (1.5x / 2.0x), and holiday work multipliers.",
+      "tags": [
+        "payroll",
+        "overtime",
+        "shift differential",
+        "pay cycle",
+        "holiday multiplier",
+        "bonus"
+      ],
+      "available_sections": [
+        "Payroll Cycles & Direct Deposit",
+        "Shift Differential Rates (Day, Evening, Night)",
+        "Overtime Rules & Calculation Multipliers",
+        "Holiday Work Premiums",
+        "Performance & Hazard Bonuses"
+      ]
+    },
+    {
+      "doc_id": "DOC-MED-HEALTH-003",
+      "title": "Healthcare Facilities & Occupational Wellness Guide",
+      "domain": "HEALTHCARE",
+      "category": "BENEFITS",
+      "version": "1.9",
+      "file_name": "healthcare_facilities_policy.md",
+      "gcs_uri": "gs://ce-testing-465204-conveyor-orchestrator-knowledge/okf/healthcare_facilities_policy.md",
+      "summary": "Details 24/7 on-site health clinics in Building 3 and satellite first aid in Aisle 1, acute emergency medical protocols, healthcare insurance tiers, ergonomics, and 24/7 mental health EAP.",
+      "tags": [
+        "healthcare",
+        "first aid",
+        "clinic",
+        "health insurance",
+        "ergonomics",
+        "mental health",
+        "eap",
+        "injury"
+      ],
+      "available_sections": [
+        "On-Site Warehouse Healthcare Facilities",
+        "Emergency Medical Response Protocol",
+        "Medical Insurance Tiers & Coverage",
+        "Occupational Health & Ergonomic Support",
+        "Mental Health & Employee Assistance Program (EAP)"
+      ]
+    },
+    {
+      "doc_id": "DOC-GOV-CONDUCT-004",
+      "title": "Warehouse Workplace Standards & Ethics Code",
+      "domain": "GOVERNANCE",
+      "category": "POLICY",
+      "version": "4.0",
+      "file_name": "workplace_code_of_conduct.md",
+      "gcs_uri": "gs://ce-testing-465204-conveyor-orchestrator-knowledge/okf/workplace_code_of_conduct.md",
+      "summary": "Sets standards of integrity, mutual respect, zero-tolerance for bypassing safety interlocks, drug-free fit-for-duty mandates, and confidential whistleblower protections.",
+      "tags": [
+        "code of conduct",
+        "ethics",
+        "safety rules",
+        "harassment",
+        "whistleblower",
+        "substance abuse"
+      ],
+      "available_sections": [
+        "Core Workplace Principles",
+        "Zero-Tolerance Safety Infractions",
+        "Substance Abuse & Fit-for-Duty Mandate",
+        "Anti-Harassment & Equal Opportunity",
+        "Whistleblower Protection & Reporting Channels"
+      ]
+    },
+    {
+      "doc_id": "DOC-OPS-INV-005",
+      "title": "Warehouse Inventory Management & Stock Reconciliation Protocol",
+      "domain": "INVENTORY",
+      "category": "SOP",
+      "version": "5.2",
+      "file_name": "inventory_management_protocol.md",
+      "gcs_uri": "gs://ce-testing-465204-conveyor-orchestrator-knowledge/okf/inventory_management_protocol.md",
+      "summary": "Covers cycle count schedules for velocity SKUs, count discrepancy tolerances (\u00b10.5%), quarantine protocols for blocked items (SKU-991 in Aisle 4), hazmat Zone H storage, and WMS state codes.",
+      "tags": [
+        "inventory",
+        "cycle count",
+        "quarantine",
+        "wms",
+        "blocked sku",
+        "hazmat",
+        "reconciliation"
+      ],
+      "available_sections": [
+        "Cycle Count Schedules & Inventory Audits",
+        "Discrepancy Tolerances & Escalation Thresholds",
+        "Quarantined Stock & Blocked SKU Handling",
+        "Hazardous Materials (Hazmat) Storage & Tracking",
+        "WMS Status Codes & Real-Time Sync Protocols"
+      ]
+    },
+    {
+      "doc_id": "DOC-SAF-PPE-006",
+      "title": "Lockout-Tagout (LOTO) & PPE Floor Safety Mandate",
+      "domain": "SAFETY",
+      "category": "SOP",
+      "version": "6.0",
+      "file_name": "warehouse_safety_ppe_loto.md",
+      "gcs_uri": "gs://ce-testing-465204-conveyor-orchestrator-knowledge/okf/warehouse_safety_ppe_loto.md",
+      "summary": "Mandates ANSI Class 2 vests and ASTM boots, 10m buffer zone for active AGVs, 6-step Lockout-Tagout (LOTO) energy isolation, and Conveyor CV-11 specific maintenance safety procedures.",
+      "tags": [
+        "safety",
+        "ppe",
+        "loto",
+        "lockout tagout",
+        "vest",
+        "hard hat",
+        "conveyor maintenance"
+      ],
+      "available_sections": [
+        "Personal Protective Equipment (PPE) Matrix",
+        "Active AGV & Autonomous Transit Zone Rules",
+        "Lockout-Tagout (LOTO) 6-Step Protocol",
+        "Conveyor CV-11 Specific Maintenance Safety",
+        "Audit Penalties & Compliance Verification"
+      ]
+    }
+  ]
+}

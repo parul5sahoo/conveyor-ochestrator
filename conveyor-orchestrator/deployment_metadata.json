@@ -1,6 +1,8 @@
 {
   "remote_agent_runtime_id": "projects/526827734705/locations/us-central1/reasoningEngines/8594036320127418368",
+  "display_name": "cymbal-warehouse-automation",
   "deployment_target": "agent_runtime",
   "is_a2a": false,
-  "deployment_timestamp": "2026-06-17T10:26:06.674833+00:00"
+  "agent_directory": "app",
+  "deployment_timestamp": "2026-09-22T07:36:22+00:00"
 }

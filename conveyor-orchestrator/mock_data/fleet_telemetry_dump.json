@@ -1,0 +1,4502 @@
+[
+  {
+    "timestamp": "2026-06-22T14:00:02Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 4",
+    "temperature_c": 30.8,
+    "current_draw_a": 7.6,
+    "speed_mps": 1.9,
+    "battery_percent": 69
+  },
+  {
+    "timestamp": "2026-06-22T14:00:04Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 4",
+    "temperature_c": 33.1,
+    "current_draw_a": 5.6,
+    "speed_mps": 1.5,
+    "battery_percent": 86
+  },
+  {
+    "timestamp": "2026-06-22T14:00:32Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 3",
+    "temperature_c": 67.3,
+    "current_draw_a": 2.6,
+    "speed_mps": 1.9,
+    "battery_percent": 63
+  },
+  {
+    "timestamp": "2026-06-22T14:00:37Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 5",
+    "temperature_c": 48.2,
+    "current_draw_a": 2.4,
+    "speed_mps": 1.6,
+    "battery_percent": 91
+  },
+  {
+    "timestamp": "2026-06-22T14:00:38Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 6",
+    "temperature_c": 43.7,
+    "current_draw_a": 2.7,
+    "speed_mps": 1.9,
+    "battery_percent": 46
+  },
+  {
+    "timestamp": "2026-06-22T14:00:39Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 4",
+    "temperature_c": 98.7,
+    "current_draw_a": 13.1,
+    "speed_mps": 0.7,
+    "battery_percent": 25
+  },
+  {
+    "timestamp": "2026-06-22T14:00:50Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 45.5,
+    "current_draw_a": 2.5,
+    "speed_mps": 1.9,
+    "battery_percent": 61
+  },
+  {
+    "timestamp": "2026-06-22T14:00:56Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 2",
+    "temperature_c": 31.6,
+    "current_draw_a": 2.4,
+    "speed_mps": 1.8,
+    "battery_percent": 94
+  },
+  {
+    "timestamp": "2026-06-22T14:01:06Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 2",
+    "temperature_c": 47.7,
+    "current_draw_a": 2.0,
+    "speed_mps": 2.0,
+    "battery_percent": 55
+  },
+  {
+    "timestamp": "2026-06-22T14:01:21Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 4",
+    "temperature_c": 30.0,
+    "current_draw_a": 7.5,
+    "speed_mps": 1.2,
+    "battery_percent": 46
+  },
+  {
+    "timestamp": "2026-06-22T14:01:22Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 3",
+    "temperature_c": 42.4,
+    "current_draw_a": 7.1,
+    "speed_mps": 1.9,
+    "battery_percent": 42
+  },
+  {
+    "timestamp": "2026-06-22T14:01:40Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 1",
+    "temperature_c": 41.8,
+    "current_draw_a": 7.5,
+    "speed_mps": 1.1,
+    "battery_percent": 48
+  },
+  {
+    "timestamp": "2026-06-22T14:01:47Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 102.7,
+    "current_draw_a": 11.3,
+    "speed_mps": 0.5,
+    "battery_percent": 25
+  },
+  {
+    "timestamp": "2026-06-22T14:01:47Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 3",
+    "temperature_c": 52.2,
+    "current_draw_a": 5.6,
+    "speed_mps": 1.8,
+    "battery_percent": 79
+  },
+  {
+    "timestamp": "2026-06-22T14:01:49Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 1",
+    "temperature_c": 45.9,
+    "current_draw_a": 4.2,
+    "speed_mps": 1.4,
+    "battery_percent": 40
+  },
+  {
+    "timestamp": "2026-06-22T14:01:57Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 3",
+    "temperature_c": 37.3,
+    "current_draw_a": 3.3,
+    "speed_mps": 1.8,
+    "battery_percent": 73
+  },
+  {
+    "timestamp": "2026-06-22T14:02:00Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 87.0,
+    "current_draw_a": 14.3,
+    "speed_mps": 0.4,
+    "battery_percent": 11
+  },
+  {
+    "timestamp": "2026-06-22T14:02:02Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 2",
+    "temperature_c": 39.3,
+    "current_draw_a": 5.6,
+    "speed_mps": 1.6,
+    "battery_percent": 99
+  },
+  {
+    "timestamp": "2026-06-22T14:02:07Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 4",
+    "temperature_c": 52.2,
+    "current_draw_a": 5.3,
+    "speed_mps": 1.1,
+    "battery_percent": 43
+  },
+  {
+    "timestamp": "2026-06-22T14:02:14Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 2",
+    "temperature_c": 47.7,
+    "current_draw_a": 7.7,
+    "speed_mps": 1.9,
+    "battery_percent": 42
+  },
+  {
+    "timestamp": "2026-06-22T14:02:34Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 3",
+    "temperature_c": 63.3,
+    "current_draw_a": 2.5,
+    "speed_mps": 1.9,
+    "battery_percent": 41
+  },
+  {
+    "timestamp": "2026-06-22T14:02:34Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 5",
+    "temperature_c": 35.2,
+    "current_draw_a": 4.3,
+    "speed_mps": 1.2,
+    "battery_percent": 51
+  },
+  {
+    "timestamp": "2026-06-22T14:02:39Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 6",
+    "temperature_c": 43.3,
+    "current_draw_a": 4.8,
+    "speed_mps": 1.5,
+    "battery_percent": 95
+  },
+  {
+    "timestamp": "2026-06-22T14:02:53Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 5",
+    "temperature_c": 69.9,
+    "current_draw_a": 3.6,
+    "speed_mps": 2.0,
+    "battery_percent": 37
+  },
+  {
+    "timestamp": "2026-06-22T14:02:58Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 3",
+    "temperature_c": 40.1,
+    "current_draw_a": 2.1,
+    "speed_mps": 1.8,
+    "battery_percent": 74
+  },
+  {
+    "timestamp": "2026-06-22T14:03:08Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 1",
+    "temperature_c": 65.1,
+    "current_draw_a": 7.2,
+    "speed_mps": 1.8,
+    "battery_percent": 69
+  },
+  {
+    "timestamp": "2026-06-22T14:03:27Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 2",
+    "temperature_c": 69.6,
+    "current_draw_a": 6.7,
+    "speed_mps": 1.2,
+    "battery_percent": 100
+  },
+  {
+    "timestamp": "2026-06-22T14:03:31Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 56.9,
+    "current_draw_a": 5.6,
+    "speed_mps": 1.9,
+    "battery_percent": 54
+  },
+  {
+    "timestamp": "2026-06-22T14:03:35Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 2",
+    "temperature_c": 60.2,
+    "current_draw_a": 2.3,
+    "speed_mps": 1.1,
+    "battery_percent": 86
+  },
+  {
+    "timestamp": "2026-06-22T14:03:43Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 1",
+    "temperature_c": 47.1,
+    "current_draw_a": 3.8,
+    "speed_mps": 1.7,
+    "battery_percent": 91
+  },
+  {
+    "timestamp": "2026-06-22T14:04:02Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 6",
+    "temperature_c": 35.1,
+    "current_draw_a": 7.2,
+    "speed_mps": 1.2,
+    "battery_percent": 71
+  },
+  {
+    "timestamp": "2026-06-22T14:04:09Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 5",
+    "temperature_c": 65.2,
+    "current_draw_a": 7.5,
+    "speed_mps": 1.6,
+    "battery_percent": 84
+  },
+  {
+    "timestamp": "2026-06-22T14:04:12Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 5",
+    "temperature_c": 38.1,
+    "current_draw_a": 5.2,
+    "speed_mps": 1.2,
+    "battery_percent": 96
+  },
+  {
+    "timestamp": "2026-06-22T14:04:17Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 87.9,
+    "current_draw_a": 13.1,
+    "speed_mps": 0.6,
+    "battery_percent": 17
+  },
+  {
+    "timestamp": "2026-06-22T14:04:18Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 1",
+    "temperature_c": 41.7,
+    "current_draw_a": 2.3,
+    "speed_mps": 1.2,
+    "battery_percent": 35
+  },
+  {
+    "timestamp": "2026-06-22T14:04:28Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 6",
+    "temperature_c": 50.3,
+    "current_draw_a": 2.8,
+    "speed_mps": 1.9,
+    "battery_percent": 33
+  },
+  {
+    "timestamp": "2026-06-22T14:04:31Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 5",
+    "temperature_c": 65.1,
+    "current_draw_a": 3.9,
+    "speed_mps": 1.7,
+    "battery_percent": 80
+  },
+  {
+    "timestamp": "2026-06-22T14:04:42Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 1",
+    "temperature_c": 41.5,
+    "current_draw_a": 3.1,
+    "speed_mps": 1.1,
+    "battery_percent": 83
+  },
+  {
+    "timestamp": "2026-06-22T14:04:51Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 3",
+    "temperature_c": 61.5,
+    "current_draw_a": 5.8,
+    "speed_mps": 1.7,
+    "battery_percent": 55
+  },
+  {
+    "timestamp": "2026-06-22T14:04:52Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 2",
+    "temperature_c": 61.7,
+    "current_draw_a": 5.6,
+    "speed_mps": 1.8,
+    "battery_percent": 66
+  },
+  {
+    "timestamp": "2026-06-22T14:04:58Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 2",
+    "temperature_c": 47.6,
+    "current_draw_a": 4.9,
+    "speed_mps": 1.2,
+    "battery_percent": 48
+  },
+  {
+    "timestamp": "2026-06-22T14:05:00Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 2",
+    "temperature_c": 50.2,
+    "current_draw_a": 2.8,
+    "speed_mps": 1.3,
+    "battery_percent": 38
+  },
+  {
+    "timestamp": "2026-06-22T14:05:05Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 2",
+    "temperature_c": 61.2,
+    "current_draw_a": 5.5,
+    "speed_mps": 1.2,
+    "battery_percent": 51
+  },
+  {
+    "timestamp": "2026-06-22T14:05:07Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 3",
+    "temperature_c": 50.5,
+    "current_draw_a": 6.5,
+    "speed_mps": 1.2,
+    "battery_percent": 33
+  },
+  {
+    "timestamp": "2026-06-22T14:05:12Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 6",
+    "temperature_c": 34.6,
+    "current_draw_a": 5.1,
+    "speed_mps": 1.9,
+    "battery_percent": 74
+  },
+  {
+    "timestamp": "2026-06-22T14:05:15Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 2",
+    "temperature_c": 52.6,
+    "current_draw_a": 5.4,
+    "speed_mps": 1.8,
+    "battery_percent": 99
+  },
+  {
+    "timestamp": "2026-06-22T14:05:26Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 1",
+    "temperature_c": 45.2,
+    "current_draw_a": 4.7,
+    "speed_mps": 1.8,
+    "battery_percent": 50
+  },
+  {
+    "timestamp": "2026-06-22T14:05:56Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 5",
+    "temperature_c": 45.9,
+    "current_draw_a": 4.0,
+    "speed_mps": 1.3,
+    "battery_percent": 88
+  },
+  {
+    "timestamp": "2026-06-22T14:05:59Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 6",
+    "temperature_c": 43.9,
+    "current_draw_a": 2.4,
+    "speed_mps": 1.5,
+    "battery_percent": 68
+  },
+  {
+    "timestamp": "2026-06-22T14:06:16Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 1",
+    "temperature_c": 31.7,
+    "current_draw_a": 4.8,
+    "speed_mps": 1.2,
+    "battery_percent": 85
+  },
+  {
+    "timestamp": "2026-06-22T14:06:19Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 1",
+    "temperature_c": 44.4,
+    "current_draw_a": 4.1,
+    "speed_mps": 1.3,
+    "battery_percent": 35
+  },
+  {
+    "timestamp": "2026-06-22T14:06:21Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 2",
+    "temperature_c": 46.2,
+    "current_draw_a": 3.5,
+    "speed_mps": 1.7,
+    "battery_percent": 77
+  },
+  {
+    "timestamp": "2026-06-22T14:06:21Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 2",
+    "temperature_c": 65.9,
+    "current_draw_a": 5.1,
+    "speed_mps": 1.7,
+    "battery_percent": 77
+  },
+  {
+    "timestamp": "2026-06-22T14:06:21Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 5",
+    "temperature_c": 69.4,
+    "current_draw_a": 7.4,
+    "speed_mps": 1.7,
+    "battery_percent": 85
+  },
+  {
+    "timestamp": "2026-06-22T14:06:22Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 6",
+    "temperature_c": 42.4,
+    "current_draw_a": 6.8,
+    "speed_mps": 1.1,
+    "battery_percent": 35
+  },
+  {
+    "timestamp": "2026-06-22T14:06:39Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 102.0,
+    "current_draw_a": 14.2,
+    "speed_mps": 0.6,
+    "battery_percent": 15
+  },
+  {
+    "timestamp": "2026-06-22T14:06:41Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 6",
+    "temperature_c": 70.0,
+    "current_draw_a": 7.0,
+    "speed_mps": 2.0,
+    "battery_percent": 60
+  },
+  {
+    "timestamp": "2026-06-22T14:07:08Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 3",
+    "temperature_c": 36.8,
+    "current_draw_a": 4.3,
+    "speed_mps": 1.7,
+    "battery_percent": 100
+  },
+  {
+    "timestamp": "2026-06-22T14:07:12Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 3",
+    "temperature_c": 55.4,
+    "current_draw_a": 7.0,
+    "speed_mps": 1.7,
+    "battery_percent": 85
+  },
+  {
+    "timestamp": "2026-06-22T14:07:16Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 1",
+    "temperature_c": 67.7,
+    "current_draw_a": 4.7,
+    "speed_mps": 1.8,
+    "battery_percent": 43
+  },
+  {
+    "timestamp": "2026-06-22T14:07:18Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 3",
+    "temperature_c": 30.3,
+    "current_draw_a": 4.4,
+    "speed_mps": 1.8,
+    "battery_percent": 78
+  },
+  {
+    "timestamp": "2026-06-22T14:07:23Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 4",
+    "temperature_c": 31.0,
+    "current_draw_a": 7.3,
+    "speed_mps": 1.6,
+    "battery_percent": 58
+  },
+  {
+    "timestamp": "2026-06-22T14:07:45Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 47.9,
+    "current_draw_a": 4.2,
+    "speed_mps": 1.6,
+    "battery_percent": 87
+  },
+  {
+    "timestamp": "2026-06-22T14:07:46Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 4",
+    "temperature_c": 34.4,
+    "current_draw_a": 6.1,
+    "speed_mps": 1.6,
+    "battery_percent": 97
+  },
+  {
+    "timestamp": "2026-06-22T14:07:52Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 6",
+    "temperature_c": 52.1,
+    "current_draw_a": 3.6,
+    "speed_mps": 1.6,
+    "battery_percent": 73
+  },
+  {
+    "timestamp": "2026-06-22T14:07:52Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 2",
+    "temperature_c": 53.2,
+    "current_draw_a": 7.9,
+    "speed_mps": 1.0,
+    "battery_percent": 85
+  },
+  {
+    "timestamp": "2026-06-22T14:07:57Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 1",
+    "temperature_c": 67.9,
+    "current_draw_a": 3.8,
+    "speed_mps": 1.5,
+    "battery_percent": 42
+  },
+  {
+    "timestamp": "2026-06-22T14:08:09Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 6",
+    "temperature_c": 37.4,
+    "current_draw_a": 3.3,
+    "speed_mps": 1.5,
+    "battery_percent": 97
+  },
+  {
+    "timestamp": "2026-06-22T14:08:09Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 6",
+    "temperature_c": 35.5,
+    "current_draw_a": 2.1,
+    "speed_mps": 1.5,
+    "battery_percent": 74
+  },
+  {
+    "timestamp": "2026-06-22T14:08:48Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 3",
+    "temperature_c": 52.4,
+    "current_draw_a": 5.9,
+    "speed_mps": 1.3,
+    "battery_percent": 46
+  },
+  {
+    "timestamp": "2026-06-22T14:09:01Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 3",
+    "temperature_c": 51.2,
+    "current_draw_a": 7.5,
+    "speed_mps": 1.8,
+    "battery_percent": 62
+  },
+  {
+    "timestamp": "2026-06-22T14:09:02Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 2",
+    "temperature_c": 47.2,
+    "current_draw_a": 5.3,
+    "speed_mps": 1.5,
+    "battery_percent": 43
+  },
+  {
+    "timestamp": "2026-06-22T14:09:04Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 1",
+    "temperature_c": 37.1,
+    "current_draw_a": 5.2,
+    "speed_mps": 1.5,
+    "battery_percent": 58
+  },
+  {
+    "timestamp": "2026-06-22T14:09:22Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 5",
+    "temperature_c": 59.6,
+    "current_draw_a": 3.4,
+    "speed_mps": 1.1,
+    "battery_percent": 97
+  },
+  {
+    "timestamp": "2026-06-22T14:09:26Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 4",
+    "temperature_c": 33.6,
+    "current_draw_a": 2.3,
+    "speed_mps": 1.1,
+    "battery_percent": 50
+  },
+  {
+    "timestamp": "2026-06-22T14:09:32Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 5",
+    "temperature_c": 42.7,
+    "current_draw_a": 4.4,
+    "speed_mps": 1.6,
+    "battery_percent": 68
+  },
+  {
+    "timestamp": "2026-06-22T14:09:33Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 3",
+    "temperature_c": 39.4,
+    "current_draw_a": 7.5,
+    "speed_mps": 1.6,
+    "battery_percent": 71
+  },
+  {
+    "timestamp": "2026-06-22T14:09:35Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 3",
+    "temperature_c": 67.4,
+    "current_draw_a": 2.0,
+    "speed_mps": 1.4,
+    "battery_percent": 87
+  },
+  {
+    "timestamp": "2026-06-22T14:09:44Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 1",
+    "temperature_c": 35.0,
+    "current_draw_a": 3.4,
+    "speed_mps": 1.6,
+    "battery_percent": 76
+  },
+  {
+    "timestamp": "2026-06-22T14:10:03Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 1",
+    "temperature_c": 67.9,
+    "current_draw_a": 3.3,
+    "speed_mps": 1.5,
+    "battery_percent": 74
+  },
+  {
+    "timestamp": "2026-06-22T14:10:05Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 1",
+    "temperature_c": 52.9,
+    "current_draw_a": 6.2,
+    "speed_mps": 1.2,
+    "battery_percent": 86
+  },
+  {
+    "timestamp": "2026-06-22T14:10:12Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 5",
+    "temperature_c": 53.5,
+    "current_draw_a": 6.6,
+    "speed_mps": 1.9,
+    "battery_percent": 43
+  },
+  {
+    "timestamp": "2026-06-22T14:10:21Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 5",
+    "temperature_c": 68.0,
+    "current_draw_a": 2.5,
+    "speed_mps": 1.2,
+    "battery_percent": 83
+  },
+  {
+    "timestamp": "2026-06-22T14:10:31Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 6",
+    "temperature_c": 61.4,
+    "current_draw_a": 2.9,
+    "speed_mps": 1.4,
+    "battery_percent": 76
+  },
+  {
+    "timestamp": "2026-06-22T14:10:33Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 2",
+    "temperature_c": 63.9,
+    "current_draw_a": 4.1,
+    "speed_mps": 1.6,
+    "battery_percent": 44
+  },
+  {
+    "timestamp": "2026-06-22T14:10:34Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 3",
+    "temperature_c": 63.8,
+    "current_draw_a": 2.6,
+    "speed_mps": 1.8,
+    "battery_percent": 97
+  },
+  {
+    "timestamp": "2026-06-22T14:10:44Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 3",
+    "temperature_c": 58.9,
+    "current_draw_a": 6.7,
+    "speed_mps": 1.6,
+    "battery_percent": 40
+  },
+  {
+    "timestamp": "2026-06-22T14:11:01Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 5",
+    "temperature_c": 58.2,
+    "current_draw_a": 5.4,
+    "speed_mps": 1.1,
+    "battery_percent": 49
+  },
+  {
+    "timestamp": "2026-06-22T14:11:06Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 1",
+    "temperature_c": 62.0,
+    "current_draw_a": 2.2,
+    "speed_mps": 1.0,
+    "battery_percent": 63
+  },
+  {
+    "timestamp": "2026-06-22T14:11:16Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 5",
+    "temperature_c": 64.9,
+    "current_draw_a": 4.5,
+    "speed_mps": 1.2,
+    "battery_percent": 99
+  },
+  {
+    "timestamp": "2026-06-22T14:11:19Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 2",
+    "temperature_c": 62.5,
+    "current_draw_a": 6.8,
+    "speed_mps": 1.6,
+    "battery_percent": 98
+  },
+  {
+    "timestamp": "2026-06-22T14:11:21Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 4",
+    "temperature_c": 49.3,
+    "current_draw_a": 7.2,
+    "speed_mps": 1.9,
+    "battery_percent": 51
+  },
+  {
+    "timestamp": "2026-06-22T14:11:25Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 5",
+    "temperature_c": 31.2,
+    "current_draw_a": 6.6,
+    "speed_mps": 1.3,
+    "battery_percent": 65
+  },
+  {
+    "timestamp": "2026-06-22T14:11:41Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 5",
+    "temperature_c": 31.6,
+    "current_draw_a": 7.2,
+    "speed_mps": 1.1,
+    "battery_percent": 63
+  },
+  {
+    "timestamp": "2026-06-22T14:11:51Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 2",
+    "temperature_c": 63.5,
+    "current_draw_a": 3.5,
+    "speed_mps": 1.5,
+    "battery_percent": 76
+  },
+  {
+    "timestamp": "2026-06-22T14:11:58Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 4",
+    "temperature_c": 50.6,
+    "current_draw_a": 2.5,
+    "speed_mps": 1.7,
+    "battery_percent": 53
+  },
+  {
+    "timestamp": "2026-06-22T14:12:01Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 6",
+    "temperature_c": 40.8,
+    "current_draw_a": 6.8,
+    "speed_mps": 1.5,
+    "battery_percent": 91
+  },
+  {
+    "timestamp": "2026-06-22T14:12:01Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 5",
+    "temperature_c": 42.7,
+    "current_draw_a": 6.4,
+    "speed_mps": 1.4,
+    "battery_percent": 33
+  },
+  {
+    "timestamp": "2026-06-22T14:12:14Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 1",
+    "temperature_c": 68.5,
+    "current_draw_a": 5.5,
+    "speed_mps": 1.8,
+    "battery_percent": 80
+  },
+  {
+    "timestamp": "2026-06-22T14:12:31Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 40.0,
+    "current_draw_a": 7.5,
+    "speed_mps": 1.4,
+    "battery_percent": 100
+  },
+  {
+    "timestamp": "2026-06-22T14:12:46Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 3",
+    "temperature_c": 47.8,
+    "current_draw_a": 2.9,
+    "speed_mps": 1.6,
+    "battery_percent": 61
+  },
+  {
+    "timestamp": "2026-06-22T14:12:51Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 5",
+    "temperature_c": 60.6,
+    "current_draw_a": 7.4,
+    "speed_mps": 1.8,
+    "battery_percent": 81
+  },
+  {
+    "timestamp": "2026-06-22T14:12:57Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 33.7,
+    "current_draw_a": 3.3,
+    "speed_mps": 1.6,
+    "battery_percent": 32
+  },
+  {
+    "timestamp": "2026-06-22T14:12:58Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 6",
+    "temperature_c": 52.2,
+    "current_draw_a": 7.6,
+    "speed_mps": 1.5,
+    "battery_percent": 66
+  },
+  {
+    "timestamp": "2026-06-22T14:13:27Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 1",
+    "temperature_c": 40.5,
+    "current_draw_a": 7.2,
+    "speed_mps": 1.5,
+    "battery_percent": 70
+  },
+  {
+    "timestamp": "2026-06-22T14:13:31Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 3",
+    "temperature_c": 57.5,
+    "current_draw_a": 7.6,
+    "speed_mps": 1.1,
+    "battery_percent": 63
+  },
+  {
+    "timestamp": "2026-06-22T14:13:35Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 4",
+    "temperature_c": 34.3,
+    "current_draw_a": 4.3,
+    "speed_mps": 1.4,
+    "battery_percent": 67
+  },
+  {
+    "timestamp": "2026-06-22T14:13:37Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 1",
+    "temperature_c": 38.3,
+    "current_draw_a": 5.8,
+    "speed_mps": 2.0,
+    "battery_percent": 90
+  },
+  {
+    "timestamp": "2026-06-22T14:13:39Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 2",
+    "temperature_c": 64.1,
+    "current_draw_a": 4.7,
+    "speed_mps": 1.9,
+    "battery_percent": 86
+  },
+  {
+    "timestamp": "2026-06-22T14:13:53Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 5",
+    "temperature_c": 49.5,
+    "current_draw_a": 7.4,
+    "speed_mps": 1.8,
+    "battery_percent": 41
+  },
+  {
+    "timestamp": "2026-06-22T14:14:08Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 4",
+    "temperature_c": 102.2,
+    "current_draw_a": 11.7,
+    "speed_mps": 0.4,
+    "battery_percent": 18
+  },
+  {
+    "timestamp": "2026-06-22T14:14:27Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 2",
+    "temperature_c": 31.7,
+    "current_draw_a": 2.5,
+    "speed_mps": 1.7,
+    "battery_percent": 55
+  },
+  {
+    "timestamp": "2026-06-22T14:14:37Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 2",
+    "temperature_c": 58.9,
+    "current_draw_a": 7.3,
+    "speed_mps": 1.6,
+    "battery_percent": 61
+  },
+  {
+    "timestamp": "2026-06-22T14:15:09Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 6",
+    "temperature_c": 50.8,
+    "current_draw_a": 5.5,
+    "speed_mps": 1.6,
+    "battery_percent": 87
+  },
+  {
+    "timestamp": "2026-06-22T14:15:13Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 6",
+    "temperature_c": 37.7,
+    "current_draw_a": 4.0,
+    "speed_mps": 1.9,
+    "battery_percent": 65
+  },
+  {
+    "timestamp": "2026-06-22T14:15:14Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 4",
+    "temperature_c": 42.3,
+    "current_draw_a": 6.1,
+    "speed_mps": 1.1,
+    "battery_percent": 30
+  },
+  {
+    "timestamp": "2026-06-22T14:15:16Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 5",
+    "temperature_c": 62.2,
+    "current_draw_a": 3.8,
+    "speed_mps": 2.0,
+    "battery_percent": 65
+  },
+  {
+    "timestamp": "2026-06-22T14:15:19Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 2",
+    "temperature_c": 46.7,
+    "current_draw_a": 6.3,
+    "speed_mps": 1.3,
+    "battery_percent": 39
+  },
+  {
+    "timestamp": "2026-06-22T14:15:20Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 3",
+    "temperature_c": 36.7,
+    "current_draw_a": 4.7,
+    "speed_mps": 1.7,
+    "battery_percent": 93
+  },
+  {
+    "timestamp": "2026-06-22T14:15:21Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 3",
+    "temperature_c": 58.2,
+    "current_draw_a": 6.1,
+    "speed_mps": 1.5,
+    "battery_percent": 91
+  },
+  {
+    "timestamp": "2026-06-22T14:15:24Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 104.3,
+    "current_draw_a": 15.9,
+    "speed_mps": 0.4,
+    "battery_percent": 25
+  },
+  {
+    "timestamp": "2026-06-22T14:15:31Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 69.1,
+    "current_draw_a": 6.6,
+    "speed_mps": 1.7,
+    "battery_percent": 42
+  },
+  {
+    "timestamp": "2026-06-22T14:15:35Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 1",
+    "temperature_c": 31.8,
+    "current_draw_a": 7.2,
+    "speed_mps": 1.2,
+    "battery_percent": 90
+  },
+  {
+    "timestamp": "2026-06-22T14:15:37Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 1",
+    "temperature_c": 64.4,
+    "current_draw_a": 2.4,
+    "speed_mps": 1.2,
+    "battery_percent": 92
+  },
+  {
+    "timestamp": "2026-06-22T14:15:49Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 6",
+    "temperature_c": 37.4,
+    "current_draw_a": 5.8,
+    "speed_mps": 1.4,
+    "battery_percent": 33
+  },
+  {
+    "timestamp": "2026-06-22T14:15:56Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 1",
+    "temperature_c": 42.7,
+    "current_draw_a": 4.8,
+    "speed_mps": 1.9,
+    "battery_percent": 78
+  },
+  {
+    "timestamp": "2026-06-22T14:16:00Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 3",
+    "temperature_c": 42.8,
+    "current_draw_a": 5.2,
+    "speed_mps": 1.1,
+    "battery_percent": 59
+  },
+  {
+    "timestamp": "2026-06-22T14:16:01Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 2",
+    "temperature_c": 45.5,
+    "current_draw_a": 4.2,
+    "speed_mps": 1.9,
+    "battery_percent": 99
+  },
+  {
+    "timestamp": "2026-06-22T14:16:10Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 2",
+    "temperature_c": 69.4,
+    "current_draw_a": 5.1,
+    "speed_mps": 1.4,
+    "battery_percent": 65
+  },
+  {
+    "timestamp": "2026-06-22T14:16:13Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 1",
+    "temperature_c": 31.9,
+    "current_draw_a": 4.5,
+    "speed_mps": 1.8,
+    "battery_percent": 88
+  },
+  {
+    "timestamp": "2026-06-22T14:16:20Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 2",
+    "temperature_c": 65.1,
+    "current_draw_a": 7.7,
+    "speed_mps": 1.1,
+    "battery_percent": 92
+  },
+  {
+    "timestamp": "2026-06-22T14:16:25Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 1",
+    "temperature_c": 34.0,
+    "current_draw_a": 2.2,
+    "speed_mps": 1.6,
+    "battery_percent": 36
+  },
+  {
+    "timestamp": "2026-06-22T14:16:27Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 5",
+    "temperature_c": 59.4,
+    "current_draw_a": 4.0,
+    "speed_mps": 1.0,
+    "battery_percent": 99
+  },
+  {
+    "timestamp": "2026-06-22T14:16:27Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 3",
+    "temperature_c": 64.3,
+    "current_draw_a": 2.9,
+    "speed_mps": 1.5,
+    "battery_percent": 37
+  },
+  {
+    "timestamp": "2026-06-22T14:16:33Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 4",
+    "temperature_c": 66.6,
+    "current_draw_a": 5.3,
+    "speed_mps": 1.8,
+    "battery_percent": 78
+  },
+  {
+    "timestamp": "2026-06-22T14:16:40Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 3",
+    "temperature_c": 36.3,
+    "current_draw_a": 7.0,
+    "speed_mps": 1.7,
+    "battery_percent": 97
+  },
+  {
+    "timestamp": "2026-06-22T14:16:41Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 34.6,
+    "current_draw_a": 5.7,
+    "speed_mps": 1.1,
+    "battery_percent": 52
+  },
+  {
+    "timestamp": "2026-06-22T14:16:42Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 5",
+    "temperature_c": 64.0,
+    "current_draw_a": 2.4,
+    "speed_mps": 1.4,
+    "battery_percent": 54
+  },
+  {
+    "timestamp": "2026-06-22T14:16:42Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 4",
+    "temperature_c": 47.6,
+    "current_draw_a": 5.2,
+    "speed_mps": 1.8,
+    "battery_percent": 37
+  },
+  {
+    "timestamp": "2026-06-22T14:16:52Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 1",
+    "temperature_c": 54.9,
+    "current_draw_a": 3.4,
+    "speed_mps": 1.5,
+    "battery_percent": 44
+  },
+  {
+    "timestamp": "2026-06-22T14:16:56Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 3",
+    "temperature_c": 67.4,
+    "current_draw_a": 6.3,
+    "speed_mps": 1.2,
+    "battery_percent": 50
+  },
+  {
+    "timestamp": "2026-06-22T14:17:02Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 1",
+    "temperature_c": 59.4,
+    "current_draw_a": 5.0,
+    "speed_mps": 1.4,
+    "battery_percent": 45
+  },
+  {
+    "timestamp": "2026-06-22T14:17:09Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 1",
+    "temperature_c": 57.2,
+    "current_draw_a": 2.7,
+    "speed_mps": 1.9,
+    "battery_percent": 64
+  },
+  {
+    "timestamp": "2026-06-22T14:17:14Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 1",
+    "temperature_c": 62.9,
+    "current_draw_a": 4.4,
+    "speed_mps": 1.1,
+    "battery_percent": 36
+  },
+  {
+    "timestamp": "2026-06-22T14:17:23Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 6",
+    "temperature_c": 47.4,
+    "current_draw_a": 5.1,
+    "speed_mps": 1.8,
+    "battery_percent": 55
+  },
+  {
+    "timestamp": "2026-06-22T14:17:45Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 3",
+    "temperature_c": 38.5,
+    "current_draw_a": 4.0,
+    "speed_mps": 1.8,
+    "battery_percent": 78
+  },
+  {
+    "timestamp": "2026-06-22T14:17:48Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 6",
+    "temperature_c": 58.6,
+    "current_draw_a": 3.4,
+    "speed_mps": 1.4,
+    "battery_percent": 68
+  },
+  {
+    "timestamp": "2026-06-22T14:17:52Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 6",
+    "temperature_c": 47.9,
+    "current_draw_a": 8.0,
+    "speed_mps": 1.3,
+    "battery_percent": 92
+  },
+  {
+    "timestamp": "2026-06-22T14:18:03Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 2",
+    "temperature_c": 39.6,
+    "current_draw_a": 5.3,
+    "speed_mps": 1.2,
+    "battery_percent": 82
+  },
+  {
+    "timestamp": "2026-06-22T14:18:14Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 3",
+    "temperature_c": 59.0,
+    "current_draw_a": 7.0,
+    "speed_mps": 1.6,
+    "battery_percent": 92
+  },
+  {
+    "timestamp": "2026-06-22T14:18:19Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 3",
+    "temperature_c": 43.5,
+    "current_draw_a": 5.5,
+    "speed_mps": 1.6,
+    "battery_percent": 92
+  },
+  {
+    "timestamp": "2026-06-22T14:18:23Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 5",
+    "temperature_c": 55.8,
+    "current_draw_a": 3.1,
+    "speed_mps": 1.2,
+    "battery_percent": 82
+  },
+  {
+    "timestamp": "2026-06-22T14:18:30Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 1",
+    "temperature_c": 57.4,
+    "current_draw_a": 3.7,
+    "speed_mps": 1.5,
+    "battery_percent": 34
+  },
+  {
+    "timestamp": "2026-06-22T14:18:39Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 3",
+    "temperature_c": 47.5,
+    "current_draw_a": 4.4,
+    "speed_mps": 1.4,
+    "battery_percent": 79
+  },
+  {
+    "timestamp": "2026-06-22T14:18:48Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 2",
+    "temperature_c": 54.7,
+    "current_draw_a": 6.1,
+    "speed_mps": 1.4,
+    "battery_percent": 80
+  },
+  {
+    "timestamp": "2026-06-22T14:18:59Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 3",
+    "temperature_c": 63.4,
+    "current_draw_a": 4.8,
+    "speed_mps": 1.7,
+    "battery_percent": 36
+  },
+  {
+    "timestamp": "2026-06-22T14:18:59Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 5",
+    "temperature_c": 47.4,
+    "current_draw_a": 6.9,
+    "speed_mps": 2.0,
+    "battery_percent": 90
+  },
+  {
+    "timestamp": "2026-06-22T14:19:00Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 5",
+    "temperature_c": 34.1,
+    "current_draw_a": 7.2,
+    "speed_mps": 1.2,
+    "battery_percent": 71
+  },
+  {
+    "timestamp": "2026-06-22T14:19:02Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 2",
+    "temperature_c": 60.0,
+    "current_draw_a": 5.4,
+    "speed_mps": 1.7,
+    "battery_percent": 73
+  },
+  {
+    "timestamp": "2026-06-22T14:19:05Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 5",
+    "temperature_c": 30.4,
+    "current_draw_a": 7.7,
+    "speed_mps": 1.1,
+    "battery_percent": 82
+  },
+  {
+    "timestamp": "2026-06-22T14:19:11Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 2",
+    "temperature_c": 42.9,
+    "current_draw_a": 6.2,
+    "speed_mps": 1.3,
+    "battery_percent": 64
+  },
+  {
+    "timestamp": "2026-06-22T14:19:23Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 6",
+    "temperature_c": 64.1,
+    "current_draw_a": 7.8,
+    "speed_mps": 1.6,
+    "battery_percent": 49
+  },
+  {
+    "timestamp": "2026-06-22T14:19:25Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 6",
+    "temperature_c": 51.7,
+    "current_draw_a": 5.0,
+    "speed_mps": 1.9,
+    "battery_percent": 94
+  },
+  {
+    "timestamp": "2026-06-22T14:19:27Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 97.9,
+    "current_draw_a": 14.4,
+    "speed_mps": 0.4,
+    "battery_percent": 23
+  },
+  {
+    "timestamp": "2026-06-22T14:19:33Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 4",
+    "temperature_c": 46.9,
+    "current_draw_a": 4.4,
+    "speed_mps": 1.6,
+    "battery_percent": 98
+  },
+  {
+    "timestamp": "2026-06-22T14:19:39Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 6",
+    "temperature_c": 49.4,
+    "current_draw_a": 2.2,
+    "speed_mps": 1.6,
+    "battery_percent": 60
+  },
+  {
+    "timestamp": "2026-06-22T14:19:46Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 39.8,
+    "current_draw_a": 6.8,
+    "speed_mps": 1.4,
+    "battery_percent": 88
+  },
+  {
+    "timestamp": "2026-06-22T14:20:18Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 1",
+    "temperature_c": 32.0,
+    "current_draw_a": 5.4,
+    "speed_mps": 1.8,
+    "battery_percent": 49
+  },
+  {
+    "timestamp": "2026-06-22T14:20:19Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 4",
+    "temperature_c": 40.5,
+    "current_draw_a": 7.2,
+    "speed_mps": 1.1,
+    "battery_percent": 45
+  },
+  {
+    "timestamp": "2026-06-22T14:20:30Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 5",
+    "temperature_c": 67.9,
+    "current_draw_a": 3.2,
+    "speed_mps": 1.3,
+    "battery_percent": 80
+  },
+  {
+    "timestamp": "2026-06-22T14:20:34Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 93.6,
+    "current_draw_a": 11.6,
+    "speed_mps": 0.6,
+    "battery_percent": 17
+  },
+  {
+    "timestamp": "2026-06-22T14:20:35Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 6",
+    "temperature_c": 68.6,
+    "current_draw_a": 2.4,
+    "speed_mps": 1.5,
+    "battery_percent": 81
+  },
+  {
+    "timestamp": "2026-06-22T14:20:50Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 5",
+    "temperature_c": 68.4,
+    "current_draw_a": 2.6,
+    "speed_mps": 1.8,
+    "battery_percent": 57
+  },
+  {
+    "timestamp": "2026-06-22T14:21:05Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 2",
+    "temperature_c": 43.7,
+    "current_draw_a": 6.6,
+    "speed_mps": 1.2,
+    "battery_percent": 47
+  },
+  {
+    "timestamp": "2026-06-22T14:21:07Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 2",
+    "temperature_c": 44.7,
+    "current_draw_a": 7.7,
+    "speed_mps": 2.0,
+    "battery_percent": 89
+  },
+  {
+    "timestamp": "2026-06-22T14:21:20Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 6",
+    "temperature_c": 69.5,
+    "current_draw_a": 4.1,
+    "speed_mps": 1.4,
+    "battery_percent": 77
+  },
+  {
+    "timestamp": "2026-06-22T14:21:21Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 1",
+    "temperature_c": 52.5,
+    "current_draw_a": 3.3,
+    "speed_mps": 1.1,
+    "battery_percent": 63
+  },
+  {
+    "timestamp": "2026-06-22T14:21:24Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 2",
+    "temperature_c": 46.5,
+    "current_draw_a": 3.2,
+    "speed_mps": 1.5,
+    "battery_percent": 90
+  },
+  {
+    "timestamp": "2026-06-22T14:21:32Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 5",
+    "temperature_c": 45.9,
+    "current_draw_a": 6.9,
+    "speed_mps": 1.5,
+    "battery_percent": 34
+  },
+  {
+    "timestamp": "2026-06-22T14:21:45Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 4",
+    "temperature_c": 36.0,
+    "current_draw_a": 4.3,
+    "speed_mps": 1.8,
+    "battery_percent": 90
+  },
+  {
+    "timestamp": "2026-06-22T14:21:47Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 4",
+    "temperature_c": 92.5,
+    "current_draw_a": 15.1,
+    "speed_mps": 0.5,
+    "battery_percent": 13
+  },
+  {
+    "timestamp": "2026-06-22T14:22:20Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 6",
+    "temperature_c": 33.7,
+    "current_draw_a": 7.8,
+    "speed_mps": 1.6,
+    "battery_percent": 75
+  },
+  {
+    "timestamp": "2026-06-22T14:22:20Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 97.5,
+    "current_draw_a": 13.3,
+    "speed_mps": 0.6,
+    "battery_percent": 25
+  },
+  {
+    "timestamp": "2026-06-22T14:22:32Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 63.9,
+    "current_draw_a": 2.6,
+    "speed_mps": 1.7,
+    "battery_percent": 54
+  },
+  {
+    "timestamp": "2026-06-22T14:22:38Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 6",
+    "temperature_c": 35.6,
+    "current_draw_a": 7.9,
+    "speed_mps": 1.7,
+    "battery_percent": 94
+  },
+  {
+    "timestamp": "2026-06-22T14:22:45Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 5",
+    "temperature_c": 56.5,
+    "current_draw_a": 7.5,
+    "speed_mps": 1.3,
+    "battery_percent": 80
+  },
+  {
+    "timestamp": "2026-06-22T14:22:52Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 6",
+    "temperature_c": 45.1,
+    "current_draw_a": 6.4,
+    "speed_mps": 1.3,
+    "battery_percent": 56
+  },
+  {
+    "timestamp": "2026-06-22T14:23:06Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 6",
+    "temperature_c": 48.6,
+    "current_draw_a": 6.2,
+    "speed_mps": 1.6,
+    "battery_percent": 47
+  },
+  {
+    "timestamp": "2026-06-22T14:23:08Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 4",
+    "temperature_c": 46.6,
+    "current_draw_a": 2.6,
+    "speed_mps": 1.4,
+    "battery_percent": 62
+  },
+  {
+    "timestamp": "2026-06-22T14:23:08Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 4",
+    "temperature_c": 57.7,
+    "current_draw_a": 4.2,
+    "speed_mps": 1.8,
+    "battery_percent": 64
+  },
+  {
+    "timestamp": "2026-06-22T14:23:15Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 3",
+    "temperature_c": 32.4,
+    "current_draw_a": 2.9,
+    "speed_mps": 1.7,
+    "battery_percent": 48
+  },
+  {
+    "timestamp": "2026-06-22T14:23:29Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 3",
+    "temperature_c": 45.5,
+    "current_draw_a": 3.1,
+    "speed_mps": 1.3,
+    "battery_percent": 58
+  },
+  {
+    "timestamp": "2026-06-22T14:23:35Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 4",
+    "temperature_c": 54.2,
+    "current_draw_a": 5.1,
+    "speed_mps": 1.4,
+    "battery_percent": 54
+  },
+  {
+    "timestamp": "2026-06-22T14:23:45Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 3",
+    "temperature_c": 42.8,
+    "current_draw_a": 2.6,
+    "speed_mps": 1.2,
+    "battery_percent": 82
+  },
+  {
+    "timestamp": "2026-06-22T14:23:46Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 3",
+    "temperature_c": 48.2,
+    "current_draw_a": 3.2,
+    "speed_mps": 1.5,
+    "battery_percent": 90
+  },
+  {
+    "timestamp": "2026-06-22T14:23:48Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 6",
+    "temperature_c": 40.9,
+    "current_draw_a": 2.7,
+    "speed_mps": 1.7,
+    "battery_percent": 78
+  },
+  {
+    "timestamp": "2026-06-22T14:23:53Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 6",
+    "temperature_c": 32.7,
+    "current_draw_a": 7.7,
+    "speed_mps": 1.0,
+    "battery_percent": 33
+  },
+  {
+    "timestamp": "2026-06-22T14:23:57Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 2",
+    "temperature_c": 64.8,
+    "current_draw_a": 5.4,
+    "speed_mps": 1.4,
+    "battery_percent": 48
+  },
+  {
+    "timestamp": "2026-06-22T14:23:58Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 4",
+    "temperature_c": 57.2,
+    "current_draw_a": 7.1,
+    "speed_mps": 1.3,
+    "battery_percent": 33
+  },
+  {
+    "timestamp": "2026-06-22T14:23:58Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 2",
+    "temperature_c": 34.1,
+    "current_draw_a": 3.5,
+    "speed_mps": 1.2,
+    "battery_percent": 49
+  },
+  {
+    "timestamp": "2026-06-22T14:23:58Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 6",
+    "temperature_c": 59.9,
+    "current_draw_a": 7.5,
+    "speed_mps": 1.6,
+    "battery_percent": 86
+  },
+  {
+    "timestamp": "2026-06-22T14:23:59Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 3",
+    "temperature_c": 61.6,
+    "current_draw_a": 3.5,
+    "speed_mps": 1.6,
+    "battery_percent": 61
+  },
+  {
+    "timestamp": "2026-06-22T14:24:11Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 5",
+    "temperature_c": 49.4,
+    "current_draw_a": 7.7,
+    "speed_mps": 1.3,
+    "battery_percent": 68
+  },
+  {
+    "timestamp": "2026-06-22T14:24:17Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 90.9,
+    "current_draw_a": 12.2,
+    "speed_mps": 0.3,
+    "battery_percent": 18
+  },
+  {
+    "timestamp": "2026-06-22T14:24:39Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 2",
+    "temperature_c": 58.8,
+    "current_draw_a": 5.0,
+    "speed_mps": 1.6,
+    "battery_percent": 88
+  },
+  {
+    "timestamp": "2026-06-22T14:24:39Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 2",
+    "temperature_c": 45.5,
+    "current_draw_a": 7.0,
+    "speed_mps": 1.4,
+    "battery_percent": 99
+  },
+  {
+    "timestamp": "2026-06-22T14:24:41Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 6",
+    "temperature_c": 47.7,
+    "current_draw_a": 2.3,
+    "speed_mps": 1.3,
+    "battery_percent": 46
+  },
+  {
+    "timestamp": "2026-06-22T14:24:44Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 3",
+    "temperature_c": 32.9,
+    "current_draw_a": 5.0,
+    "speed_mps": 1.8,
+    "battery_percent": 65
+  },
+  {
+    "timestamp": "2026-06-22T14:24:50Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 2",
+    "temperature_c": 37.2,
+    "current_draw_a": 7.8,
+    "speed_mps": 1.0,
+    "battery_percent": 83
+  },
+  {
+    "timestamp": "2026-06-22T14:24:51Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 1",
+    "temperature_c": 68.0,
+    "current_draw_a": 7.5,
+    "speed_mps": 1.6,
+    "battery_percent": 45
+  },
+  {
+    "timestamp": "2026-06-22T14:24:53Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 100.0,
+    "current_draw_a": 15.6,
+    "speed_mps": 0.4,
+    "battery_percent": 15
+  },
+  {
+    "timestamp": "2026-06-22T14:25:05Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 95.6,
+    "current_draw_a": 11.0,
+    "speed_mps": 0.6,
+    "battery_percent": 24
+  },
+  {
+    "timestamp": "2026-06-22T14:25:06Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 3",
+    "temperature_c": 60.9,
+    "current_draw_a": 7.4,
+    "speed_mps": 1.7,
+    "battery_percent": 44
+  },
+  {
+    "timestamp": "2026-06-22T14:25:13Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 4",
+    "temperature_c": 31.8,
+    "current_draw_a": 4.6,
+    "speed_mps": 1.3,
+    "battery_percent": 64
+  },
+  {
+    "timestamp": "2026-06-22T14:25:16Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 2",
+    "temperature_c": 56.8,
+    "current_draw_a": 6.2,
+    "speed_mps": 1.7,
+    "battery_percent": 39
+  },
+  {
+    "timestamp": "2026-06-22T14:25:32Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 4",
+    "temperature_c": 60.9,
+    "current_draw_a": 5.5,
+    "speed_mps": 1.5,
+    "battery_percent": 74
+  },
+  {
+    "timestamp": "2026-06-22T14:25:33Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 6",
+    "temperature_c": 66.9,
+    "current_draw_a": 2.4,
+    "speed_mps": 1.8,
+    "battery_percent": 41
+  },
+  {
+    "timestamp": "2026-06-22T14:25:33Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 4",
+    "temperature_c": 64.8,
+    "current_draw_a": 7.4,
+    "speed_mps": 1.4,
+    "battery_percent": 99
+  },
+  {
+    "timestamp": "2026-06-22T14:25:35Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 1",
+    "temperature_c": 42.7,
+    "current_draw_a": 2.6,
+    "speed_mps": 1.7,
+    "battery_percent": 72
+  },
+  {
+    "timestamp": "2026-06-22T14:25:36Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 90.6,
+    "current_draw_a": 15.7,
+    "speed_mps": 0.5,
+    "battery_percent": 25
+  },
+  {
+    "timestamp": "2026-06-22T14:25:45Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 3",
+    "temperature_c": 64.8,
+    "current_draw_a": 7.9,
+    "speed_mps": 1.2,
+    "battery_percent": 79
+  },
+  {
+    "timestamp": "2026-06-22T14:25:52Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 4",
+    "temperature_c": 40.6,
+    "current_draw_a": 6.7,
+    "speed_mps": 1.5,
+    "battery_percent": 84
+  },
+  {
+    "timestamp": "2026-06-22T14:26:00Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 3",
+    "temperature_c": 48.1,
+    "current_draw_a": 5.6,
+    "speed_mps": 1.1,
+    "battery_percent": 44
+  },
+  {
+    "timestamp": "2026-06-22T14:26:08Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 6",
+    "temperature_c": 38.6,
+    "current_draw_a": 4.5,
+    "speed_mps": 1.3,
+    "battery_percent": 89
+  },
+  {
+    "timestamp": "2026-06-22T14:26:08Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 5",
+    "temperature_c": 36.1,
+    "current_draw_a": 4.7,
+    "speed_mps": 1.4,
+    "battery_percent": 86
+  },
+  {
+    "timestamp": "2026-06-22T14:26:08Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 4",
+    "temperature_c": 38.0,
+    "current_draw_a": 7.3,
+    "speed_mps": 1.5,
+    "battery_percent": 99
+  },
+  {
+    "timestamp": "2026-06-22T14:26:21Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 4",
+    "temperature_c": 68.6,
+    "current_draw_a": 2.8,
+    "speed_mps": 2.0,
+    "battery_percent": 72
+  },
+  {
+    "timestamp": "2026-06-22T14:26:56Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 2",
+    "temperature_c": 41.6,
+    "current_draw_a": 3.7,
+    "speed_mps": 1.7,
+    "battery_percent": 74
+  },
+  {
+    "timestamp": "2026-06-22T14:27:03Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 6",
+    "temperature_c": 58.0,
+    "current_draw_a": 3.4,
+    "speed_mps": 1.7,
+    "battery_percent": 42
+  },
+  {
+    "timestamp": "2026-06-22T14:27:04Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 1",
+    "temperature_c": 53.7,
+    "current_draw_a": 7.0,
+    "speed_mps": 1.2,
+    "battery_percent": 68
+  },
+  {
+    "timestamp": "2026-06-22T14:27:29Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 1",
+    "temperature_c": 39.9,
+    "current_draw_a": 3.1,
+    "speed_mps": 1.4,
+    "battery_percent": 84
+  },
+  {
+    "timestamp": "2026-06-22T14:27:43Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 5",
+    "temperature_c": 39.7,
+    "current_draw_a": 6.2,
+    "speed_mps": 1.3,
+    "battery_percent": 40
+  },
+  {
+    "timestamp": "2026-06-22T14:27:59Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 1",
+    "temperature_c": 48.8,
+    "current_draw_a": 7.8,
+    "speed_mps": 1.3,
+    "battery_percent": 80
+  },
+  {
+    "timestamp": "2026-06-22T14:27:59Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 2",
+    "temperature_c": 51.7,
+    "current_draw_a": 5.8,
+    "speed_mps": 1.7,
+    "battery_percent": 31
+  },
+  {
+    "timestamp": "2026-06-22T14:28:03Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 6",
+    "temperature_c": 32.2,
+    "current_draw_a": 5.9,
+    "speed_mps": 1.6,
+    "battery_percent": 37
+  },
+  {
+    "timestamp": "2026-06-22T14:28:23Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 92.6,
+    "current_draw_a": 11.0,
+    "speed_mps": 0.5,
+    "battery_percent": 22
+  },
+  {
+    "timestamp": "2026-06-22T14:28:23Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 4",
+    "temperature_c": 60.3,
+    "current_draw_a": 6.8,
+    "speed_mps": 1.8,
+    "battery_percent": 61
+  },
+  {
+    "timestamp": "2026-06-22T14:28:31Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 1",
+    "temperature_c": 69.9,
+    "current_draw_a": 4.4,
+    "speed_mps": 1.5,
+    "battery_percent": 67
+  },
+  {
+    "timestamp": "2026-06-22T14:28:36Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 4",
+    "temperature_c": 56.2,
+    "current_draw_a": 7.0,
+    "speed_mps": 1.6,
+    "battery_percent": 65
+  },
+  {
+    "timestamp": "2026-06-22T14:28:38Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 4",
+    "temperature_c": 53.6,
+    "current_draw_a": 6.9,
+    "speed_mps": 1.0,
+    "battery_percent": 50
+  },
+  {
+    "timestamp": "2026-06-22T14:28:55Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 3",
+    "temperature_c": 48.4,
+    "current_draw_a": 3.3,
+    "speed_mps": 1.3,
+    "battery_percent": 96
+  },
+  {
+    "timestamp": "2026-06-22T14:29:01Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 5",
+    "temperature_c": 39.0,
+    "current_draw_a": 2.9,
+    "speed_mps": 1.3,
+    "battery_percent": 48
+  },
+  {
+    "timestamp": "2026-06-22T14:29:06Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 58.5,
+    "current_draw_a": 4.7,
+    "speed_mps": 1.9,
+    "battery_percent": 71
+  },
+  {
+    "timestamp": "2026-06-22T14:29:28Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 87.4,
+    "current_draw_a": 12.8,
+    "speed_mps": 0.6,
+    "battery_percent": 23
+  },
+  {
+    "timestamp": "2026-06-22T14:29:46Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 4",
+    "temperature_c": 66.8,
+    "current_draw_a": 7.2,
+    "speed_mps": 1.6,
+    "battery_percent": 81
+  },
+  {
+    "timestamp": "2026-06-22T14:29:58Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 94.9,
+    "current_draw_a": 11.4,
+    "speed_mps": 0.3,
+    "battery_percent": 23
+  },
+  {
+    "timestamp": "2026-06-22T14:30:09Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 6",
+    "temperature_c": 38.2,
+    "current_draw_a": 5.5,
+    "speed_mps": 1.1,
+    "battery_percent": 95
+  },
+  {
+    "timestamp": "2026-06-22T14:30:11Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 6",
+    "temperature_c": 49.2,
+    "current_draw_a": 3.2,
+    "speed_mps": 1.5,
+    "battery_percent": 64
+  },
+  {
+    "timestamp": "2026-06-22T14:30:17Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 4",
+    "temperature_c": 92.2,
+    "current_draw_a": 13.2,
+    "speed_mps": 0.4,
+    "battery_percent": 23
+  },
+  {
+    "timestamp": "2026-06-22T14:30:24Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 4",
+    "temperature_c": 35.3,
+    "current_draw_a": 4.5,
+    "speed_mps": 1.6,
+    "battery_percent": 89
+  },
+  {
+    "timestamp": "2026-06-22T14:30:26Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 6",
+    "temperature_c": 64.5,
+    "current_draw_a": 4.7,
+    "speed_mps": 1.8,
+    "battery_percent": 65
+  },
+  {
+    "timestamp": "2026-06-22T14:30:29Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 3",
+    "temperature_c": 38.4,
+    "current_draw_a": 6.2,
+    "speed_mps": 1.4,
+    "battery_percent": 43
+  },
+  {
+    "timestamp": "2026-06-22T14:30:41Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 3",
+    "temperature_c": 46.3,
+    "current_draw_a": 5.2,
+    "speed_mps": 2.0,
+    "battery_percent": 56
+  },
+  {
+    "timestamp": "2026-06-22T14:30:43Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 6",
+    "temperature_c": 50.7,
+    "current_draw_a": 2.8,
+    "speed_mps": 1.8,
+    "battery_percent": 100
+  },
+  {
+    "timestamp": "2026-06-22T14:30:45Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 3",
+    "temperature_c": 31.3,
+    "current_draw_a": 3.7,
+    "speed_mps": 1.3,
+    "battery_percent": 88
+  },
+  {
+    "timestamp": "2026-06-22T14:30:51Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 40.6,
+    "current_draw_a": 2.7,
+    "speed_mps": 1.2,
+    "battery_percent": 68
+  },
+  {
+    "timestamp": "2026-06-22T14:31:02Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 3",
+    "temperature_c": 40.1,
+    "current_draw_a": 2.7,
+    "speed_mps": 1.8,
+    "battery_percent": 95
+  },
+  {
+    "timestamp": "2026-06-22T14:31:02Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 6",
+    "temperature_c": 60.0,
+    "current_draw_a": 3.6,
+    "speed_mps": 1.4,
+    "battery_percent": 77
+  },
+  {
+    "timestamp": "2026-06-22T14:31:12Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 1",
+    "temperature_c": 30.4,
+    "current_draw_a": 5.7,
+    "speed_mps": 1.6,
+    "battery_percent": 42
+  },
+  {
+    "timestamp": "2026-06-22T14:31:17Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 5",
+    "temperature_c": 33.8,
+    "current_draw_a": 2.8,
+    "speed_mps": 1.8,
+    "battery_percent": 39
+  },
+  {
+    "timestamp": "2026-06-22T14:31:30Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 6",
+    "temperature_c": 63.3,
+    "current_draw_a": 5.0,
+    "speed_mps": 1.7,
+    "battery_percent": 95
+  },
+  {
+    "timestamp": "2026-06-22T14:31:44Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 6",
+    "temperature_c": 53.7,
+    "current_draw_a": 3.9,
+    "speed_mps": 1.2,
+    "battery_percent": 41
+  },
+  {
+    "timestamp": "2026-06-22T14:31:48Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 6",
+    "temperature_c": 48.8,
+    "current_draw_a": 7.0,
+    "speed_mps": 1.9,
+    "battery_percent": 77
+  },
+  {
+    "timestamp": "2026-06-22T14:31:49Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 6",
+    "temperature_c": 44.4,
+    "current_draw_a": 3.6,
+    "speed_mps": 1.5,
+    "battery_percent": 93
+  },
+  {
+    "timestamp": "2026-06-22T14:31:57Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 2",
+    "temperature_c": 62.4,
+    "current_draw_a": 4.0,
+    "speed_mps": 1.7,
+    "battery_percent": 62
+  },
+  {
+    "timestamp": "2026-06-22T14:32:18Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 5",
+    "temperature_c": 43.8,
+    "current_draw_a": 8.0,
+    "speed_mps": 1.6,
+    "battery_percent": 75
+  },
+  {
+    "timestamp": "2026-06-22T14:32:25Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 102.4,
+    "current_draw_a": 14.1,
+    "speed_mps": 0.6,
+    "battery_percent": 18
+  },
+  {
+    "timestamp": "2026-06-22T14:32:30Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 1",
+    "temperature_c": 45.8,
+    "current_draw_a": 7.1,
+    "speed_mps": 1.0,
+    "battery_percent": 96
+  },
+  {
+    "timestamp": "2026-06-22T14:32:35Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 3",
+    "temperature_c": 42.8,
+    "current_draw_a": 5.9,
+    "speed_mps": 1.9,
+    "battery_percent": 41
+  },
+  {
+    "timestamp": "2026-06-22T14:32:36Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 2",
+    "temperature_c": 45.3,
+    "current_draw_a": 6.4,
+    "speed_mps": 1.1,
+    "battery_percent": 70
+  },
+  {
+    "timestamp": "2026-06-22T14:33:19Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 3",
+    "temperature_c": 47.4,
+    "current_draw_a": 2.2,
+    "speed_mps": 1.3,
+    "battery_percent": 81
+  },
+  {
+    "timestamp": "2026-06-22T14:33:20Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 5",
+    "temperature_c": 69.6,
+    "current_draw_a": 7.7,
+    "speed_mps": 1.5,
+    "battery_percent": 39
+  },
+  {
+    "timestamp": "2026-06-22T14:33:21Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 2",
+    "temperature_c": 57.6,
+    "current_draw_a": 5.9,
+    "speed_mps": 1.5,
+    "battery_percent": 32
+  },
+  {
+    "timestamp": "2026-06-22T14:33:25Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 2",
+    "temperature_c": 37.5,
+    "current_draw_a": 7.1,
+    "speed_mps": 1.6,
+    "battery_percent": 75
+  },
+  {
+    "timestamp": "2026-06-22T14:33:39Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 1",
+    "temperature_c": 36.7,
+    "current_draw_a": 3.7,
+    "speed_mps": 1.3,
+    "battery_percent": 39
+  },
+  {
+    "timestamp": "2026-06-22T14:33:39Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 3",
+    "temperature_c": 51.8,
+    "current_draw_a": 2.6,
+    "speed_mps": 1.5,
+    "battery_percent": 58
+  },
+  {
+    "timestamp": "2026-06-22T14:33:47Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 1",
+    "temperature_c": 39.6,
+    "current_draw_a": 5.8,
+    "speed_mps": 1.1,
+    "battery_percent": 31
+  },
+  {
+    "timestamp": "2026-06-22T14:33:58Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 2",
+    "temperature_c": 48.4,
+    "current_draw_a": 3.5,
+    "speed_mps": 1.3,
+    "battery_percent": 31
+  },
+  {
+    "timestamp": "2026-06-22T14:34:00Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 4",
+    "temperature_c": 50.0,
+    "current_draw_a": 3.9,
+    "speed_mps": 1.0,
+    "battery_percent": 80
+  },
+  {
+    "timestamp": "2026-06-22T14:34:05Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 6",
+    "temperature_c": 67.7,
+    "current_draw_a": 4.0,
+    "speed_mps": 1.8,
+    "battery_percent": 92
+  },
+  {
+    "timestamp": "2026-06-22T14:34:09Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 6",
+    "temperature_c": 62.2,
+    "current_draw_a": 2.4,
+    "speed_mps": 1.9,
+    "battery_percent": 35
+  },
+  {
+    "timestamp": "2026-06-22T14:34:10Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 5",
+    "temperature_c": 66.5,
+    "current_draw_a": 7.2,
+    "speed_mps": 1.3,
+    "battery_percent": 94
+  },
+  {
+    "timestamp": "2026-06-22T14:34:13Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 1",
+    "temperature_c": 48.0,
+    "current_draw_a": 6.9,
+    "speed_mps": 1.8,
+    "battery_percent": 40
+  },
+  {
+    "timestamp": "2026-06-22T14:34:23Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 5",
+    "temperature_c": 31.7,
+    "current_draw_a": 6.7,
+    "speed_mps": 1.9,
+    "battery_percent": 96
+  },
+  {
+    "timestamp": "2026-06-22T14:34:26Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 1",
+    "temperature_c": 39.9,
+    "current_draw_a": 4.6,
+    "speed_mps": 1.4,
+    "battery_percent": 96
+  },
+  {
+    "timestamp": "2026-06-22T14:34:30Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 2",
+    "temperature_c": 38.6,
+    "current_draw_a": 4.1,
+    "speed_mps": 1.1,
+    "battery_percent": 93
+  },
+  {
+    "timestamp": "2026-06-22T14:34:43Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 1",
+    "temperature_c": 69.4,
+    "current_draw_a": 6.8,
+    "speed_mps": 1.2,
+    "battery_percent": 93
+  },
+  {
+    "timestamp": "2026-06-22T14:34:52Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 4",
+    "temperature_c": 53.9,
+    "current_draw_a": 5.4,
+    "speed_mps": 1.4,
+    "battery_percent": 92
+  },
+  {
+    "timestamp": "2026-06-22T14:34:53Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 6",
+    "temperature_c": 36.8,
+    "current_draw_a": 2.5,
+    "speed_mps": 1.5,
+    "battery_percent": 72
+  },
+  {
+    "timestamp": "2026-06-22T14:35:02Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 6",
+    "temperature_c": 30.4,
+    "current_draw_a": 7.5,
+    "speed_mps": 1.6,
+    "battery_percent": 31
+  },
+  {
+    "timestamp": "2026-06-22T14:35:09Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 86.9,
+    "current_draw_a": 12.5,
+    "speed_mps": 0.5,
+    "battery_percent": 23
+  },
+  {
+    "timestamp": "2026-06-22T14:35:19Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 96.8,
+    "current_draw_a": 11.0,
+    "speed_mps": 0.7,
+    "battery_percent": 11
+  },
+  {
+    "timestamp": "2026-06-22T14:35:20Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 2",
+    "temperature_c": 59.9,
+    "current_draw_a": 3.8,
+    "speed_mps": 1.1,
+    "battery_percent": 60
+  },
+  {
+    "timestamp": "2026-06-22T14:35:22Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 3",
+    "temperature_c": 36.6,
+    "current_draw_a": 3.9,
+    "speed_mps": 1.7,
+    "battery_percent": 74
+  },
+  {
+    "timestamp": "2026-06-22T14:35:25Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 1",
+    "temperature_c": 40.0,
+    "current_draw_a": 5.8,
+    "speed_mps": 1.6,
+    "battery_percent": 46
+  },
+  {
+    "timestamp": "2026-06-22T14:35:42Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 6",
+    "temperature_c": 40.4,
+    "current_draw_a": 4.2,
+    "speed_mps": 1.7,
+    "battery_percent": 64
+  },
+  {
+    "timestamp": "2026-06-22T14:35:46Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 64.8,
+    "current_draw_a": 6.5,
+    "speed_mps": 1.2,
+    "battery_percent": 51
+  },
+  {
+    "timestamp": "2026-06-22T14:35:52Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 3",
+    "temperature_c": 68.3,
+    "current_draw_a": 4.8,
+    "speed_mps": 1.5,
+    "battery_percent": 99
+  },
+  {
+    "timestamp": "2026-06-22T14:35:53Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 4",
+    "temperature_c": 62.9,
+    "current_draw_a": 2.4,
+    "speed_mps": 2.0,
+    "battery_percent": 39
+  },
+  {
+    "timestamp": "2026-06-22T14:35:54Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 5",
+    "temperature_c": 61.5,
+    "current_draw_a": 5.0,
+    "speed_mps": 1.0,
+    "battery_percent": 90
+  },
+  {
+    "timestamp": "2026-06-22T14:36:03Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 2",
+    "temperature_c": 38.5,
+    "current_draw_a": 7.2,
+    "speed_mps": 1.9,
+    "battery_percent": 90
+  },
+  {
+    "timestamp": "2026-06-22T14:36:10Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 4",
+    "temperature_c": 49.7,
+    "current_draw_a": 2.4,
+    "speed_mps": 2.0,
+    "battery_percent": 65
+  },
+  {
+    "timestamp": "2026-06-22T14:36:18Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 101.2,
+    "current_draw_a": 13.1,
+    "speed_mps": 0.7,
+    "battery_percent": 10
+  },
+  {
+    "timestamp": "2026-06-22T14:36:28Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 6",
+    "temperature_c": 46.7,
+    "current_draw_a": 2.2,
+    "speed_mps": 2.0,
+    "battery_percent": 98
+  },
+  {
+    "timestamp": "2026-06-22T14:36:37Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 4",
+    "temperature_c": 99.0,
+    "current_draw_a": 14.6,
+    "speed_mps": 0.7,
+    "battery_percent": 11
+  },
+  {
+    "timestamp": "2026-06-22T14:37:00Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 6",
+    "temperature_c": 47.7,
+    "current_draw_a": 3.3,
+    "speed_mps": 1.4,
+    "battery_percent": 61
+  },
+  {
+    "timestamp": "2026-06-22T14:37:00Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 2",
+    "temperature_c": 49.6,
+    "current_draw_a": 2.5,
+    "speed_mps": 1.2,
+    "battery_percent": 58
+  },
+  {
+    "timestamp": "2026-06-22T14:37:14Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 3",
+    "temperature_c": 53.3,
+    "current_draw_a": 2.9,
+    "speed_mps": 1.1,
+    "battery_percent": 69
+  },
+  {
+    "timestamp": "2026-06-22T14:37:14Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 99.4,
+    "current_draw_a": 11.8,
+    "speed_mps": 0.5,
+    "battery_percent": 24
+  },
+  {
+    "timestamp": "2026-06-22T14:37:31Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 1",
+    "temperature_c": 52.9,
+    "current_draw_a": 3.6,
+    "speed_mps": 1.5,
+    "battery_percent": 76
+  },
+  {
+    "timestamp": "2026-06-22T14:37:46Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 6",
+    "temperature_c": 67.8,
+    "current_draw_a": 5.8,
+    "speed_mps": 1.8,
+    "battery_percent": 43
+  },
+  {
+    "timestamp": "2026-06-22T14:37:46Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 3",
+    "temperature_c": 36.1,
+    "current_draw_a": 4.0,
+    "speed_mps": 1.4,
+    "battery_percent": 61
+  },
+  {
+    "timestamp": "2026-06-22T14:37:46Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 6",
+    "temperature_c": 31.1,
+    "current_draw_a": 7.1,
+    "speed_mps": 1.9,
+    "battery_percent": 56
+  },
+  {
+    "timestamp": "2026-06-22T14:37:50Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 2",
+    "temperature_c": 46.8,
+    "current_draw_a": 7.6,
+    "speed_mps": 1.7,
+    "battery_percent": 52
+  },
+  {
+    "timestamp": "2026-06-22T14:37:56Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 1",
+    "temperature_c": 68.9,
+    "current_draw_a": 7.6,
+    "speed_mps": 1.7,
+    "battery_percent": 97
+  },
+  {
+    "timestamp": "2026-06-22T14:38:03Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 1",
+    "temperature_c": 48.3,
+    "current_draw_a": 6.8,
+    "speed_mps": 1.7,
+    "battery_percent": 70
+  },
+  {
+    "timestamp": "2026-06-22T14:38:04Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 2",
+    "temperature_c": 38.0,
+    "current_draw_a": 5.1,
+    "speed_mps": 1.5,
+    "battery_percent": 35
+  },
+  {
+    "timestamp": "2026-06-22T14:38:19Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 3",
+    "temperature_c": 57.4,
+    "current_draw_a": 4.9,
+    "speed_mps": 1.3,
+    "battery_percent": 65
+  },
+  {
+    "timestamp": "2026-06-22T14:38:23Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 4",
+    "temperature_c": 52.3,
+    "current_draw_a": 2.8,
+    "speed_mps": 1.2,
+    "battery_percent": 56
+  },
+  {
+    "timestamp": "2026-06-22T14:38:24Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 4",
+    "temperature_c": 98.1,
+    "current_draw_a": 13.9,
+    "speed_mps": 0.5,
+    "battery_percent": 15
+  },
+  {
+    "timestamp": "2026-06-22T14:38:26Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 3",
+    "temperature_c": 68.6,
+    "current_draw_a": 4.6,
+    "speed_mps": 1.0,
+    "battery_percent": 63
+  },
+  {
+    "timestamp": "2026-06-22T14:38:29Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 5",
+    "temperature_c": 69.9,
+    "current_draw_a": 3.1,
+    "speed_mps": 1.8,
+    "battery_percent": 33
+  },
+  {
+    "timestamp": "2026-06-22T14:38:30Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 4",
+    "temperature_c": 58.0,
+    "current_draw_a": 6.6,
+    "speed_mps": 1.2,
+    "battery_percent": 44
+  },
+  {
+    "timestamp": "2026-06-22T14:38:31Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 2",
+    "temperature_c": 60.1,
+    "current_draw_a": 6.0,
+    "speed_mps": 1.1,
+    "battery_percent": 74
+  },
+  {
+    "timestamp": "2026-06-22T14:38:38Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 2",
+    "temperature_c": 37.0,
+    "current_draw_a": 5.7,
+    "speed_mps": 1.4,
+    "battery_percent": 60
+  },
+  {
+    "timestamp": "2026-06-22T14:38:57Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 2",
+    "temperature_c": 56.6,
+    "current_draw_a": 2.5,
+    "speed_mps": 2.0,
+    "battery_percent": 38
+  },
+  {
+    "timestamp": "2026-06-22T14:39:01Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 1",
+    "temperature_c": 50.1,
+    "current_draw_a": 7.4,
+    "speed_mps": 1.2,
+    "battery_percent": 96
+  },
+  {
+    "timestamp": "2026-06-22T14:39:02Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 2",
+    "temperature_c": 57.4,
+    "current_draw_a": 3.0,
+    "speed_mps": 1.3,
+    "battery_percent": 64
+  },
+  {
+    "timestamp": "2026-06-22T14:39:28Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 1",
+    "temperature_c": 46.9,
+    "current_draw_a": 6.2,
+    "speed_mps": 1.5,
+    "battery_percent": 37
+  },
+  {
+    "timestamp": "2026-06-22T14:39:31Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 5",
+    "temperature_c": 33.3,
+    "current_draw_a": 5.9,
+    "speed_mps": 1.6,
+    "battery_percent": 70
+  },
+  {
+    "timestamp": "2026-06-22T14:39:32Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 1",
+    "temperature_c": 59.9,
+    "current_draw_a": 2.3,
+    "speed_mps": 1.6,
+    "battery_percent": 94
+  },
+  {
+    "timestamp": "2026-06-22T14:40:00Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 3",
+    "temperature_c": 42.1,
+    "current_draw_a": 2.8,
+    "speed_mps": 1.2,
+    "battery_percent": 85
+  },
+  {
+    "timestamp": "2026-06-22T14:40:03Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 3",
+    "temperature_c": 43.8,
+    "current_draw_a": 7.0,
+    "speed_mps": 1.3,
+    "battery_percent": 41
+  },
+  {
+    "timestamp": "2026-06-22T14:40:06Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 6",
+    "temperature_c": 68.5,
+    "current_draw_a": 6.1,
+    "speed_mps": 1.5,
+    "battery_percent": 68
+  },
+  {
+    "timestamp": "2026-06-22T14:40:11Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 1",
+    "temperature_c": 37.0,
+    "current_draw_a": 2.3,
+    "speed_mps": 1.7,
+    "battery_percent": 97
+  },
+  {
+    "timestamp": "2026-06-22T14:40:24Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 1",
+    "temperature_c": 55.7,
+    "current_draw_a": 2.8,
+    "speed_mps": 1.5,
+    "battery_percent": 36
+  },
+  {
+    "timestamp": "2026-06-22T14:40:24Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 4",
+    "temperature_c": 56.5,
+    "current_draw_a": 2.8,
+    "speed_mps": 1.3,
+    "battery_percent": 70
+  },
+  {
+    "timestamp": "2026-06-22T14:40:31Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 5",
+    "temperature_c": 63.1,
+    "current_draw_a": 5.2,
+    "speed_mps": 1.7,
+    "battery_percent": 68
+  },
+  {
+    "timestamp": "2026-06-22T14:40:32Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 1",
+    "temperature_c": 60.8,
+    "current_draw_a": 5.9,
+    "speed_mps": 1.4,
+    "battery_percent": 35
+  },
+  {
+    "timestamp": "2026-06-22T14:40:44Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 99.2,
+    "current_draw_a": 11.6,
+    "speed_mps": 0.3,
+    "battery_percent": 11
+  },
+  {
+    "timestamp": "2026-06-22T14:40:45Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 5",
+    "temperature_c": 45.7,
+    "current_draw_a": 2.7,
+    "speed_mps": 1.4,
+    "battery_percent": 88
+  },
+  {
+    "timestamp": "2026-06-22T14:40:47Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 3",
+    "temperature_c": 51.5,
+    "current_draw_a": 7.1,
+    "speed_mps": 1.4,
+    "battery_percent": 63
+  },
+  {
+    "timestamp": "2026-06-22T14:41:23Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 5",
+    "temperature_c": 45.2,
+    "current_draw_a": 7.5,
+    "speed_mps": 1.3,
+    "battery_percent": 84
+  },
+  {
+    "timestamp": "2026-06-22T14:41:23Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 3",
+    "temperature_c": 61.0,
+    "current_draw_a": 3.4,
+    "speed_mps": 1.8,
+    "battery_percent": 58
+  },
+  {
+    "timestamp": "2026-06-22T14:41:31Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 1",
+    "temperature_c": 35.0,
+    "current_draw_a": 5.7,
+    "speed_mps": 1.6,
+    "battery_percent": 71
+  },
+  {
+    "timestamp": "2026-06-22T14:41:34Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 2",
+    "temperature_c": 45.0,
+    "current_draw_a": 3.0,
+    "speed_mps": 2.0,
+    "battery_percent": 97
+  },
+  {
+    "timestamp": "2026-06-22T14:41:34Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 1",
+    "temperature_c": 37.2,
+    "current_draw_a": 6.2,
+    "speed_mps": 1.3,
+    "battery_percent": 73
+  },
+  {
+    "timestamp": "2026-06-22T14:41:35Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 5",
+    "temperature_c": 59.2,
+    "current_draw_a": 3.0,
+    "speed_mps": 1.4,
+    "battery_percent": 58
+  },
+  {
+    "timestamp": "2026-06-22T14:41:37Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 3",
+    "temperature_c": 44.9,
+    "current_draw_a": 3.7,
+    "speed_mps": 1.4,
+    "battery_percent": 73
+  },
+  {
+    "timestamp": "2026-06-22T14:41:59Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 4",
+    "temperature_c": 103.2,
+    "current_draw_a": 13.9,
+    "speed_mps": 0.4,
+    "battery_percent": 25
+  },
+  {
+    "timestamp": "2026-06-22T14:42:01Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 97.1,
+    "current_draw_a": 12.6,
+    "speed_mps": 0.5,
+    "battery_percent": 16
+  },
+  {
+    "timestamp": "2026-06-22T14:42:03Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 3",
+    "temperature_c": 33.3,
+    "current_draw_a": 2.5,
+    "speed_mps": 1.9,
+    "battery_percent": 49
+  },
+  {
+    "timestamp": "2026-06-22T14:42:08Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 6",
+    "temperature_c": 58.2,
+    "current_draw_a": 3.8,
+    "speed_mps": 1.6,
+    "battery_percent": 40
+  },
+  {
+    "timestamp": "2026-06-22T14:42:18Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 3",
+    "temperature_c": 62.6,
+    "current_draw_a": 3.6,
+    "speed_mps": 1.4,
+    "battery_percent": 77
+  },
+  {
+    "timestamp": "2026-06-22T14:42:40Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 5",
+    "temperature_c": 51.3,
+    "current_draw_a": 5.0,
+    "speed_mps": 1.2,
+    "battery_percent": 49
+  },
+  {
+    "timestamp": "2026-06-22T14:42:47Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 5",
+    "temperature_c": 31.4,
+    "current_draw_a": 2.4,
+    "speed_mps": 1.6,
+    "battery_percent": 66
+  },
+  {
+    "timestamp": "2026-06-22T14:42:53Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 6",
+    "temperature_c": 55.9,
+    "current_draw_a": 3.9,
+    "speed_mps": 1.4,
+    "battery_percent": 76
+  },
+  {
+    "timestamp": "2026-06-22T14:43:18Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 3",
+    "temperature_c": 31.8,
+    "current_draw_a": 4.0,
+    "speed_mps": 1.1,
+    "battery_percent": 63
+  },
+  {
+    "timestamp": "2026-06-22T14:43:23Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 6",
+    "temperature_c": 66.8,
+    "current_draw_a": 7.6,
+    "speed_mps": 1.2,
+    "battery_percent": 51
+  },
+  {
+    "timestamp": "2026-06-22T14:43:27Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 5",
+    "temperature_c": 40.0,
+    "current_draw_a": 6.5,
+    "speed_mps": 1.8,
+    "battery_percent": 47
+  },
+  {
+    "timestamp": "2026-06-22T14:43:39Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 99.8,
+    "current_draw_a": 13.7,
+    "speed_mps": 0.6,
+    "battery_percent": 11
+  },
+  {
+    "timestamp": "2026-06-22T14:43:39Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 97.7,
+    "current_draw_a": 15.8,
+    "speed_mps": 0.7,
+    "battery_percent": 20
+  },
+  {
+    "timestamp": "2026-06-22T14:43:40Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 2",
+    "temperature_c": 47.3,
+    "current_draw_a": 7.5,
+    "speed_mps": 1.1,
+    "battery_percent": 45
+  },
+  {
+    "timestamp": "2026-06-22T14:43:43Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 3",
+    "temperature_c": 40.4,
+    "current_draw_a": 6.3,
+    "speed_mps": 1.9,
+    "battery_percent": 68
+  },
+  {
+    "timestamp": "2026-06-22T14:43:53Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 96.7,
+    "current_draw_a": 15.5,
+    "speed_mps": 0.5,
+    "battery_percent": 17
+  },
+  {
+    "timestamp": "2026-06-22T14:44:11Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 46.5,
+    "current_draw_a": 5.3,
+    "speed_mps": 1.1,
+    "battery_percent": 65
+  },
+  {
+    "timestamp": "2026-06-22T14:44:12Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 6",
+    "temperature_c": 63.0,
+    "current_draw_a": 7.5,
+    "speed_mps": 1.3,
+    "battery_percent": 82
+  },
+  {
+    "timestamp": "2026-06-22T14:44:21Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 3",
+    "temperature_c": 64.1,
+    "current_draw_a": 7.2,
+    "speed_mps": 1.4,
+    "battery_percent": 70
+  },
+  {
+    "timestamp": "2026-06-22T14:44:27Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 5",
+    "temperature_c": 46.7,
+    "current_draw_a": 5.8,
+    "speed_mps": 1.5,
+    "battery_percent": 99
+  },
+  {
+    "timestamp": "2026-06-22T14:44:31Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 5",
+    "temperature_c": 59.5,
+    "current_draw_a": 7.1,
+    "speed_mps": 1.0,
+    "battery_percent": 52
+  },
+  {
+    "timestamp": "2026-06-22T14:44:37Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 1",
+    "temperature_c": 46.2,
+    "current_draw_a": 4.3,
+    "speed_mps": 1.5,
+    "battery_percent": 31
+  },
+  {
+    "timestamp": "2026-06-22T14:44:37Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 5",
+    "temperature_c": 65.6,
+    "current_draw_a": 2.9,
+    "speed_mps": 1.1,
+    "battery_percent": 56
+  },
+  {
+    "timestamp": "2026-06-22T14:44:41Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 3",
+    "temperature_c": 33.3,
+    "current_draw_a": 6.0,
+    "speed_mps": 1.6,
+    "battery_percent": 36
+  },
+  {
+    "timestamp": "2026-06-22T14:44:45Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 6",
+    "temperature_c": 32.1,
+    "current_draw_a": 4.9,
+    "speed_mps": 1.5,
+    "battery_percent": 78
+  },
+  {
+    "timestamp": "2026-06-22T14:45:00Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 1",
+    "temperature_c": 30.3,
+    "current_draw_a": 5.3,
+    "speed_mps": 1.0,
+    "battery_percent": 97
+  },
+  {
+    "timestamp": "2026-06-22T14:45:11Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 4",
+    "temperature_c": 54.3,
+    "current_draw_a": 4.5,
+    "speed_mps": 1.2,
+    "battery_percent": 95
+  },
+  {
+    "timestamp": "2026-06-22T14:45:32Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 1",
+    "temperature_c": 38.8,
+    "current_draw_a": 7.9,
+    "speed_mps": 1.1,
+    "battery_percent": 56
+  },
+  {
+    "timestamp": "2026-06-22T14:45:44Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 1",
+    "temperature_c": 55.8,
+    "current_draw_a": 4.5,
+    "speed_mps": 1.4,
+    "battery_percent": 76
+  },
+  {
+    "timestamp": "2026-06-22T14:45:52Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 3",
+    "temperature_c": 34.7,
+    "current_draw_a": 3.8,
+    "speed_mps": 1.2,
+    "battery_percent": 48
+  },
+  {
+    "timestamp": "2026-06-22T14:45:55Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 6",
+    "temperature_c": 30.9,
+    "current_draw_a": 3.5,
+    "speed_mps": 1.0,
+    "battery_percent": 57
+  },
+  {
+    "timestamp": "2026-06-22T14:46:20Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 6",
+    "temperature_c": 55.9,
+    "current_draw_a": 2.4,
+    "speed_mps": 1.1,
+    "battery_percent": 79
+  },
+  {
+    "timestamp": "2026-06-22T14:46:26Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 5",
+    "temperature_c": 47.9,
+    "current_draw_a": 6.2,
+    "speed_mps": 1.1,
+    "battery_percent": 44
+  },
+  {
+    "timestamp": "2026-06-22T14:46:29Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 6",
+    "temperature_c": 42.6,
+    "current_draw_a": 4.6,
+    "speed_mps": 1.5,
+    "battery_percent": 68
+  },
+  {
+    "timestamp": "2026-06-22T14:46:30Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 2",
+    "temperature_c": 44.9,
+    "current_draw_a": 5.6,
+    "speed_mps": 1.2,
+    "battery_percent": 90
+  },
+  {
+    "timestamp": "2026-06-22T14:46:37Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 4",
+    "temperature_c": 68.2,
+    "current_draw_a": 6.6,
+    "speed_mps": 1.0,
+    "battery_percent": 38
+  },
+  {
+    "timestamp": "2026-06-22T14:46:44Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 1",
+    "temperature_c": 39.2,
+    "current_draw_a": 2.2,
+    "speed_mps": 1.3,
+    "battery_percent": 64
+  },
+  {
+    "timestamp": "2026-06-22T14:46:48Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 5",
+    "temperature_c": 66.1,
+    "current_draw_a": 5.9,
+    "speed_mps": 1.1,
+    "battery_percent": 65
+  },
+  {
+    "timestamp": "2026-06-22T14:47:00Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 6",
+    "temperature_c": 42.1,
+    "current_draw_a": 7.2,
+    "speed_mps": 1.9,
+    "battery_percent": 41
+  },
+  {
+    "timestamp": "2026-06-22T14:47:17Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 1",
+    "temperature_c": 56.7,
+    "current_draw_a": 4.8,
+    "speed_mps": 1.2,
+    "battery_percent": 94
+  },
+  {
+    "timestamp": "2026-06-22T14:47:21Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 3",
+    "temperature_c": 56.5,
+    "current_draw_a": 4.4,
+    "speed_mps": 1.8,
+    "battery_percent": 34
+  },
+  {
+    "timestamp": "2026-06-22T14:47:33Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 6",
+    "temperature_c": 58.7,
+    "current_draw_a": 2.9,
+    "speed_mps": 1.3,
+    "battery_percent": 37
+  },
+  {
+    "timestamp": "2026-06-22T14:47:39Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 3",
+    "temperature_c": 41.1,
+    "current_draw_a": 3.3,
+    "speed_mps": 1.8,
+    "battery_percent": 43
+  },
+  {
+    "timestamp": "2026-06-22T14:47:44Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 1",
+    "temperature_c": 69.1,
+    "current_draw_a": 5.9,
+    "speed_mps": 1.3,
+    "battery_percent": 36
+  },
+  {
+    "timestamp": "2026-06-22T14:47:55Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 5",
+    "temperature_c": 31.3,
+    "current_draw_a": 5.6,
+    "speed_mps": 1.9,
+    "battery_percent": 58
+  },
+  {
+    "timestamp": "2026-06-22T14:47:58Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 3",
+    "temperature_c": 42.3,
+    "current_draw_a": 3.4,
+    "speed_mps": 1.7,
+    "battery_percent": 70
+  },
+  {
+    "timestamp": "2026-06-22T14:47:58Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 1",
+    "temperature_c": 50.0,
+    "current_draw_a": 4.6,
+    "speed_mps": 1.8,
+    "battery_percent": 42
+  },
+  {
+    "timestamp": "2026-06-22T14:48:01Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 104.1,
+    "current_draw_a": 13.4,
+    "speed_mps": 0.5,
+    "battery_percent": 21
+  },
+  {
+    "timestamp": "2026-06-22T14:48:01Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 5",
+    "temperature_c": 52.5,
+    "current_draw_a": 5.4,
+    "speed_mps": 1.2,
+    "battery_percent": 93
+  },
+  {
+    "timestamp": "2026-06-22T14:48:06Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 3",
+    "temperature_c": 44.7,
+    "current_draw_a": 4.8,
+    "speed_mps": 1.4,
+    "battery_percent": 45
+  },
+  {
+    "timestamp": "2026-06-22T14:48:09Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 92.7,
+    "current_draw_a": 15.6,
+    "speed_mps": 0.6,
+    "battery_percent": 14
+  },
+  {
+    "timestamp": "2026-06-22T14:48:26Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 3",
+    "temperature_c": 34.6,
+    "current_draw_a": 2.1,
+    "speed_mps": 1.3,
+    "battery_percent": 88
+  },
+  {
+    "timestamp": "2026-06-22T14:48:27Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 3",
+    "temperature_c": 52.0,
+    "current_draw_a": 5.3,
+    "speed_mps": 1.1,
+    "battery_percent": 44
+  },
+  {
+    "timestamp": "2026-06-22T14:48:33Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 1",
+    "temperature_c": 41.4,
+    "current_draw_a": 6.6,
+    "speed_mps": 1.3,
+    "battery_percent": 95
+  },
+  {
+    "timestamp": "2026-06-22T14:48:37Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 48.2,
+    "current_draw_a": 4.2,
+    "speed_mps": 1.5,
+    "battery_percent": 51
+  },
+  {
+    "timestamp": "2026-06-22T14:48:49Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 4",
+    "temperature_c": 33.0,
+    "current_draw_a": 7.9,
+    "speed_mps": 1.5,
+    "battery_percent": 81
+  },
+  {
+    "timestamp": "2026-06-22T14:49:02Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 4",
+    "temperature_c": 46.0,
+    "current_draw_a": 2.9,
+    "speed_mps": 1.7,
+    "battery_percent": 43
+  },
+  {
+    "timestamp": "2026-06-22T14:49:03Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 1",
+    "temperature_c": 59.5,
+    "current_draw_a": 6.7,
+    "speed_mps": 1.6,
+    "battery_percent": 54
+  },
+  {
+    "timestamp": "2026-06-22T14:49:08Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 5",
+    "temperature_c": 42.4,
+    "current_draw_a": 4.5,
+    "speed_mps": 1.4,
+    "battery_percent": 67
+  },
+  {
+    "timestamp": "2026-06-22T14:49:10Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 1",
+    "temperature_c": 45.4,
+    "current_draw_a": 6.4,
+    "speed_mps": 2.0,
+    "battery_percent": 82
+  },
+  {
+    "timestamp": "2026-06-22T14:49:13Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 90.7,
+    "current_draw_a": 14.7,
+    "speed_mps": 0.5,
+    "battery_percent": 17
+  },
+  {
+    "timestamp": "2026-06-22T14:49:18Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 87.1,
+    "current_draw_a": 11.5,
+    "speed_mps": 0.4,
+    "battery_percent": 16
+  },
+  {
+    "timestamp": "2026-06-22T14:49:23Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 4",
+    "temperature_c": 36.7,
+    "current_draw_a": 6.8,
+    "speed_mps": 1.2,
+    "battery_percent": 99
+  },
+  {
+    "timestamp": "2026-06-22T14:49:26Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 4",
+    "temperature_c": 66.8,
+    "current_draw_a": 7.9,
+    "speed_mps": 1.5,
+    "battery_percent": 80
+  },
+  {
+    "timestamp": "2026-06-22T14:49:38Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 6",
+    "temperature_c": 38.4,
+    "current_draw_a": 6.8,
+    "speed_mps": 1.8,
+    "battery_percent": 38
+  },
+  {
+    "timestamp": "2026-06-22T14:49:39Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 4",
+    "temperature_c": 44.6,
+    "current_draw_a": 4.4,
+    "speed_mps": 1.6,
+    "battery_percent": 54
+  },
+  {
+    "timestamp": "2026-06-22T14:49:48Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 5",
+    "temperature_c": 35.0,
+    "current_draw_a": 7.5,
+    "speed_mps": 1.1,
+    "battery_percent": 67
+  },
+  {
+    "timestamp": "2026-06-22T14:49:59Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 1",
+    "temperature_c": 66.4,
+    "current_draw_a": 4.0,
+    "speed_mps": 1.4,
+    "battery_percent": 55
+  },
+  {
+    "timestamp": "2026-06-22T14:50:02Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 1",
+    "temperature_c": 43.4,
+    "current_draw_a": 4.6,
+    "speed_mps": 1.5,
+    "battery_percent": 63
+  },
+  {
+    "timestamp": "2026-06-22T14:50:08Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 5",
+    "temperature_c": 40.0,
+    "current_draw_a": 2.5,
+    "speed_mps": 2.0,
+    "battery_percent": 32
+  },
+  {
+    "timestamp": "2026-06-22T14:50:20Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 4",
+    "temperature_c": 53.7,
+    "current_draw_a": 4.3,
+    "speed_mps": 1.7,
+    "battery_percent": 56
+  },
+  {
+    "timestamp": "2026-06-22T14:50:33Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 5",
+    "temperature_c": 37.0,
+    "current_draw_a": 3.0,
+    "speed_mps": 1.6,
+    "battery_percent": 89
+  },
+  {
+    "timestamp": "2026-06-22T14:50:34Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 5",
+    "temperature_c": 64.7,
+    "current_draw_a": 6.9,
+    "speed_mps": 1.5,
+    "battery_percent": 50
+  },
+  {
+    "timestamp": "2026-06-22T14:50:35Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 1",
+    "temperature_c": 59.8,
+    "current_draw_a": 3.3,
+    "speed_mps": 1.4,
+    "battery_percent": 73
+  },
+  {
+    "timestamp": "2026-06-22T14:50:53Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 1",
+    "temperature_c": 33.9,
+    "current_draw_a": 3.4,
+    "speed_mps": 1.1,
+    "battery_percent": 80
+  },
+  {
+    "timestamp": "2026-06-22T14:51:25Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 3",
+    "temperature_c": 44.3,
+    "current_draw_a": 6.7,
+    "speed_mps": 1.9,
+    "battery_percent": 72
+  },
+  {
+    "timestamp": "2026-06-22T14:51:27Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 3",
+    "temperature_c": 42.1,
+    "current_draw_a": 6.3,
+    "speed_mps": 1.0,
+    "battery_percent": 76
+  },
+  {
+    "timestamp": "2026-06-22T14:51:33Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 6",
+    "temperature_c": 42.5,
+    "current_draw_a": 8.0,
+    "speed_mps": 1.6,
+    "battery_percent": 86
+  },
+  {
+    "timestamp": "2026-06-22T14:51:33Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 5",
+    "temperature_c": 62.6,
+    "current_draw_a": 7.4,
+    "speed_mps": 1.4,
+    "battery_percent": 100
+  },
+  {
+    "timestamp": "2026-06-22T14:51:48Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 4",
+    "temperature_c": 54.6,
+    "current_draw_a": 7.4,
+    "speed_mps": 1.0,
+    "battery_percent": 57
+  },
+  {
+    "timestamp": "2026-06-22T14:51:53Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 2",
+    "temperature_c": 68.1,
+    "current_draw_a": 5.8,
+    "speed_mps": 1.5,
+    "battery_percent": 87
+  },
+  {
+    "timestamp": "2026-06-22T14:52:03Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 5",
+    "temperature_c": 39.0,
+    "current_draw_a": 4.6,
+    "speed_mps": 1.6,
+    "battery_percent": 33
+  },
+  {
+    "timestamp": "2026-06-22T14:52:05Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 5",
+    "temperature_c": 35.5,
+    "current_draw_a": 4.2,
+    "speed_mps": 1.3,
+    "battery_percent": 65
+  },
+  {
+    "timestamp": "2026-06-22T14:52:09Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 5",
+    "temperature_c": 63.9,
+    "current_draw_a": 6.8,
+    "speed_mps": 1.4,
+    "battery_percent": 52
+  },
+  {
+    "timestamp": "2026-06-22T14:52:12Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 5",
+    "temperature_c": 31.6,
+    "current_draw_a": 6.5,
+    "speed_mps": 1.5,
+    "battery_percent": 86
+  },
+  {
+    "timestamp": "2026-06-22T14:52:16Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 4",
+    "temperature_c": 55.1,
+    "current_draw_a": 3.6,
+    "speed_mps": 1.1,
+    "battery_percent": 66
+  },
+  {
+    "timestamp": "2026-06-22T14:52:28Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 1",
+    "temperature_c": 41.7,
+    "current_draw_a": 2.9,
+    "speed_mps": 1.0,
+    "battery_percent": 63
+  },
+  {
+    "timestamp": "2026-06-22T14:52:31Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 50.1,
+    "current_draw_a": 4.5,
+    "speed_mps": 1.2,
+    "battery_percent": 55
+  },
+  {
+    "timestamp": "2026-06-22T14:52:44Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 6",
+    "temperature_c": 66.0,
+    "current_draw_a": 6.6,
+    "speed_mps": 1.2,
+    "battery_percent": 30
+  },
+  {
+    "timestamp": "2026-06-22T14:52:48Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 1",
+    "temperature_c": 55.4,
+    "current_draw_a": 6.7,
+    "speed_mps": 1.5,
+    "battery_percent": 59
+  },
+  {
+    "timestamp": "2026-06-22T14:52:51Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 5",
+    "temperature_c": 64.4,
+    "current_draw_a": 7.8,
+    "speed_mps": 1.4,
+    "battery_percent": 80
+  },
+  {
+    "timestamp": "2026-06-22T14:52:56Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 2",
+    "temperature_c": 62.4,
+    "current_draw_a": 5.5,
+    "speed_mps": 1.4,
+    "battery_percent": 84
+  },
+  {
+    "timestamp": "2026-06-22T14:53:05Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 3",
+    "temperature_c": 34.3,
+    "current_draw_a": 2.2,
+    "speed_mps": 1.3,
+    "battery_percent": 78
+  },
+  {
+    "timestamp": "2026-06-22T14:53:08Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 2",
+    "temperature_c": 37.0,
+    "current_draw_a": 7.7,
+    "speed_mps": 1.5,
+    "battery_percent": 36
+  },
+  {
+    "timestamp": "2026-06-22T14:53:33Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 4",
+    "temperature_c": 37.6,
+    "current_draw_a": 2.6,
+    "speed_mps": 1.4,
+    "battery_percent": 84
+  },
+  {
+    "timestamp": "2026-06-22T14:53:48Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 6",
+    "temperature_c": 60.5,
+    "current_draw_a": 2.3,
+    "speed_mps": 1.6,
+    "battery_percent": 88
+  },
+  {
+    "timestamp": "2026-06-22T14:54:01Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 2",
+    "temperature_c": 31.5,
+    "current_draw_a": 7.5,
+    "speed_mps": 1.5,
+    "battery_percent": 47
+  },
+  {
+    "timestamp": "2026-06-22T14:54:03Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 6",
+    "temperature_c": 42.7,
+    "current_draw_a": 6.2,
+    "speed_mps": 1.6,
+    "battery_percent": 75
+  },
+  {
+    "timestamp": "2026-06-22T14:54:04Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 5",
+    "temperature_c": 32.5,
+    "current_draw_a": 4.3,
+    "speed_mps": 2.0,
+    "battery_percent": 97
+  },
+  {
+    "timestamp": "2026-06-22T14:54:15Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 4",
+    "temperature_c": 61.3,
+    "current_draw_a": 4.2,
+    "speed_mps": 1.5,
+    "battery_percent": 92
+  },
+  {
+    "timestamp": "2026-06-22T14:54:21Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 5",
+    "temperature_c": 32.2,
+    "current_draw_a": 5.0,
+    "speed_mps": 1.3,
+    "battery_percent": 87
+  },
+  {
+    "timestamp": "2026-06-22T14:54:30Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 1",
+    "temperature_c": 56.4,
+    "current_draw_a": 2.2,
+    "speed_mps": 1.0,
+    "battery_percent": 60
+  },
+  {
+    "timestamp": "2026-06-22T14:54:36Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 4",
+    "temperature_c": 31.0,
+    "current_draw_a": 6.4,
+    "speed_mps": 1.3,
+    "battery_percent": 82
+  },
+  {
+    "timestamp": "2026-06-22T14:54:38Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 1",
+    "temperature_c": 68.0,
+    "current_draw_a": 4.7,
+    "speed_mps": 1.9,
+    "battery_percent": 51
+  },
+  {
+    "timestamp": "2026-06-22T14:54:40Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 6",
+    "temperature_c": 63.3,
+    "current_draw_a": 4.0,
+    "speed_mps": 1.5,
+    "battery_percent": 59
+  },
+  {
+    "timestamp": "2026-06-22T14:54:41Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 3",
+    "temperature_c": 32.1,
+    "current_draw_a": 4.9,
+    "speed_mps": 1.4,
+    "battery_percent": 43
+  },
+  {
+    "timestamp": "2026-06-22T14:54:41Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 6",
+    "temperature_c": 47.0,
+    "current_draw_a": 4.6,
+    "speed_mps": 2.0,
+    "battery_percent": 53
+  },
+  {
+    "timestamp": "2026-06-22T14:54:45Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 3",
+    "temperature_c": 36.4,
+    "current_draw_a": 6.2,
+    "speed_mps": 1.4,
+    "battery_percent": 34
+  },
+  {
+    "timestamp": "2026-06-22T14:54:52Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 1",
+    "temperature_c": 30.5,
+    "current_draw_a": 7.0,
+    "speed_mps": 2.0,
+    "battery_percent": 46
+  },
+  {
+    "timestamp": "2026-06-22T14:54:53Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 4",
+    "temperature_c": 43.4,
+    "current_draw_a": 6.9,
+    "speed_mps": 1.9,
+    "battery_percent": 47
+  },
+  {
+    "timestamp": "2026-06-22T14:54:55Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 3",
+    "temperature_c": 57.1,
+    "current_draw_a": 2.9,
+    "speed_mps": 1.4,
+    "battery_percent": 74
+  },
+  {
+    "timestamp": "2026-06-22T14:54:55Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 103.7,
+    "current_draw_a": 15.8,
+    "speed_mps": 0.4,
+    "battery_percent": 25
+  },
+  {
+    "timestamp": "2026-06-22T14:55:10Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 4",
+    "temperature_c": 68.8,
+    "current_draw_a": 5.5,
+    "speed_mps": 1.6,
+    "battery_percent": 79
+  },
+  {
+    "timestamp": "2026-06-22T14:55:29Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 1",
+    "temperature_c": 69.9,
+    "current_draw_a": 3.2,
+    "speed_mps": 1.6,
+    "battery_percent": 46
+  },
+  {
+    "timestamp": "2026-06-22T14:55:42Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 5",
+    "temperature_c": 60.6,
+    "current_draw_a": 2.8,
+    "speed_mps": 1.5,
+    "battery_percent": 100
+  },
+  {
+    "timestamp": "2026-06-22T14:55:50Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 1",
+    "temperature_c": 46.5,
+    "current_draw_a": 7.1,
+    "speed_mps": 1.2,
+    "battery_percent": 49
+  },
+  {
+    "timestamp": "2026-06-22T14:55:52Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 4",
+    "temperature_c": 68.6,
+    "current_draw_a": 6.1,
+    "speed_mps": 1.9,
+    "battery_percent": 60
+  },
+  {
+    "timestamp": "2026-06-22T14:55:54Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 6",
+    "temperature_c": 50.0,
+    "current_draw_a": 5.8,
+    "speed_mps": 1.2,
+    "battery_percent": 49
+  },
+  {
+    "timestamp": "2026-06-22T14:56:05Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 4",
+    "temperature_c": 31.2,
+    "current_draw_a": 6.1,
+    "speed_mps": 1.2,
+    "battery_percent": 57
+  },
+  {
+    "timestamp": "2026-06-22T14:56:09Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 5",
+    "temperature_c": 40.3,
+    "current_draw_a": 7.5,
+    "speed_mps": 1.9,
+    "battery_percent": 38
+  },
+  {
+    "timestamp": "2026-06-22T14:56:16Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 5",
+    "temperature_c": 34.1,
+    "current_draw_a": 5.1,
+    "speed_mps": 1.7,
+    "battery_percent": 77
+  },
+  {
+    "timestamp": "2026-06-22T14:56:17Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 100.1,
+    "current_draw_a": 12.1,
+    "speed_mps": 0.6,
+    "battery_percent": 22
+  },
+  {
+    "timestamp": "2026-06-22T14:56:18Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 6",
+    "temperature_c": 64.8,
+    "current_draw_a": 4.8,
+    "speed_mps": 1.1,
+    "battery_percent": 96
+  },
+  {
+    "timestamp": "2026-06-22T14:56:20Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 2",
+    "temperature_c": 69.0,
+    "current_draw_a": 4.4,
+    "speed_mps": 1.8,
+    "battery_percent": 73
+  },
+  {
+    "timestamp": "2026-06-22T14:56:24Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 4",
+    "temperature_c": 92.9,
+    "current_draw_a": 11.2,
+    "speed_mps": 0.4,
+    "battery_percent": 15
+  },
+  {
+    "timestamp": "2026-06-22T14:56:33Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 6",
+    "temperature_c": 45.7,
+    "current_draw_a": 2.9,
+    "speed_mps": 1.6,
+    "battery_percent": 83
+  },
+  {
+    "timestamp": "2026-06-22T14:56:37Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 5",
+    "temperature_c": 37.7,
+    "current_draw_a": 2.4,
+    "speed_mps": 1.7,
+    "battery_percent": 67
+  },
+  {
+    "timestamp": "2026-06-22T14:56:47Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 1",
+    "temperature_c": 47.5,
+    "current_draw_a": 2.6,
+    "speed_mps": 1.4,
+    "battery_percent": 81
+  },
+  {
+    "timestamp": "2026-06-22T14:56:59Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 1",
+    "temperature_c": 69.1,
+    "current_draw_a": 4.8,
+    "speed_mps": 1.7,
+    "battery_percent": 84
+  },
+  {
+    "timestamp": "2026-06-22T14:57:00Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 5",
+    "temperature_c": 67.6,
+    "current_draw_a": 5.7,
+    "speed_mps": 1.4,
+    "battery_percent": 66
+  },
+  {
+    "timestamp": "2026-06-22T14:57:36Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 97.8,
+    "current_draw_a": 12.9,
+    "speed_mps": 0.5,
+    "battery_percent": 22
+  },
+  {
+    "timestamp": "2026-06-22T14:57:44Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 3",
+    "temperature_c": 33.6,
+    "current_draw_a": 4.4,
+    "speed_mps": 1.3,
+    "battery_percent": 45
+  },
+  {
+    "timestamp": "2026-06-22T14:58:02Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 95.1,
+    "current_draw_a": 12.7,
+    "speed_mps": 0.7,
+    "battery_percent": 25
+  },
+  {
+    "timestamp": "2026-06-22T14:58:02Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 5",
+    "temperature_c": 45.9,
+    "current_draw_a": 7.8,
+    "speed_mps": 1.8,
+    "battery_percent": 93
+  },
+  {
+    "timestamp": "2026-06-22T14:58:07Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 6",
+    "temperature_c": 58.4,
+    "current_draw_a": 6.2,
+    "speed_mps": 1.2,
+    "battery_percent": 76
+  },
+  {
+    "timestamp": "2026-06-22T14:58:12Z",
+    "device_id": "Conveyor-CV11",
+    "aisle": "Aisle 4",
+    "temperature_c": 86.4,
+    "current_draw_a": 15.3,
+    "speed_mps": 0.5,
+    "battery_percent": 17
+  },
+  {
+    "timestamp": "2026-06-22T14:58:13Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 6",
+    "temperature_c": 64.6,
+    "current_draw_a": 4.6,
+    "speed_mps": 1.9,
+    "battery_percent": 82
+  },
+  {
+    "timestamp": "2026-06-22T14:58:15Z",
+    "device_id": "Conveyor-CV15",
+    "aisle": "Aisle 5",
+    "temperature_c": 59.9,
+    "current_draw_a": 5.3,
+    "speed_mps": 1.6,
+    "battery_percent": 58
+  },
+  {
+    "timestamp": "2026-06-22T14:58:34Z",
+    "device_id": "SorterBot-02",
+    "aisle": "Aisle 6",
+    "temperature_c": 62.6,
+    "current_draw_a": 2.8,
+    "speed_mps": 1.8,
+    "battery_percent": 82
+  },
+  {
+    "timestamp": "2026-06-22T14:58:36Z",
+    "device_id": "SorterBot-01",
+    "aisle": "Aisle 2",
+    "temperature_c": 38.0,
+    "current_draw_a": 7.5,
+    "speed_mps": 1.3,
+    "battery_percent": 59
+  },
+  {
+    "timestamp": "2026-06-22T14:58:42Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 1",
+    "temperature_c": 65.9,
+    "current_draw_a": 2.8,
+    "speed_mps": 1.1,
+    "battery_percent": 79
+  },
+  {
+    "timestamp": "2026-06-22T14:58:59Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 3",
+    "temperature_c": 60.9,
+    "current_draw_a": 7.1,
+    "speed_mps": 1.3,
+    "battery_percent": 94
+  },
+  {
+    "timestamp": "2026-06-22T14:59:04Z",
+    "device_id": "PickerBot-Gamma",
+    "aisle": "Aisle 4",
+    "temperature_c": 51.5,
+    "current_draw_a": 4.1,
+    "speed_mps": 1.6,
+    "battery_percent": 99
+  },
+  {
+    "timestamp": "2026-06-22T14:59:15Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 3",
+    "temperature_c": 54.0,
+    "current_draw_a": 4.1,
+    "speed_mps": 1.6,
+    "battery_percent": 57
+  },
+  {
+    "timestamp": "2026-06-22T14:59:19Z",
+    "device_id": "PickerBot-Delta",
+    "aisle": "Aisle 2",
+    "temperature_c": 42.0,
+    "current_draw_a": 6.5,
+    "speed_mps": 1.8,
+    "battery_percent": 71
+  },
+  {
+    "timestamp": "2026-06-22T14:59:22Z",
+    "device_id": "PickerBot-Beta",
+    "aisle": "Aisle 4",
+    "temperature_c": 34.0,
+    "current_draw_a": 7.5,
+    "speed_mps": 1.0,
+    "battery_percent": 48
+  },
+  {
+    "timestamp": "2026-06-22T14:59:34Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 5",
+    "temperature_c": 41.4,
+    "current_draw_a": 4.9,
+    "speed_mps": 1.3,
+    "battery_percent": 36
+  },
+  {
+    "timestamp": "2026-06-22T14:59:35Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 6",
+    "temperature_c": 35.5,
+    "current_draw_a": 3.2,
+    "speed_mps": 1.3,
+    "battery_percent": 91
+  },
+  {
+    "timestamp": "2026-06-22T14:59:37Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 6",
+    "temperature_c": 54.9,
+    "current_draw_a": 5.1,
+    "speed_mps": 1.4,
+    "battery_percent": 83
+  },
+  {
+    "timestamp": "2026-06-22T14:59:51Z",
+    "device_id": "PickerBot-Alpha",
+    "aisle": "Aisle 1",
+    "temperature_c": 41.9,
+    "current_draw_a": 5.6,
+    "speed_mps": 1.9,
+    "battery_percent": 72
+  },
+  {
+    "timestamp": "2026-06-22T15:00:00Z",
+    "device_id": "Conveyor-CV12",
+    "aisle": "Aisle 6",
+    "temperature_c": 39.5,
+    "current_draw_a": 6.5,
+    "speed_mps": 1.9,
+    "battery_percent": 77
+  }
+]

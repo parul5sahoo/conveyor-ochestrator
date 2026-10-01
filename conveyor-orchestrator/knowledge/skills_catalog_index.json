@@ -1,0 +1,469 @@
+{
+  "catalog_name": "Cymbal Warehouse 3-Tier Hierarchical Skills & Knowledge Catalog (OKF)",
+  "specification_version": "OKF-SKILLS-1.0",
+  "hierarchy_architecture": {
+    "level_1": "Root Domain Skill (High-level category entry point)",
+    "level_2": "Specialist Discipline Skill (Subsystem functional scope)",
+    "level_3": "Operational Micro-Skill (Detailed SOP procedure and executable scripts)"
+  },
+  "total_suites": 5,
+  "total_disciplines": 11,
+  "total_micro_skills": 22,
+  "suites": [
+    {
+      "suite_id": "hr-workforce-governance",
+      "display_name": "HR & Workforce Governance",
+      "category": "HUMAN_RESOURCES",
+      "version": "1.0.0",
+      "description": "3-tier workforce policy orchestrator covering employee leave, shift differentials, overtime, ergonomics, and OSHA clinic triage.",
+      "tags": [
+        "hr",
+        "leave",
+        "fmla",
+        "sick note",
+        "payroll",
+        "shift differential",
+        "ergonomics",
+        "clinic"
+      ],
+      "total_disciplines": 3,
+      "total_micro_skills": 6,
+      "disciplines": [
+        {
+          "discipline_id": "employee-leave-attendance",
+          "display_name": "Employee Leave & Attendance Management",
+          "description": "Administers paid time off, medical certification rules, FMLA entitlements, and shift scheduling compliance.",
+          "micro_skills": [
+            {
+              "micro_skill_id": "medical-certification-fmla-audit",
+              "display_name": "Medical Certification & FMLA Audit",
+              "description": "Enforces the mandatory 3-consecutive-day sick note certification rule, continuous/intermittent FMLA eligibility (1,250 hours worked), and HIPAA-compliant physician note validation.",
+              "tags": [
+                "sick note",
+                "doctor note",
+                "3 days",
+                "fmla",
+                "medical leave",
+                "hipaa"
+              ]
+            },
+            {
+              "micro_skill_id": "shift-swap-overtime-approval",
+              "display_name": "Shift Swap & Overtime Rest Period Approval",
+              "description": "Verifies 8-hour mandatory rest intervals between consecutive shifts and collective bargaining overtime fairness.",
+              "tags": [
+                "shift swap",
+                "overtime",
+                "rest period",
+                "fatigue",
+                "scheduling"
+              ]
+            }
+          ]
+        },
+        {
+          "discipline_id": "compensation-shift-differentials",
+          "display_name": "Compensation & Shift Differentials",
+          "description": "Calculates off-peak shift premiums, holiday multipliers, and hazardous zone hourly bonuses.",
+          "micro_skills": [
+            {
+              "micro_skill_id": "night-shift-differential-calc",
+              "display_name": "Evening & Night Shift Differential Calculator",
+              "description": "Applies +15% evening shift (16:00-00:00) and +22% graveyard/night shift (00:00-08:00) differential calculations to base hourly wages.",
+              "tags": [
+                "shift differential",
+                "night shift",
+                "evening shift",
+                "payroll",
+                "differential rate"
+              ]
+            },
+            {
+              "micro_skill_id": "holiday-premium-hazard-pay",
+              "display_name": "Holiday Premium & Hazard Pay Allocator",
+              "description": "Applies 2.0x holiday multipliers and extreme temperature (cold chain freezer) hazard bonuses ($2.50/hr).",
+              "tags": [
+                "holiday pay",
+                "hazard pay",
+                "freezer bonus",
+                "cold chain",
+                "payroll"
+              ]
+            }
+          ]
+        },
+        {
+          "discipline_id": "occupational-health-ergonomics",
+          "display_name": "Occupational Health & Ergonomics",
+          "description": "Audits repetitive strain risks, NIOSH lifting standards, anti-fatigue rotations, and on-site clinic triage.",
+          "micro_skills": [
+            {
+              "micro_skill_id": "repetitive-strain-assessment",
+              "display_name": "NIOSH Ergonomic Lifting & Rotation Assessment",
+              "description": "Calculates Recommended Weight Limits (RWL) per NIOSH lifting equation (max 51 lbs unassisted) and enforces 2-hour workstation rotation.",
+              "tags": [
+                "niosh",
+                "lifting",
+                "ergonomics",
+                "fatigue",
+                "rotation",
+                "back safety"
+              ]
+            },
+            {
+              "micro_skill_id": "clinic-incident-triage",
+              "display_name": "On-Site Clinic First Aid & OSHA 300 Triage",
+              "description": "Guides emergency first-aid triage, automated nurse dispatch, and mandatory OSHA 300 log incident recording.",
+              "tags": [
+                "clinic",
+                "first aid",
+                "injury",
+                "osha 300",
+                "incident report"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "suite_id": "wms-inventory-resolver",
+      "display_name": "WMS Inventory & Velocity Resolution",
+      "category": "INVENTORY",
+      "version": "1.0.0",
+      "description": "3-tier inventory discrepancy and velocity management suite covering cycle counts, high-velocity SKU-991, quarantine triage, and RFID triangulation.",
+      "tags": [
+        "inventory",
+        "cycle count",
+        "sku-991",
+        "high velocity",
+        "wms",
+        "quarantine",
+        "rfid",
+        "shrinkage"
+      ],
+      "total_disciplines": 2,
+      "total_micro_skills": 4,
+      "disciplines": [
+        {
+          "discipline_id": "inventory-discrepancy-resolution",
+          "display_name": "Inventory Discrepancy & Cycle Counting",
+          "description": "Executes ABC stratification cycle counting, shrinkage investigation, and quarantined tote release.",
+          "micro_skills": [
+            {
+              "micro_skill_id": "sku-991-velocity-cycle-count",
+              "display_name": "High-Velocity SKU-991 Perpetual Cycle Count Protocol",
+              "description": "Executes ABC Class-A velocity cycle count procedures specifically for high-velocity items like SKU-991, performing automated WMS ledger reconciliation and variance root cause analysis.",
+              "tags": [
+                "sku-991",
+                "cycle count",
+                "high velocity",
+                "class a",
+                "perpetual count",
+                "wms reconciliation"
+              ]
+            },
+            {
+              "micro_skill_id": "quarantined-stock-triage",
+              "display_name": "Quarantined Stock & Blocked SKU Handling",
+              "description": "Inspects damaged packaging, hazardous material holds, and QA release certifications for quarantined inventory.",
+              "tags": [
+                "quarantine",
+                "damaged goods",
+                "qa hold",
+                "rtv",
+                "blocked stock"
+              ]
+            }
+          ]
+        },
+        {
+          "discipline_id": "rfid-iot-rack-tracking",
+          "display_name": "RFID & IoT Rack Tracking",
+          "description": "Leverages UHF RFID sensors and optical barcode cameras to locate misplaced high-value inventory.",
+          "micro_skills": [
+            {
+              "micro_skill_id": "rfid-triangulation-localization",
+              "display_name": "RFID RSSI Rack Triangulation & Tote Localization",
+              "description": "Calculates spatial coordinates of misplaced totes using Received Signal Strength Indicator (RSSI) from fixed antenna arrays.",
+              "tags": [
+                "rfid",
+                "rssi",
+                "triangulation",
+                "lost tote",
+                "localization"
+              ]
+            },
+            {
+              "micro_skill_id": "barcode-symbology-recoder",
+              "display_name": "Barcode Symbology Recoding & Cross-Dock Routing",
+              "description": "Regenerates high-density GS1-128 and 2D Datamatrix labels for degraded or unreadable packaging.",
+              "tags": [
+                "barcode",
+                "gs1-128",
+                "datamatrix",
+                "cross-dock",
+                "label reprint"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "suite_id": "conveyor-diagnostics",
+      "display_name": "Conveyor Health & Motor Diagnostics",
+      "category": "MAINTENANCE",
+      "version": "1.0.0",
+      "description": "3-tier conveyor predictive maintenance suite covering motor vibration analysis, VFD thermal monitoring, ultrasonic belt tension, and splice wear.",
+      "tags": [
+        "conveyor",
+        "motor",
+        "vibration",
+        "fft",
+        "bearing",
+        "vfd",
+        "belt tension",
+        "roller"
+      ],
+      "total_disciplines": 2,
+      "total_micro_skills": 4,
+      "disciplines": [
+        {
+          "discipline_id": "motor-drive-diagnostics",
+          "display_name": "Motor Drive & Bearing Diagnostics",
+          "description": "Analyzes motor vibration spectra, bearing fault harmonics, and variable frequency drive (VFD) thermal loads.",
+          "micro_skills": [
+            {
+              "micro_skill_id": "fft-vibration-harmonic-analysis",
+              "display_name": "FFT Harmonic Peak & Bearing Degradation Analysis",
+              "description": "Calculates Fast Fourier Transform frequency spectra to detect Ball Pass Frequency Outer (BPFO) and Inner (BPFI) raceway faults.",
+              "tags": [
+                "fft",
+                "vibration",
+                "bearing",
+                "harmonic",
+                "bpfo",
+                "iso 10816"
+              ]
+            },
+            {
+              "micro_skill_id": "thermal-overload-monitoring",
+              "display_name": "VFD Inverter Thermal Overload Monitoring",
+              "description": "Monitors IGBT junction temperatures and calculates current derating to prevent motor winding insulation breakdown.",
+              "tags": [
+                "thermal",
+                "overload",
+                "vfd",
+                "igbt",
+                "winding",
+                "temperature"
+              ]
+            }
+          ]
+        },
+        {
+          "discipline_id": "belt-mechanical-integrity",
+          "display_name": "Belt Mechanical Integrity",
+          "description": "Calibrates ultrasonic belt tension and tracks splice degradation across conveyor rollers.",
+          "micro_skills": [
+            {
+              "micro_skill_id": "tension-ultrasonic-calibration",
+              "display_name": "Ultrasonic Belt Tension & Load Cell Calibration",
+              "description": "Measures belt resonant vibration frequency to calibrate take-up carriage tension without stopping line.",
+              "tags": [
+                "belt tension",
+                "ultrasonic",
+                "load cell",
+                "resonant frequency",
+                "slack"
+              ]
+            },
+            {
+              "micro_skill_id": "splice-wear-tracking",
+              "display_name": "Conveyor Belt Splice Wear & Joint Integrity",
+              "description": "Inspects mechanical vulcanized splice seams via high-speed line scan cameras to prevent catastrophic belt parting.",
+              "tags": [
+                "splice",
+                "vulcanized",
+                "joint",
+                "line scan",
+                "belt parting"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "suite_id": "warehouse-ehs-safety",
+      "display_name": "Floor Safety & EHS Compliance",
+      "category": "SAFETY",
+      "version": "1.0.0",
+      "description": "3-tier environmental health and industrial safety suite covering Lockout/Tagout (LOTO), pneumatic residual dissipation, SDS hazmat response, and evacuation headcounts.",
+      "tags": [
+        "safety",
+        "ehs",
+        "loto",
+        "lockout",
+        "hazmat",
+        "sds",
+        "evacuation",
+        "spill",
+        "osha"
+      ],
+      "total_disciplines": 2,
+      "total_micro_skills": 4,
+      "disciplines": [
+        {
+          "discipline_id": "energy-isolation-loto",
+          "display_name": "Energy Isolation & Lockout/Tagout (LOTO)",
+          "description": "Standardizes electrical and pneumatic zero-energy physical verification and multi-technician padlock protocols.",
+          "micro_skills": [
+            {
+              "micro_skill_id": "breaker-lockout-tagout-verification",
+              "display_name": "Electrical Breaker Lockout & Zero-Energy Verification",
+              "description": "Verifies physical breaker lock placement, calibrated multimeter zero-voltage checks, and LOTO permit issuance.",
+              "tags": [
+                "loto",
+                "breaker",
+                "zero energy",
+                "multimeter",
+                "voltage",
+                "lockout hasp"
+              ]
+            },
+            {
+              "micro_skill_id": "pneumatic-residual-bleed-off",
+              "display_name": "Pneumatic Accumulator Bleed-Off & Pressure Dump",
+              "description": "Verifies discharge of stored kinetic energy in pneumatic pusher cylinders and pressure vessels.",
+              "tags": [
+                "pneumatic",
+                "pressure dump",
+                "bleed-off",
+                "accumulator",
+                "air pressure"
+              ]
+            }
+          ]
+        },
+        {
+          "discipline_id": "hazmat-emergency-response",
+          "display_name": "Hazmat & Emergency Response",
+          "description": "Directs chemical spill isolation, SDS neutralizer selection, and RFID muster point evacuation headcounts.",
+          "micro_skills": [
+            {
+              "micro_skill_id": "sds-chemical-spill-containment",
+              "display_name": "Safety Data Sheet (SDS) Spill Containment & Neutralizer",
+              "description": "Identifies chemical containment actions, neutralizing absorbents, and required PPE level (Level A-D) from SDS CAS numbers.",
+              "tags": [
+                "sds",
+                "hazmat",
+                "chemical spill",
+                "absorbent",
+                "ppe",
+                "containment"
+              ]
+            },
+            {
+              "micro_skill_id": "evacuation-headcount-audit",
+              "display_name": "Muster Point Headcount & Missing Personnel Audit",
+              "description": "Reconciles live badge RFID swipes at external assembly muster zones against active shift roster.",
+              "tags": [
+                "evacuation",
+                "muster point",
+                "headcount",
+                "fire drill",
+                "missing person"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "suite_id": "agv-fleet-orchestrator",
+      "display_name": "Autonomous AGV Fleet Orchestrator",
+      "category": "ROBOTICS",
+      "version": "1.0.0",
+      "description": "3-tier Automated Guided Vehicle coordination suite covering dynamic detour routing around stalled conveyors, LiDAR intersection arbitration, inductive opportunity charging, and payload balancing.",
+      "tags": [
+        "agv",
+        "amr",
+        "detour",
+        "routing",
+        "battery",
+        "inductive charging",
+        "lidar",
+        "collision avoidance"
+      ],
+      "total_disciplines": 2,
+      "total_micro_skills": 4,
+      "disciplines": [
+        {
+          "discipline_id": "agv-routing-navigation",
+          "display_name": "AGV Dynamic Navigation & Traffic Control",
+          "description": "Calculates graph detour routes around blocked conveyor lines and negotiates right-of-way at four-way intersections.",
+          "micro_skills": [
+            {
+              "micro_skill_id": "dynamic-conveyor-bypass-pathing",
+              "display_name": "Conveyor Outage Dynamic Graph Bypass Routing",
+              "description": "Computes A* shortest detour trajectories through secondary staging aisles when a conveyor zone is halted.",
+              "tags": [
+                "agv bypass",
+                "detour",
+                "a*",
+                "stalled conveyor",
+                "pathing",
+                "graph"
+              ]
+            },
+            {
+              "micro_skill_id": "aisle-intersection-collision-avoidance",
+              "display_name": "Blind-Spot LiDAR & Intersection Right-of-Way",
+              "description": "Arbitrates priority tokens between loaded AGVs, empty AGVs, and human-operated order pickers at blind aisle intersections.",
+              "tags": [
+                "lidar",
+                "collision avoidance",
+                "intersection",
+                "right of way",
+                "safety"
+              ]
+            }
+          ]
+        },
+        {
+          "discipline_id": "fleet-energy-management",
+          "display_name": "Fleet Energy & Payload Optimization",
+          "description": "Dispatches opportunity charging to floor inductive pads and audits pallet center-of-gravity stabilization.",
+          "micro_skills": [
+            {
+              "micro_skill_id": "opportunity-charging-dispatch",
+              "display_name": "State-of-Charge (SoC) Opportunity Charging Dispatch",
+              "description": "Routes AGVs with < 35% battery to available inductive floor pads during shift change or task idle cycles.",
+              "tags": [
+                "battery",
+                "soc",
+                "inductive charging",
+                "opportunity charging",
+                "fleet energy"
+              ]
+            },
+            {
+              "micro_skill_id": "load-capacity-weight-balancing",
+              "display_name": "Pallet Payload Capacity & Center-of-Gravity Balancer",
+              "description": "Calculates payload mass distribution to prevent AGV tip-over during high-speed turns.",
+              "tags": [
+                "payload",
+                "center of gravity",
+                "tip over",
+                "weight limit",
+                "pallet balance"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
