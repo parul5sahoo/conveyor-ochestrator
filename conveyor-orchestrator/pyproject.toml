@@ -13,6 +13,10 @@ dependencies = [
     "gcsfs>=2024.11.0",
     "google-cloud-logging>=3.12.0,<4.0.0",
     "mcp",
+    "a2a-sdk[http-server]~=0.3.22",
+    "aiohttp>=3.13.4",
+    "google-cloud-aiplatform[agent-engines,evaluation]>=1.156.0",
+    "protobuf>=6.31.1,<7.0.0",
 ]
 requires-python = "==3.12.*"
 
@@ -96,6 +100,9 @@ asyncio_default_fixture_loop_scope = "function"
 
 [tool.hatch.build.targets.wheel]
 packages = ["app","frontend"]
+artifacts = [
+    "app/fleet_telemetry_dump.json",
+]
 
 
 [tool.uv]
